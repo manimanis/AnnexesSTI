@@ -1,0 +1,203 @@
+/* =============================================
+   Annexe PHP - Feuille de style externe
+   ============================================= */
+
+:root {
+  --edu-primary: #6366f1;
+  --edu-bg: #f8fafc;
+  --edu-card-bg: #ffffff;
+  --edu-text: #0f172a;
+  --edu-border: #e2e8f0;
+  --type-remember: #0ea5e9;
+  --type-warning: #f59e0b;
+  --type-tip: #10b981;
+}
+
+[data-bs-theme="dark"] {
+  --edu-primary: #818cf8;
+  --edu-bg: #0f172a;
+  --edu-card-bg: #1e293b;
+  --edu-text: #f8fafc;
+  --edu-border: #334155;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--edu-bg);
+  color: var(--edu-text);
+}
+
+code,
+pre {
+  font-family: 'Fira Code', monospace;
+}
+
+.navbar-custom {
+  background-color: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notion-card {
+  border-radius: 1rem;
+  background-color: var(--edu-card-bg);
+  border: 1px solid var(--edu-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  height: 100%;
+}
+
+.notion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--edu-primary);
+}
+
+.pedago-box {
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.pedago-remember {
+  background-color: rgba(14, 165, 233, 0.1);
+  border-left: 4px solid var(--type-remember);
+}
+
+.pedago-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-left: 4px solid var(--type-warning);
+}
+
+.pedago-tip {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 4px solid var(--type-tip);
+}
+
+.code-box {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+}
+
+.highlight-search {
+  background-color: #fef08a;
+  color: #854d0e;
+  font-weight: bold;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  height: calc(100vh - 2rem);
+}
+
+.category-header {
+  background-color: var(--edu-card-bg);
+  border: 1px solid var(--edu-border);
+  border-left: 5px solid var(--edu-primary);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Coloration Syntaxique PHP */
+.syn-var {
+  color: #0284c7;
+  font-weight: 700;
+} /* Variables $var et $_POST */
+
+.syn-fn {
+  color: #e11d48;
+  font-weight: 600;
+} /* Fonctions PHP (mysqli_*, strlen) */
+
+.syn-kw {
+  color: #7c3aed;
+  font-weight: 700;
+} /* Mots-clés (if, echo, require, array) */
+
+.syn-str {
+  color: #16a34a;
+} /* Chaînes */
+
+.syn-comment {
+  color: #64748b;
+  font-style: italic;
+} /* Commentaires */
+
+.code-box .syn-var,
+[data-bs-theme="dark"] .syn-var {
+  color: #38bdf8;
+}
+
+.code-box .syn-fn,
+[data-bs-theme="dark"] .syn-fn {
+  color: #f43f5e;
+}
+
+.code-box .syn-kw,
+[data-bs-theme="dark"] .syn-kw {
+  color: #c084fc;
+}
+
+.code-box .syn-str,
+[data-bs-theme="dark"] .syn-str {
+  color: #4ade80;
+}
+
+/* Style de sélection de la liste du sommaire pédagogique */
+.toc-item-active {
+  background-color: #e0e7ff !important;
+  color: #3730a3 !important;
+  border-left: 4px solid #6366f1 !important;
+  font-weight: 700 !important;
+}
+
+[data-bs-theme="dark"] .toc-item-active {
+  background-color: rgba(99, 102, 241, 0.25) !important;
+  color: #c7d2fe !important;
+  border-left: 4px solid #818cf8 !important;
+}
+
+.toc-item-active .syn-var {
+  color: #0369a1 !important;
+}
+
+[data-bs-theme="dark"] .toc-item-active .syn-var {
+  color: #7dd3fc !important;
+}
+
+.toc-item-active .syn-fn {
+  color: #be123c !important;
+}
+
+[data-bs-theme="dark"] .toc-item-active .syn-fn {
+  color: #fda4af !important;
+}
+
+.toc-item-active .syn-kw {
+  color: #6b21a8 !important;
+}
+
+[data-bs-theme="dark"] .toc-item-active .syn-kw {
+  color: #e9d5ff !important;
+}

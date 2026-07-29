@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annexe Officielle SQL - Coloration Syntaxique - Section SI (Tunisie)</title>
+  <meta name="description"
+    content="Documentation pédagogique de l'Annexe SQL avec coloration syntaxique des requêtes, commandes et fonctions.">
+
+  <!-- Bootstrap 5 CSS (Local) -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons (Local) -->
+  <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Feuille de style externe -->
+  <link rel="stylesheet" href="assets/css/sql.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar Fixe -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-2">
+      <div class="container-fluid px-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
+          <span class="badge bg-success fs-6 p-2 rounded-3">
+            <i class="bi bi-database"></i> SQL
+          </span>
+          <span class="fs-6 d-none d-sm-inline text-light">Annexe SQL</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="html5.html"><i class="bi bi-filetype-html me-1"></i>
+                HTML5</a></li>
+            <li class="nav-item"><a class="nav-link" href="css3.html"><i class="bi bi-filetype-css me-1"></i> CSS3</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="js.html"><i class="bi bi-filetype-js me-1"></i>
+                JavaScript</a></li>
+            <li class="nav-item"><a class="nav-link" href="php.html"><i class="bi bi-filetype-php me-1"></i> PHP</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="sql.html"><i class="bi bi-database me-1"></i> SQL</a>
+            </li>
+          </ul>
+
+          <button class="btn btn-outline-light btn-sm rounded-circle p-2" @click="toggleTheme" title="Changer de thème">
+            <i class="bi" :class="isDarkMode ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-lg-4 py-4">
+
+      <!-- Header Banner -->
+      <div class="bg-success bg-gradient text-white p-4 p-md-5 rounded-4 mb-4 shadow">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <span class="badge bg-white text-success fw-bold mb-2"><i class="bi bi-database me-1"></i> Gestion de Base de Données</span>
+            <h1 class="display-5 fw-extrabold">Annexe SQL</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="row g-3 mb-4 align-items-center">
+        <div class="col-md-6">
+          <div class="position-relative">
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+            <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill"
+              placeholder="Rechercher une commande (ex: SELECT, PRIMARY KEY, COUNT, ALTER)...">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select rounded-pill" v-model="selectedCategory">
+            <option value="ALL">Tous les thèmes ({{ categories.length }})</option>
+            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+          </select>
+        </div>
+        <div class="col-md-2 text-end">
+          <div class="btn-group w-100" role="group">
+            <button class="btn btn-outline-secondary" :class="{active: viewMode==='grid'}" @click="viewMode='grid'"><i
+                class="bi bi-grid-fill"></i> Cartes</button>
+            <button class="btn btn-outline-secondary" :class="{active: viewMode==='accordion'}"
+              @click="viewMode='accordion'"><i class="bi bi-list-nested"></i> Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Layout -->
+      <div class="row g-4">
+        <!-- Sidebar Table of Contents (Groupé par Thème & Ordonné Alphabétiquement) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="card border-0 shadow-sm rounded-4 sticky-sidebar p-3">
+            <h6 class="fw-bold text-uppercase text-muted small mb-3 border-bottom pb-2">
+              <i class="bi bi-folder-fill text-success me-1"></i> Sommaire Pédagogique
+            </h6>
+            <div class="accordion accordion-flush small" id="tocAccordion" style="max-height: 540px; overflow-y: auto;">
+              <div v-for="(subGroups, catName, index) in groupedItems" :key="'toc-cat-'+catName"
+                class="accordion-item border-0 border-bottom mb-1">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button py-2 px-2 text-success fw-bold bg-light rounded-3 small border-0 shadow-none d-flex align-items-center justify-content-between"
+                    :class="{ collapsed: index !== 0 }" type="button" data-bs-toggle="collapse"
+                    :data-bs-target="'#toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')">
+                    <div class="d-flex align-items-center gap-1 me-auto text-truncate">
+                      <i class="bi bi-folder2-open me-1 text-success"></i>
+                      <span>{{ catName }}</span>
+                    </div>
+                  </button>
+                </h2>
+                <div :id="'toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')" class="accordion-collapse collapse"
+                  :class="{ show: index === 0 }" data-bs-parent="#tocAccordion">
+                  <div class="accordion-body p-1 bg-white">
+                    <template v-for="(groupItems, subcatName) in subGroups" :key="'toc-subcat-'+catName+'-'+subcatName">
+                      <div v-if="subcatName"
+                        class="text-success fw-bold px-2 pt-2 pb-1 small fst-italic border-bottom border-light">
+                        <i class="bi bi-tag-fill me-1 text-success"></i> {{ subcatName }}
+                      </div>
+                      <a v-for="item in groupItems" :key="'toc-'+item.id" :href="'#item-'+item.id"
+                        class="list-group-item list-group-item-action border-0 px-3 py-1 rounded-2 d-flex align-items-center justify-content-between"
+                        :class="{ 'toc-item-active': selectedTocItemId === item.id }"
+                        @click.prevent="selectTocItem(item.id)">
+                        <code class="fw-bold" v-html="formatSqlName(item.name)"></code>
+                      </a>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Items List Grouped by Theme -->
+        <div class="col-lg-9">
+
+          <div v-if="Object.keys(groupedItems).length === 0" class="text-center py-5">
+            <i class="bi bi-search fs-1 text-muted d-block mb-3"></i>
+            <h5>Aucun élément ne correspond à votre recherche</h5>
+            <button @click="searchQuery=''; selectedCategory='ALL';"
+              class="btn btn-success btn-sm rounded-pill mt-2">Réinitialiser les filtres</button>
+          </div>
+
+          <!-- Group Iteration -->
+          <div v-for="(subGroups, categoryName) in groupedItems" :key="categoryName" class="mb-5"
+            :id="'cat-'+categoryName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()">
+
+            <!-- Category Theme Header -->
+            <div class="category-header d-flex align-items-center justify-content-between mb-4">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-database-fill text-success fs-5"></i>
+                <h4 class="fw-bold mb-0 text-success">{{ categoryName }}</h4>
+              </div>
+              <span class="badge bg-success rounded-pill fs-6 px-3">{{ getCategoryCount(subGroups) }} élément(s)</span>
+            </div>
+
+            <!-- Subcategory Iteration -->
+            <div v-for="(groupItems, subcatName) in subGroups" :key="subcatName" class="mb-4">
+
+              <!-- Subcategory Banner Header (si sous-catégorie présente) -->
+              <div v-if="subcatName"
+                class="d-flex align-items-center gap-2 mb-3 pb-1 border-bottom border-2 border-success-subtle mt-4">
+                <h5 class="fw-bold mb-0 text-dark-emphasis">{{ subcatName }}</h5>
+                <span class="badge bg-success text-white rounded-pill ms-auto small">{{ groupItems.length }}
+                  élément(s)</span>
+              </div>
+
+              <!-- Grid View for this subcategory -->
+              <div v-if="viewMode === 'grid'" class="row g-4 mb-3">
+                <div v-for="item in groupItems" :key="item.id" class="col-md-6" :id="'item-'+item.id">
+                  <div class="notion-card p-4 d-flex flex-column justify-content-between"
+                    :class="{ 'border border-2 border-success shadow-sm': selectedTocItemId === item.id }">
+                    <div>
+                      <!-- Header Card -->
+                      <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                        <h5 class="fw-bold font-monospace mb-0" v-html="formatSqlName(item.name)"></h5>
+                        <div>
+                          <span class="badge bg-secondary-subtle text-secondary small border me-1">{{ item.category
+                            }}</span>
+                          <span v-if="item.subcategory"
+                            class="badge bg-success-subtle text-success border border-success-subtle small"><i
+                              class="bi bi-tag-fill me-1"></i>{{ item.subcategory }}</span>
+                        </div>
+                      </div>
+
+                      <!-- 1. Définition -->
+                      <div class="mb-3">
+                        <div class="fw-bold small text-success mb-1"><i class="bi bi-file-earmark-text me-1"></i>
+                          Définition</div>
+                        <div class="small text-muted mb-1">{{ item.official }}</div>
+                        <div class="p-2 rounded bg-light border-start border-3 border-success small">
+                          <i class="bi bi-lightbulb text-success me-1"></i>
+                          <strong>En clair :</strong> <span v-html="highlight(item.simple)"></span>
+                        </div>
+                      </div>
+
+                      <!-- 2. Exemple -->
+                      <div v-if="item.code" class="mb-3">
+                        <strong class="small text-success"><i class="bi bi-code-slash me-1"></i> Exemple :</strong>
+                        <div class="code-box mt-1">
+                          <button @click="copy(item.code)" class="copy-btn">Copier</button>
+                          <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
+                        </div>
+                      </div>
+
+                      <!-- 3. Pedago-box -->
+                      <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
+                        <div class="fw-bold small d-flex align-items-center gap-1">
+                          <i :class="getPedagoIcon(item.noteType)"></i> {{ getPedagoTitle(item.noteType) }}
+                        </div>
+                        <div class="small mt-1" v-html="highlight(item.note)"></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion View for this subcategory -->
+              <div v-if="viewMode === 'accordion'" class="accordion shadow-sm rounded-4 overflow-hidden mb-3"
+                :id="'acc-'+(categoryName + '-' + subcatName).replace(/[^a-zA-Z0-9]/g, '')">
+                <div v-for="item in groupItems" :key="'acc-'+item.id" class="accordion-item" :id="'item-'+item.id"
+                  :class="{ 'border border-2 border-success rounded-3 overflow-hidden shadow-sm': selectedTocItemId === item.id }">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse"
+                      :data-bs-target="'#col-'+item.id" @click="selectedTocItemId = item.id">
+                      <span class="fw-bold font-monospace me-3" v-html="formatSqlName(item.name)"></span>
+                      <div class="ms-auto me-2">
+                        <span class="badge bg-secondary-subtle text-secondary border small me-1">{{ item.category
+                          }}</span>
+                        <span v-if="item.subcategory"
+                          class="badge bg-success-subtle text-success border border-success-subtle small"><i
+                            class="bi bi-tag-fill me-1"></i>{{ item.subcategory }}</span>
+                      </div>
+                    </button>
+                  </h2>
+                  <div :id="'col-'+item.id" class="accordion-collapse collapse"
+                    :data-bs-parent="'#acc-'+(categoryName + '-' + subcatName).replace(/[^a-zA-Z0-9]/g, '')">
+                    <div class="accordion-body bg-body-tertiary">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <p class="mb-1"><strong>Définition Officielle :</strong> {{ item.official }}</p>
+                          <p class="mb-2"><strong>Explication Simple :</strong> <span
+                              v-html="highlight(item.simple)"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                          <div v-if="item.code" class="code-box mb-2">
+                            <button @click="copy(item.code)" class="copy-btn">Copier</button>
+                            <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
+                          </div>
+                          <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
+                            <strong>{{ getPedagoTitle(item.noteType) }} :</strong> <span
+                              v-html="highlight(item.note)"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts locaux -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+
+  <!-- Script Vue.js externe -->
+  <script src="assets/js/sql.js"></script>
+</body>
+
+</html>

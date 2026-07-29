@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annexe Officielle HTML5 - Coloration Syntaxique - Section SI (Tunisie)</title>
+  <meta name="description"
+    content="Documentation pédagogique exhaustive de l'Annexe HTML5 avec coloration syntaxique des balises et attributs sémantiques.">
+
+  <!-- Bootstrap 5 CSS (Local) -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons (Local) -->
+  <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Feuille de style externe -->
+  <link rel="stylesheet" href="assets/css/html5.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navbar Fixe -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-2">
+      <div class="container-fluid px-lg-4">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
+          <span class="badge bg-danger fs-6 p-2 rounded-3">
+            <i class="bi bi-filetype-html"></i> HTML5
+          </span>
+          <span class="fs-6 d-none d-sm-inline text-light">Annexe HTML5</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0 fw-semibold">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="html5.html"><i class="bi bi-filetype-html me-1"></i>
+                HTML5</a></li>
+            <li class="nav-item"><a class="nav-link" href="css3.html"><i class="bi bi-filetype-css me-1"></i> CSS3</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="js.html"><i class="bi bi-filetype-js me-1"></i>
+                JavaScript</a></li>
+            <li class="nav-item"><a class="nav-link" href="php.html"><i class="bi bi-filetype-php me-1"></i> PHP</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="sql.html"><i class="bi bi-database me-1"></i> SQL</a></li>
+          </ul>
+
+          <button class="btn btn-outline-light btn-sm rounded-circle p-2" @click="toggleTheme" title="Changer de thème">
+            <i class="bi" :class="isDarkMode ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-lg-4 py-4">
+
+      <!-- Header Banner -->
+      <div class="bg-danger bg-gradient text-white p-4 p-md-5 rounded-4 mb-4 shadow">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <span class="badge bg-white text-danger fw-bold mb-2"><i class="bi bi-palette me-1"></i> Squelette
+              de la page web</span>
+            <h1 class="display-5 fw-extrabold">Annexe HTML5</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="row g-3 mb-4 align-items-center">
+        <div class="col-md-6">
+          <div class="position-relative">
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+            <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill"
+              placeholder="Rechercher une balise (ex: table, tr, th, td, section, input)...">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select rounded-pill" v-model="selectedCategory">
+            <option value="ALL">Tous les thèmes ({{ categories.length }})</option>
+            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+          </select>
+        </div>
+        <div class="col-md-2 text-end">
+          <div class="btn-group w-100" role="group">
+            <button class="btn btn-outline-secondary" :class="{active: viewMode==='grid'}" @click="viewMode='grid'"><i
+                class="bi bi-grid-fill"></i> Cartes</button>
+            <button class="btn btn-outline-secondary" :class="{active: viewMode==='accordion'}"
+              @click="viewMode='accordion'"><i class="bi bi-list-nested"></i> Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Layout -->
+      <div class="row g-4">
+        <!-- Sidebar Table of Contents (Groupé par Thème & Ordonné Alphabétiquement) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="card border-0 shadow-sm rounded-4 sticky-sidebar p-3">
+            <h6 class="fw-bold text-uppercase text-muted small mb-3 border-bottom pb-2">
+              <i class="bi bi-folder-fill text-danger me-1"></i> Sommaire Pédagogique
+            </h6>
+            <div class="accordion accordion-flush small" id="tocAccordion" style="max-height: 540px; overflow-y: auto;">
+              <div v-for="(subGroups, catName, index) in groupedItems" :key="'toc-cat-'+catName"
+                class="accordion-item border-0 border-bottom mb-1">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button py-2 px-2 text-danger fw-bold bg-light rounded-3 small border-0 shadow-none d-flex align-items-center justify-content-between"
+                    :class="{ collapsed: index !== 0 }" type="button" data-bs-toggle="collapse"
+                    :data-bs-target="'#toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')">
+                    <div class="d-flex align-items-center gap-1 me-auto text-truncate">
+                      <i class="bi bi-folder2-open me-1 text-danger"></i>
+                      <span>{{ catName }}</span>
+                    </div>
+                  </button>
+                </h2>
+                <div :id="'toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')" class="accordion-collapse collapse"
+                  :class="{ show: index === 0 }" data-bs-parent="#tocAccordion">
+                  <div class="accordion-body p-1 bg-white">
+                    <template v-for="(groupItems, subcatName) in subGroups" :key="'toc-subcat-'+catName+'-'+subcatName">
+                      <div v-if="subcatName"
+                        class="text-primary fw-bold px-2 pt-2 pb-1 small fst-italic border-bottom border-light">
+                        <i class="bi bi-tag-fill me-1 text-primary"></i> {{ subcatName }}
+                      </div>
+                      <a v-for="item in groupItems" :key="'toc-'+item.id" :href="'#item-'+item.id"
+                        class="list-group-item list-group-item-action border-0 px-3 py-1 rounded-2 d-flex align-items-center justify-content-between"
+                        :class="{ 'toc-item-active': selectedTocItemId === item.id }"
+                        @click.prevent="selectTocItem(item.id)">
+                        <code class="fw-bold" v-html="syntaxHighlightTag(item.name)"></code>
+                      </a>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Items List Grouped by Theme -->
+        <div class="col-lg-9">
+
+          <div v-if="Object.keys(groupedItems).length === 0" class="text-center py-5">
+            <i class="bi bi-search fs-1 text-muted d-block mb-3"></i>
+            <h5>Aucun élément ne correspond à votre recherche</h5>
+            <button @click="searchQuery=''; selectedCategory='ALL';"
+              class="btn btn-danger btn-sm rounded-pill mt-2">Réinitialiser les filtres</button>
+          </div>
+
+          <!-- Group Iteration -->
+          <div v-for="(subGroups, categoryName) in groupedItems" :key="categoryName" class="mb-5"
+            :id="'cat-'+categoryName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()">
+
+            <!-- Category Theme Header -->
+            <div class="category-header d-flex align-items-center justify-content-between mb-4">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-bookmark-star-fill text-danger fs-5"></i>
+                <h4 class="fw-bold mb-0 text-danger">{{ categoryName }}</h4>
+              </div>
+              <span class="badge bg-danger rounded-pill fs-6 px-3">{{ getCategoryCount(subGroups) }} élément(s)</span>
+            </div>
+
+            <!-- Subcategory Iteration -->
+            <div v-for="(groupItems, subcatName) in subGroups" :key="subcatName" class="mb-4">
+
+              <!-- Subcategory Banner Header (si sous-catégorie présente) -->
+              <div v-if="subcatName"
+                class="d-flex align-items-center gap-2 mb-3 pb-1 border-bottom border-2 border-primary-subtle mt-4">
+                <h5 class="fw-bold mb-0 text-primary-emphasis">{{ subcatName }}</h5>
+                <span class="badge bg-primary text-white rounded-pill ms-auto small">{{ groupItems.length }}
+                  élément(s)</span>
+              </div>
+
+              <!-- Grid View for this subcategory -->
+              <div v-if="viewMode === 'grid'" class="row g-4 mb-3">
+                <div v-for="item in groupItems" :key="item.id" class="col-md-6" :id="'item-'+item.id">
+                  <div class="notion-card p-4 d-flex flex-column justify-content-between"
+                    :class="{ 'border border-2 border-danger shadow-sm': selectedTocItemId === item.id }">
+                    <div>
+                      <!-- Header Card -->
+                      <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                        <h5 class="fw-bold font-monospace mb-0" v-html="syntaxHighlightTag(item.name)"></h5>
+                        <div>
+                          <span class="badge bg-secondary-subtle text-secondary small border me-1">{{ item.category
+                            }}</span>
+                          <span v-if="item.subcategory"
+                            class="badge bg-primary-subtle text-primary border border-primary-subtle small"><i
+                              class="bi bi-tag-fill me-1"></i>{{ item.subcategory }}</span>
+                        </div>
+                      </div>
+
+                      <!-- 1. Définition -->
+                      <div class="mb-3">
+                        <div class="fw-bold small text-danger mb-1"><i class="bi bi-file-earmark-text me-1"></i>
+                          Définition</div>
+                        <div class="small text-muted mb-1">{{ item.official }}</div>
+                        <div class="p-2 rounded bg-light border-start border-3 border-danger small">
+                          <i class="bi bi-lightbulb text-danger me-1"></i>
+                          <strong>En clair :</strong> <span v-html="highlight(item.simple)"></span>
+                        </div>
+                      </div>
+
+                      <!-- 2.5 Balises associées (Bascule directe) -->
+                      <div v-if="item.relatedTags && item.relatedTags.length > 0" class="mb-3">
+                        <div class="fw-bold small text-primary mb-1"><i class="bi bi-link-45deg me-1"></i> Balises
+                          associées</div>
+                        <div class="d-flex flex-wrap gap-1">
+                          <a v-for="rel in item.relatedTags" :key="rel.id" :href="'#item-'+rel.id"
+                            @click.prevent="selectTocItem(rel.id)"
+                            class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace text-decoration-none py-1 px-2 rounded-2"
+                            title="Basculer vers cette balise">
+                            <i class="bi bi-arrow-right-short me-0.5"></i>{{ rel.name }}
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- 2. Attributs (Badges d'aperçu - Clic pour sélectionner et surligner la ligne explicative) -->
+                      <div class="mb-3">
+                        <div class="fw-bold small text-danger mb-1"><i class="bi bi-tags me-1"></i> Attributs</div>
+                        <div v-if="item.attrsDetail && item.attrsDetail.length > 0" class="d-flex flex-wrap gap-1">
+                          <span v-for="attrObj in item.attrsDetail" :key="attrObj.name"
+                            class="badge border font-monospace attr-badge"
+                            :class="isAttrSelected(item.id, attrObj.name) ? 'bg-danger text-white shadow' : 'bg-secondary-subtle text-danger'"
+                            role="button" @click="selectAttribute(item.id, attrObj.name, 'grid')"
+                            title="Cliquer pour afficher l'explication de cet attribut">
+                            {{ attrObj.name }}
+                          </span>
+                        </div>
+                        <span v-else class="text-muted small fst-italic">Aucun attribut spécifique au programme.</span>
+                      </div>
+
+                      <!-- 4. Explication des attributs (Déroulé & Surligné au clic) -->
+                      <div v-if="item.attrsDetail && item.attrsDetail.length > 0" class="mb-3">
+                        <button
+                          class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-between w-100 py-1.5 px-3 rounded-3 text-start small fw-semibold"
+                          type="button" data-bs-toggle="collapse" :data-bs-target="'#attr-table-grid-'+item.id">
+                          <span><i class="bi bi-sliders me-1"></i> Explication des attributs ({{ item.attrsDetail.length
+                            }})</span>
+                          <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                        <div class="collapse mt-2" :id="'attr-table-grid-'+item.id">
+                          <div class="table-responsive">
+                            <table class="table table-sm table-bordered attr-table m-0">
+                              <thead class="table-light">
+                                <tr>
+                                  <th style="width: 30%;">Attribut</th>
+                                  <th>Rôle & Valeurs</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="attrObj in item.attrsDetail" :key="attrObj.name"
+                                  :id="'row-attr-grid-'+item.id+'-'+attrObj.name"
+                                  :class="{'table-warning border-start border-3 border-danger shadow-sm': isAttrSelected(item.id, attrObj.name)}"
+                                  style="transition: all 0.3s ease;">
+                                  <td class="font-monospace fw-bold">
+                                    <span class="syn-attr" v-html="highlight(attrObj.name)"></span>
+                                  </td>
+                                  <td>
+                                    <span v-html="highlight(attrObj.desc)"></span>
+                                    <div v-if="attrObj.values" class="text-muted small mt-1">
+                                      <em>Valeurs :</em> <code class="syn-val">{{ attrObj.values }}</code>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 3. Exemple -->
+                      <div v-if="item.code" class="mb-3">
+                        <div class="fw-bold small text-danger mb-1"><i class="bi bi-code-slash me-1"></i> Exemple
+                          d'utilisation</div>
+                        <div class="code-box m-0">
+                          <button @click="copy(item.code)" class="copy-btn">Copier</button>
+                          <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
+                        </div>
+                      </div>
+
+                      <!-- 5. Pedago-box -->
+                      <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
+                        <div class="fw-bold small d-flex align-items-center gap-1">
+                          <i :class="getPedagoIcon(item.noteType)"></i> {{ getPedagoTitle(item.noteType) }}
+                        </div>
+                        <div class="small mt-1" v-html="highlight(item.note)"></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion View for this subcategory -->
+              <div v-if="viewMode === 'accordion'" class="accordion shadow-sm rounded-4 overflow-hidden mb-3"
+                :id="'acc-'+(categoryName + '-' + subcatName).replace(/[^a-zA-Z0-9]/g, '')">
+                <div v-for="item in groupItems" :key="'acc-'+item.id" class="accordion-item" :id="'item-'+item.id"
+                  :class="{ 'border border-2 border-danger rounded-3 overflow-hidden shadow-sm': selectedTocItemId === item.id }">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse"
+                      :data-bs-target="'#col-'+item.id" @click="selectedTocItemId = item.id">
+                      <span class="fw-bold font-monospace me-3" v-html="syntaxHighlightTag(item.name)"></span>
+                      <div class="ms-auto me-2">
+                        <span class="badge bg-secondary-subtle text-secondary border small me-1">{{ item.category
+                          }}</span>
+                        <span v-if="item.subcategory"
+                          class="badge bg-primary-subtle text-primary border border-primary-subtle small"><i
+                            class="bi bi-tag-fill me-1"></i>{{ item.subcategory }}</span>
+                      </div>
+                    </button>
+                  </h2>
+                  <div :id="'col-'+item.id" class="accordion-collapse collapse"
+                    :data-bs-parent="'#acc-'+(categoryName + '-' + subcatName).replace(/[^a-zA-Z0-9]/g, '')">
+                    <div class="accordion-body bg-body-tertiary">
+
+                      <!-- 1. Définition -->
+                      <div class="mb-3">
+                        <p class="mb-1">{{ item.official }}</p>
+                        <div class="p-2 rounded bg-light border-start border-3 border-danger small">
+                          <i class="bi bi-lightbulb text-danger me-1"></i>
+                          <strong>En clair :</strong> <span v-html="highlight(item.simple)"></span>
+                        </div>
+                      </div>
+
+                      <!-- 2. Attributs (Badges Cliquables) -->
+                      <div class="mb-3">
+                        <strong class="small text-danger"><i class="bi bi-tags me-1"></i> Attributs</strong>
+                        <div v-if="item.attrsDetail && item.attrsDetail.length > 0"
+                          class="d-inline-flex flex-wrap gap-1 ms-2">
+                          <span v-for="attrObj in item.attrsDetail" :key="attrObj.name"
+                            class="badge border font-monospace attr-badge"
+                            :class="isAttrSelected(item.id, attrObj.name) ? 'bg-danger text-white shadow' : 'bg-secondary-subtle text-danger'"
+                            role="button" @click="selectAttribute(item.id, attrObj.name, 'acc')"
+                            title="Cliquer pour afficher l'explication de cet attribut">
+                            {{ attrObj.name }}
+                          </span>
+                        </div>
+                        <span v-else class="text-muted small fst-italic ms-2">Aucun attribut spécifique</span>
+                      </div>
+
+                      <!-- 2.5 Balises associées (Bascule directe) -->
+                      <div v-if="item.relatedTags && item.relatedTags.length > 0" class="mb-3">
+                        <strong class="small text-primary"><i class="bi bi-link-45deg me-1"></i> Balises associées
+                          :</strong>
+                        <div class="d-inline-flex flex-wrap gap-1 ms-2">
+                          <a v-for="rel in item.relatedTags" :key="rel.id" :href="'#item-'+rel.id"
+                            @click.prevent="selectTocItem(rel.id)"
+                            class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace text-decoration-none py-1 px-2 rounded-2"
+                            title="Basculer vers cette balise">
+                            <i class="bi bi-arrow-right-short me-0.5"></i>{{ rel.name }}
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- 4. Explication des attributs (Déroulé & Surligné au clic) -->
+                      <div v-if="item.attrsDetail && item.attrsDetail.length > 0" class="mb-3">
+                        <button
+                          class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-between w-100 py-1.5 px-3 rounded-3 text-start small fw-semibold mb-2"
+                          type="button" data-bs-toggle="collapse" :data-bs-target="'#attr-table-acc-'+item.id">
+                          <span><i class="bi bi-sliders me-1"></i> Explication des attributs ({{ item.attrsDetail.length
+                            }})</span>
+                          <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                        <div class="collapse" :id="'attr-table-acc-'+item.id">
+                          <ul class="list-group list-group-flush small mt-1">
+                            <li v-for="attrObj in item.attrsDetail" :key="attrObj.name"
+                              :id="'row-attr-acc-'+item.id+'-'+attrObj.name"
+                              class="list-group-item bg-transparent px-2 py-1.5 rounded"
+                              :class="{'bg-warning-subtle border-start border-3 border-danger shadow-sm': isAttrSelected(item.id, attrObj.name)}"
+                              style="transition: all 0.3s ease;">
+                              <code class="fw-bold me-2 syn-attr">{{ attrObj.name }}</code> : {{ attrObj.desc }}
+                              <span v-if="attrObj.values" class="text-muted ms-1">(Valeurs : <code
+                                  class="syn-val">{{ attrObj.values }}</code>)</span>
+                              <span v-if="isAttrSelected(item.id, attrObj.name)"
+                                class="badge bg-danger ms-2 text-white">Sélectionné</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <!-- 3. Exemple -->
+                      <div v-if="item.code" class="mb-3">
+                        <strong class="small text-danger"><i class="bi bi-code-slash me-1"></i> Exemple
+                          :</strong>
+                        <div class="code-box mt-1">
+                          <button @click="copy(item.code)" class="copy-btn">Copier</button>
+                          <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
+                        </div>
+                      </div>
+
+                      <!-- 5. Pedago-box -->
+                      <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
+                        <div class="fw-bold small d-flex align-items-center gap-1">
+                          <i :class="getPedagoIcon(item.noteType)"></i> {{ getPedagoTitle(item.noteType) }}
+                        </div>
+                        <div class="small mt-1" v-html="highlight(item.note)"></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts locaux -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.js"></script>
+
+  <!-- Script Vue.js externe -->
+  <script src="assets/js/html5.js"></script>
+</body>
+
+</html>

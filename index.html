@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Pédagogique - Section Sciences de l'Informatique (Tunisie)</title>
+    <meta name="description" content="Plateforme numérique pédagogique officielle du programme tunisien d'informatique : HTML5, CSS3, JavaScript, PHP et SQL.">
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --edu-primary: #1e40af;
+            --edu-bg: #f8fafc;
+            --edu-card-bg: #ffffff;
+            --edu-text: #0f172a;
+            --edu-border: #e2e8f0;
+        }
+
+        [data-bs-theme="dark"] {
+            --edu-primary: #3b82f6;
+            --edu-bg: #0f172a;
+            --edu-card-bg: #1e293b;
+            --edu-text: #f8fafc;
+            --edu-border: #334155;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--edu-bg);
+            color: var(--edu-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-custom {
+            background-color: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%);
+            color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.25);
+        }
+
+        .module-card {
+            border-radius: 1.25rem;
+            background-color: var(--edu-card-bg);
+            border: 1px solid var(--edu-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .module-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- Navbar Fixe Commune -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-2">
+        <div class="container-fluid px-lg-4">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
+                <span class="badge bg-primary fs-6 p-2 rounded-3">
+                    <i class="bi bi-mortarboard-fill"></i> SI Tunisie
+                </span>
+                <span class="fs-6 d-none d-sm-inline text-light">Référentiel Pédagogique Officiel</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0 fw-semibold">
+                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door-fill me-1"></i> Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger-emphasis" href="html5.html"><i class="bi bi-filetype-html me-1"></i> HTML5</a></li>
+                    <li class="nav-item"><a class="nav-link text-primary-emphasis" href="css3.html"><i class="bi bi-filetype-css me-1"></i> CSS3</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning-emphasis" href="js.html"><i class="bi bi-filetype-js me-1"></i> JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link text-indigo-emphasis" href="php.html"><i class="bi bi-filetype-php me-1"></i> PHP</a></li>
+                    <li class="nav-item"><a class="nav-link text-info-emphasis" href="sql.html"><i class="bi bi-database me-1"></i> SQL</a></li>
+                </ul>
+
+                <button class="btn btn-outline-light btn-sm rounded-circle p-2" @click="toggleTheme" title="Changer de thème">
+                    <i class="bi" :class="isDarkMode ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-lg-4 py-4">
+        
+        <!-- Hero Banner -->
+        <div class="hero-banner p-4 p-md-5 mb-5 text-center text-md-start">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white bg-opacity-10 text-white rounded-pill mb-3 text-sm">
+                        <i class="bi bi-shield-check text-warning"></i> Ministère de l'Éducation - Section Sciences de l'Informatique
+                    </div>
+                    <h1 class="display-4 fw-extrabold mb-3">Portail Numérique des Annexes Officielle</h1>
+                    <p class="lead text-white-50 mb-4">
+                        Plateforme pédagogique modulaire interactive conçue pour les élèves de 2ème, 3ème et 4ème Année Secondaire. Chaque module est indépendant, structuré et enrichi de conseils pour le Baccalauréat.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                        <a href="html5.html" class="btn btn-light rounded-pill px-4 fw-bold me-2">Explorer HTML5</a>
+                        <a href="sql.html" class="btn btn-outline-light rounded-pill px-4 fw-bold">Explorer SQL</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                    <div class="bg-white bg-opacity-10 backdrop-blur p-4 rounded-4 border border-white border-opacity-10 text-white">
+                        <i class="bi bi-book-half display-1 text-warning mb-2 d-block"></i>
+                        <h5 class="fw-bold">5 Modules Indépendants</h5>
+                        <p class="small text-white-50 m-0">Consultez chaque technologie de manière dédiée avec explications, codes de démonstration et pièges à éviter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules Grid Header -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-2">Choisissez un Module de Révision</h2>
+            <p class="text-muted">Sélectionnez la technologie que vous souhaitez étudier ou réviser</p>
+        </div>
+
+        <!-- Modules Cards Grid -->
+        <div class="row g-4 mb-5">
+
+            <!-- HTML5 Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="module-card p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="icon-box bg-danger bg-opacity-10 text-danger">
+                                <i class="bi bi-filetype-html"></i>
+                            </div>
+                            <span class="badge bg-danger">HTML5</span>
+                        </div>
+                        <h4 class="fw-bold mb-2">Module HTML5</h4>
+                        <p class="text-muted small mb-3">
+                            Balises de structure sémantique, métadonnées, paragraphes, multimédia (audio, vidéo), tableaux, listes, événements HTML et formulaires complets.
+                        </p>
+                        <ul class="list-unstyled small text-muted mb-4">
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Structure sémantique & Conteneurs</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Éléments de formulaires & inputs</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> 13 Événements HTML natifs</li>
+                        </ul>
+                    </div>
+                    <a href="html5.html" class="btn btn-outline-danger w-100 rounded-pill fw-bold">
+                        Accéder au Module HTML5 <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CSS3 Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="module-card p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="icon-box bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-filetype-css"></i>
+                            </div>
+                            <span class="badge bg-primary">CSS3</span>
+                        </div>
+                        <h4 class="fw-bold mb-2">Module CSS3</h4>
+                        <p class="text-muted small mb-3">
+                            Sélecteurs de classe, ID, attributs, mise en forme du texte, modèle de boîte, arrière-plans, transitions, animations et filtres graphiques.
+                        </p>
+                        <ul class="list-unstyled small text-muted mb-4">
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Sélecteurs & Pseudo-classes</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Modèle de boîte (margin, padding)</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Transitions & Animations @keyframes</li>
+                        </ul>
+                    </div>
+                    <a href="css3.html" class="btn btn-outline-primary w-100 rounded-pill fw-bold">
+                        Accéder au Module CSS3 <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- JavaScript Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="module-card p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="icon-box bg-warning bg-opacity-10 text-warning">
+                                <i class="bi bi-filetype-js"></i>
+                            </div>
+                            <span class="badge bg-warning text-dark">JavaScript</span>
+                        </div>
+                        <h4 class="fw-bold mb-2">Module JavaScript</h4>
+                        <p class="text-muted small mb-3">
+                            Opérateurs, entrées/sorties (prompt, alert), conversion de types, sélection et modification du DOM, objets natifs Math, String et Date.
+                        </p>
+                        <ul class="list-unstyled small text-muted mb-4">
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Manipulation du DOM (getElementById)</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Objets Math, String & Date</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Modification dynamique du style</li>
+                        </ul>
+                    </div>
+                    <a href="js.html" class="btn btn-outline-warning text-dark w-100 rounded-pill fw-bold">
+                        Accéder au Module JavaScript <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PHP Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="module-card p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="icon-box bg-indigo bg-opacity-10 text-indigo" style="color: #6366f1;">
+                                <i class="bi bi-filetype-php"></i>
+                            </div>
+                            <span class="badge bg-indigo" style="background-color: #6366f1;">PHP</span>
+                        </div>
+                        <h4 class="fw-bold mb-2">Module PHP</h4>
+                        <p class="text-muted small mb-3">
+                            Types et transtypage (casting), fonctions sur les chaînes et les dates, extension MySQLi procédurale pour l'interaction avec MySQL, variables superglobales.
+                        </p>
+                        <ul class="list-unstyled small text-muted mb-4">
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Traitements de formulaires ($_POST, $_GET)</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Connexion MySQLi & requêtes SQL</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Fonctions chaînes & timestamp</li>
+                        </ul>
+                    </div>
+                    <a href="php.html" class="btn btn-outline-secondary w-100 rounded-pill fw-bold">
+                        Accéder au Module PHP <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SQL Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="module-card p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="icon-box bg-info bg-opacity-10 text-info">
+                                <i class="bi bi-database"></i>
+                            </div>
+                            <span class="badge bg-info">SQL</span>
+                        </div>
+                        <h4 class="fw-bold mb-2">Module SQL</h4>
+                        <p class="text-muted small mb-3">
+                            Types de données SQL, opérateurs, requêtes DML (SELECT, INSERT, UPDATE, DELETE), contraintes d'intégrité et requêtes DDL (CREATE, ALTER, DROP).
+                        </p>
+                        <ul class="list-unstyled small text-muted mb-4">
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Requêtes DML & Fonctions d'agrégation</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Clés primaires & étrangères (REFERENCES)</li>
+                            <li><i class="bi bi-check2-circle text-success me-1"></i> Instructions DDL (CREATE, ALTER TABLE)</li>
+                        </ul>
+                    </div>
+                    <a href="sql.html" class="btn btn-outline-info w-100 rounded-pill fw-bold">
+                        Accéder au Module SQL <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white border-top border-secondary mt-5">
+        <div class="container text-center">
+            <p class="mb-1 fw-bold">Programme Officiel d'Informatique - République Tunisienne</p>
+            <p class="small text-white-50 mb-0">Ministère de l'Éducation | Section Sciences de l'Informatique</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap 5 JS Bundle CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Vue.js 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                isDarkMode: false
+            };
+        },
+        methods: {
+            toggleTheme() {
+                this.isDarkMode = !this.isDarkMode;
+                document.documentElement.setAttribute('data-bs-theme', this.isDarkMode ? 'dark' : 'light');
+            }
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

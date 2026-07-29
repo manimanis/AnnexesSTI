@@ -1,0 +1,956 @@
+[
+  {
+    "id": "sel-universal",
+    "name": "*",
+    "category": "Sélecteurs CSS",
+    "official": "Sélectionne tous les éléments.",
+    "simple": "Cible l'intégralité des éléments HTML de la page.",
+    "values": [],
+    "code": "* {\n  box-sizing: border-box;\n}",
+    "note": "Utile pour la réinitialisation CSS (reset).",
+    "noteType": "tip"
+  },
+  {
+    "id": "sel-element",
+    "name": "element",
+    "category": "Sélecteurs CSS",
+    "official": "Sélectionne tous les éléments de type element.",
+    "simple": "Applique un style à toutes les balises du même nom (ex: p, h1, div).",
+    "values": [],
+    "code": "p {\n  color: #333;\n}",
+    "note": "Sélecteur de type balise.",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-id",
+    "name": "#id",
+    "category": "Sélecteurs CSS",
+    "official": "Cible un élément en fonction de la valeur de son attribut id.",
+    "simple": "Applique un style à l'élément unique ayant cet ID.",
+    "values": [],
+    "code": "#titre-principal {\n  font-size: 24px;\n}",
+    "note": "Un ID commence par dièse (#) en CSS et doit être unique par page.",
+    "noteType": "warning"
+  },
+  {
+    "id": "sel-class",
+    "name": ".class",
+    "category": "Sélecteurs CSS",
+    "official": "Cible les éléments en fonction de la valeur de leurs attributs class.",
+    "simple": "Applique un style à tous les éléments partageant la même classe.",
+    "values": [],
+    "code": ".btn-bleu {\n  background-color: blue;\n}",
+    "note": "Une classe commence par un point (.) en CSS.",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-attr",
+    "name": "element[attr]",
+    "category": "Sélecteurs CSS",
+    "official": "Cible les éléments qui possèdent l'attribut attr.",
+    "simple": "Sélectionne tous les éléments possédant l'attribut spécifié.",
+    "values": [],
+    "code": "input[required] {\n  border: 2px solid red;\n}",
+    "note": "Pratique pour styliser les champs obligatoires.",
+    "noteType": "tip"
+  },
+  {
+    "id": "sel-attr-val",
+    "name": "element[attr=value]",
+    "category": "Sélecteurs CSS",
+    "official": "Cible les éléments en fonction de la valeur de l'attribut attr.",
+    "simple": "Sélectionne les éléments ayant un attribut égal à la valeur exacte.",
+    "values": [],
+    "code": "input[type=\"text\"] {\n  width: 100%;\n}",
+    "note": "Très utilisé pour cibler un type de champ &lt;input&gt;.",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-elem-class",
+    "name": "element.class",
+    "category": "Sélecteurs CSS",
+    "official": "Cible tous les éléments de type element possédant la classe class.",
+    "simple": "Forme combinée filtrant par type de balise ET par classe.",
+    "values": [],
+    "code": "h1.titre {\n  color: navy;\n}",
+    "note": "Combine le nom de balise et la classe.",
+    "noteType": "tip"
+  },
+  {
+    "id": "sel-a-link",
+    "name": "a:link",
+    "category": "Sélecteurs CSS",
+    "official": "Cible tous les liens non visités.",
+    "simple": "Style des liens hypertexte n'ayant pas encore été cliqués.",
+    "values": [],
+    "code": "a:link {\n  color: blue;\n}",
+    "note": "Pseudo-classe d'état des liens.",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-a-visited",
+    "name": "a:visited",
+    "category": "Sélecteurs CSS",
+    "official": "Cible tous les liens visités.",
+    "simple": "Style des liens sur lesquels l'utilisateur a déjà cliqué.",
+    "values": [],
+    "code": "a:visited {\n  color: purple;\n}",
+    "note": "Permet de différencier les liens consultés.",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-a-hover",
+    "name": "a:hover",
+    "category": "Sélecteurs CSS",
+    "official": "Cible l'élément au moment où l'utilisateur le survole avec la souris.",
+    "simple": "Effet au survol par le pointeur de la souris.",
+    "values": [],
+    "code": "a:hover {\n  text-decoration: underline;\n}",
+    "note": "Incontournable pour l'interactivité visuelle !",
+    "noteType": "warning"
+  },
+  {
+    "id": "sel-a-active",
+    "name": "a:active",
+    "category": "Sélecteurs CSS",
+    "official": "Cible tous les liens activés.",
+    "simple": "Style de l'élément pendant l'enfoncement du clic de la souris.",
+    "values": [],
+    "code": "a:active {\n  color: red;\n}",
+    "note": "État temporaire du clic.",
+    "noteType": "tip"
+  },
+  {
+    "id": "sel-a-focus",
+    "name": "element:focus",
+    "category": "Sélecteurs CSS",
+    "official": "Cible un élément au moment où il reçoit le focus.",
+    "simple": "Style d'un champ ou lien sélectionné au clavier ou au clic.",
+    "values": [],
+    "code": "input:focus {\n  border-color: blue;\n  outline: none;\n}",
+    "note": "Pseudo-classe d'état d'interaction (:focus).",
+    "noteType": "remember"
+  },
+  {
+    "id": "sel-group",
+    "name": "Groupement (,)",
+    "category": "Sélecteurs CSS",
+    "official": "Pour grouper plusieurs sélecteurs, les séparer par des virgules.",
+    "simple": "Applique la même règle CSS à plusieurs sélecteurs à la fois.",
+    "values": [],
+    "code": "h1, h2, h3 {\n  font-family: sans-serif;\n}",
+    "note": "Séparez les sélecteurs par des virgules « , ».",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-font-family",
+    "name": "font-family",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie les noms de polices possibles par ordre de préférence.",
+    "simple": "Choix de la police de caractères (ex: Arial, Times, sans-serif).",
+    "values": [
+      "Arial",
+      "sans-serif",
+      "serif"
+    ],
+    "code": "body {\n  font-family: Arial, sans-serif;\n}",
+    "note": "Mettre des guillemets si le nom contient un espace (ex: 'Times New Roman').",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-font-weight",
+    "name": "font-weight",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie la manière dont les caractères d'un texte doivent être affichés.",
+    "simple": "Épaisseur du texte (normal, gras).",
+    "values": [
+      "bold",
+      "bolder",
+      "lighter"
+    ],
+    "code": "p {\n  font-weight: bold;\n}",
+    "note": "bold = gras.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-font-style",
+    "name": "font-style",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie le style d'un texte.",
+    "simple": "Style d'écriture (ex: italique).",
+    "values": [
+      "normal",
+      "italic"
+    ],
+    "code": "p {\n  font-style: italic;\n}",
+    "note": "italic = texte en italique.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-font-size",
+    "name": "font-size",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie la taille d'une police.",
+    "simple": "Taille du texte (px, pt, em, rem, %).",
+    "values": [
+      "px",
+      "pt",
+      "em"
+    ],
+    "code": "h1 {\n  font-size: 20px;\n}",
+    "note": "Taille usuelle exprimée en px aux examens.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-font",
+    "name": "font",
+    "isShorthand": true,
+    "category": "Mise en forme du Texte",
+    "official": "Super-propriété de font. Combine font-style, font-weight, font-size et font-family.",
+    "simple": "Combine style, poids, taille et famille de police en une seule ligne.",
+    "values": [
+      "font-style",
+      "font-weight",
+      "font-size",
+      "font-family"
+    ],
+    "code": "p {\n  font: italic bold 16px Arial, sans-serif;\n}",
+    "note": "Ordre obligatoire : font-style font-weight font-size font-family.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-text-align",
+    "name": "text-align",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie l'alignement horizontal d'un texte.",
+    "simple": "Alignement du texte dans le bloc.",
+    "values": [
+      "left",
+      "center",
+      "right",
+      "justify"
+    ],
+    "code": "h1 {\n  text-align: center;\n}",
+    "note": "left (gauche), center (centré), right (droite), justify (justifié).",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-text-shadow",
+    "name": "text-shadow",
+    "category": "Mise en forme du Texte",
+    "official": "Définit une ombre au texte.",
+    "simple": "Ombre portée sous les lettres.",
+    "values": [
+      "offset-x",
+      "offset-y",
+      "blur",
+      "color"
+    ],
+    "code": "h1 {\n  text-shadow: 2px 2px 4px #000;\n}",
+    "note": "Crée des titres d'en-tête très élégants.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-text-transform",
+    "name": "text-transform",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie la façon de transformer les caractères d'un texte en majuscules ou en minuscules.",
+    "simple": "Force le texte en majuscules, minuscules ou initiale en majuscule.",
+    "values": [
+      "uppercase",
+      "lowercase",
+      "capitalize"
+    ],
+    "code": "h2 {\n  text-transform: uppercase;\n}",
+    "note": "uppercase = TOUT EN MAJUSCULES.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-text-decoration",
+    "name": "text-decoration",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie la décoration appliquée au texte (soulignement, surlignement, trait barré, aucune).",
+    "simple": "Permet de souligner un texte ou de supprimer le soulignement par défaut des liens.",
+    "values": [
+      "underline",
+      "line-through",
+      "overline",
+      "none"
+    ],
+    "code": "a {\n  text-decoration: none;\n}",
+    "note": "Indispensable pour supprimer le soulignement par défaut des liens &lt;a&gt; (text-decoration: none;).",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-color",
+    "name": "color",
+    "category": "Mise en forme du Texte",
+    "official": "Spécifie la couleur du texte.",
+    "simple": "Couleur de la police de caractères.",
+    "values": [
+      "nom",
+      "hex (#fff)",
+      "rgb()"
+    ],
+    "code": "p {\n  color: #1e40af;\n}",
+    "note": "Exprimée en nom (red), hexadécimal (#FF0000) ou rgb(255,0,0).",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-width",
+    "name": "width",
+    "category": "Propriétés des Boîtes",
+    "official": "Définit la largeur d'un élément.",
+    "simple": "Largeur d'un bloc (en px, %, em, rem).",
+    "values": [
+      "auto",
+      "px",
+      "%"
+    ],
+    "code": "div {\n  width: 300px;\n}",
+    "note": "Peut s'exprimer en % pour la réactivité.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-height",
+    "name": "height",
+    "category": "Propriétés des Boîtes",
+    "official": "Définit la hauteur d'un élément.",
+    "simple": "Hauteur d'un bloc.",
+    "values": [
+      "auto",
+      "px",
+      "%"
+    ],
+    "code": "div {\n  height: 150px;\n}",
+    "note": "Attention au débordement si la hauteur est fixe.",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-position",
+    "name": "position",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie le type de la méthode de positionnement utilisée pour un élément.",
+    "simple": "Détermine le mode de placement de l'élément sur la page.",
+    "values": [
+      "absolute",
+      "fixed",
+      "relative",
+      "static",
+      "sticky"
+    ],
+    "code": "div {\n  position: absolute;\n  top: 20px;\n}",
+    "note": "position: absolute nécessite un parent positionné en relative !",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-float",
+    "name": "float",
+    "category": "Propriétés des Boîtes",
+    "official": "Place/Fait flotter un élément dans un conteneur.",
+    "simple": "Fait flotter une image ou un conteneur à gauche ou à droite.",
+    "values": [
+      "left",
+      "right",
+      "none"
+    ],
+    "code": "img {\n  float: left;\n}",
+    "note": "Le texte entoure l'élément flottant.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-padding",
+    "name": "padding",
+    "isShorthand": true,
+    "category": "Propriétés des Boîtes",
+    "official": "Super-propriété définissant la marge intérieure d'un élément (combine padding-top, padding-right, padding-bottom et padding-left).",
+    "simple": "Espace interne (remplissage) entre le contenu et la bordure.",
+    "values": [
+      "padding-top",
+      "padding-right",
+      "padding-bottom",
+      "padding-left"
+    ],
+    "code": "/* 1 valeur (4 côtés) */\ndiv { padding: 15px; }\n/* 2 valeurs [Haut/Bas] [Gauche/Droite] */\ndiv { padding: 10px 20px; }\n/* 4 valeurs : Haut Droite Bas Gauche */\ndiv { padding: 10px 15px 20px 5px; }",
+    "note": "Combine padding-top -> padding-right -> padding-bottom -> padding-left (sens des aiguilles d'une montre : Haut -> Droite -> Bas -> Gauche).",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-margin",
+    "name": "margin",
+    "isShorthand": true,
+    "category": "Propriétés des Boîtes",
+    "official": "Super-propriété définissant les marges extérieures d'un élément (combine margin-top, margin-right, margin-bottom et margin-left).",
+    "simple": "Espace externe autour de la boîte.",
+    "values": [
+      "margin-top",
+      "margin-right",
+      "margin-bottom",
+      "margin-left"
+    ],
+    "code": "/* 1 valeur : 4 côtés */\ndiv { margin: 20px; }\n/* 2 valeurs : [Haut/Bas] [Gauche/Droite] (centrage automatique) */\ndiv { margin: 0 auto; }\n/* 4 valeurs : Haut Droite Bas Gauche */\ndiv { margin: 10px 15px 20px 5px; }",
+    "note": "Combine margin-top -> margin-right -> margin-bottom -> margin-left (sens horaire : Haut -> Droite -> Bas -> Gauche).",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-box-shadow",
+    "name": "box-shadow",
+    "isShorthand": true,
+    "category": "Propriétés des Boîtes",
+    "official": "Super-propriété ajoutant des ombres à la boîte d'un élément.",
+    "simple": "Crée un effet d'ombre et de relief sous un bloc.",
+    "values": [
+      "offset-x",
+      "offset-y",
+      "blur-radius",
+      "spread-radius",
+      "color"
+    ],
+    "code": "div {\n  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);\n}",
+    "note": "Ordre des valeurs : décalage-X -> décalage-Y -> flou -> étalement -> couleur.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-display",
+    "name": "display",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie le comportement d'affichage d'un élément.",
+    "simple": "Définit si l'élément se comporte en bloc ou en ligne.",
+    "values": [
+      "inline",
+      "block",
+      "inline-block"
+    ],
+    "code": "span {\n  display: inline-block;\n}",
+    "note": "display: none masque également l'élément.",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-top",
+    "name": "top",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie la position verticale, par rapport au haut, d'un élément positionné.",
+    "simple": "Décalage depuis le haut.",
+    "values": [
+      "px",
+      "%"
+    ],
+    "code": ".menu {\n  position: fixed;\n  top: 0;\n}",
+    "note": "Fonctionne uniquement si la position n'est pas static.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-bottom",
+    "name": "bottom",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie la position verticale, par rapport au bas, d'un élément positionné.",
+    "simple": "Décalage depuis le bas.",
+    "values": [
+      "px",
+      "%"
+    ],
+    "code": ".footer {\n  position: absolute;\n  bottom: 0;\n}",
+    "note": "Positionne l'élément par rapport au bas.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-left",
+    "name": "left",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie la position horizontale, par rapport à la gauche, d'un élément positionné.",
+    "simple": "Décalage depuis la gauche.",
+    "values": [
+      "px",
+      "%"
+    ],
+    "code": ".sidebar {\n  position: absolute;\n  left: 0;\n}",
+    "note": "Positionne l'élément par rapport à la gauche.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-right",
+    "name": "right",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie la position horizontale, par rapport à la droite, d'un élément positionné.",
+    "simple": "Décalage depuis la droite.",
+    "values": [
+      "px",
+      "%"
+    ],
+    "code": ".icon {\n  position: absolute;\n  right: 10px;\n}",
+    "note": "Positionne l'élément par rapport à la droite.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-overflow",
+    "name": "overflow",
+    "category": "Propriétés des Boîtes",
+    "official": "Spécifie le comportement du contenu lorsqu'il déborde de la boîte d'un élément.",
+    "simple": "Gère le texte trop long qui dépasse de la boîte.",
+    "values": [
+      "visible",
+      "hidden",
+      "clip",
+      "scroll",
+      "auto"
+    ],
+    "code": "div {\n  overflow: auto;\n}",
+    "note": "overflow: scroll ajoute toujours des barres de défilement.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-opacity",
+    "name": "opacity",
+    "category": "Propriétés des Boîtes",
+    "official": "Définit le niveau de transparence.",
+    "simple": "Opacité de l'élément de 0.0 (invisible) à 1.0 (opaque).",
+    "values": [
+      "0.0 à 1.0"
+    ],
+    "code": "div {\n  opacity: 0.8;\n}",
+    "note": "Rend également tout le contenu interne transparent.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-border-color",
+    "name": "border-color",
+    "category": "Propriétés des Bordures",
+    "official": "Définit la couleur des bordures d'un élément.",
+    "simple": "Couleur du trait de bordure.",
+    "values": [
+      "nom",
+      "#hex"
+    ],
+    "code": "div {\n  border-color: red;\n}",
+    "note": "Nécessite qu'un border-style soit défini.",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-border-style",
+    "name": "border-style",
+    "category": "Propriétés des Bordures",
+    "official": "Définit le style des bordures d'un élément.",
+    "simple": "Forme de la bordure (continue, pointillée, etc.).",
+    "values": [
+      "solid",
+      "dashed",
+      "dotted",
+      "double",
+      "none"
+    ],
+    "code": "div {\n  border-style: solid;\n}",
+    "note": "Si border-style vaut 'none', aucune bordure ne s'affiche !",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-border-radius",
+    "name": "border-radius",
+    "isShorthand": true,
+    "category": "Propriétés des Bordures",
+    "official": "Super-propriété définissant le rayon des coins arrondis (combine border-top-left-radius, border-top-right-radius, border-bottom-right-radius et border-bottom-left-radius).",
+    "simple": "Arrondit les coins de la boîte.",
+    "values": [
+      "border-top-left-radius",
+      "border-top-right-radius",
+      "border-bottom-right-radius",
+      "border-bottom-left-radius"
+    ],
+    "code": "/* 1 valeur : les 4 coins identiques */\nbutton { border-radius: 8px; }\n/* 4 valeurs : HG HD BD BG */\nbutton { border-radius: 10px 5px 10px 5px; }\n/* Cercle parfait */\nimg { border-radius: 50%; }",
+    "note": "Combine les 4 coins : Haut-Gauche -> Haut-Droite -> Bas-Droite -> Bas-Gauche.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-border-width",
+    "name": "border-width",
+    "category": "Propriétés des Bordures",
+    "official": "Définit la largeur des bordures d'un élément.",
+    "simple": "Épaisseur du trait de bordure.",
+    "values": [
+      "medium",
+      "thin",
+      "thick",
+      "px"
+    ],
+    "code": "div {\n  border-width: 2px;\n}",
+    "note": "Généralement exprimée en px.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-border",
+    "name": "border",
+    "isShorthand": true,
+    "category": "Propriétés des Bordures",
+    "official": "Super-propriété de bordure. Combine border-width, border-style et border-color.",
+    "simple": "Combine épaisseur, style et couleur de bordure en une seule ligne.",
+    "values": [
+      "border-width",
+      "border-style",
+      "border-color"
+    ],
+    "code": "div {\n  border: 2px solid #1e40af;\n}",
+    "note": "Ordre usuel recommandé : border-width border-style border-color (ex: 2px solid red).",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-bg-color",
+    "name": "background-color",
+    "category": "Propriétés d'Arrière-plan",
+    "official": "Définit la couleur d'arrière-plan d'un élément.",
+    "simple": "Couleur de fond du composant.",
+    "values": [
+      "nom",
+      "#hex",
+      "rgba()"
+    ],
+    "code": "body {\n  background-color: #f0f4f8;\n}",
+    "note": "Définit la couleur de fond.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-bg-image",
+    "name": "background-image",
+    "category": "Propriétés d'Arrière-plan",
+    "official": "Définit une image d'arrière-plan pour un élément.",
+    "simple": "Place une image en fond du composant.",
+    "values": [
+      "url()"
+    ],
+    "code": "div {\n  background-image: url(\"fond.jpg\");\n}",
+    "note": "Déclarée via la syntaxe url('chemin/image.png').",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-bg-repeat",
+    "name": "background-repeat",
+    "category": "Propriétés d'Arrière-plan",
+    "official": "Définit la façon dont une image d'arrière-plan est répétée.",
+    "simple": "Répète ou non l'image de fond.",
+    "values": [
+      "repeat",
+      "repeat-x",
+      "repeat-y",
+      "no-repeat"
+    ],
+    "code": "div {\n  background-repeat: no-repeat;\n}",
+    "note": "no-repeat évite la mosaïque d'images.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-bg-size",
+    "name": "background-size",
+    "category": "Propriétés d'Arrière-plan",
+    "official": "Spécifie la taille d'une image d'arrière-plan.",
+    "simple": "Dimensionnement du fond.",
+    "values": [
+      "cover",
+      "contain",
+      "auto",
+      "px",
+      "%"
+    ],
+    "code": "div {\n  background-size: cover;\n}",
+    "note": "cover étire l'image pour recouvrir tout l'espace.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-background",
+    "name": "background",
+    "isShorthand": true,
+    "category": "Propriétés d'Arrière-plan",
+    "official": "Super-propriété d'arrière-plan. Combine background-color, background-image, background-repeat, background-position et background-size.",
+    "simple": "Combine couleur de fond, image, répétition, positionnement et taille d'image en une seule ligne.",
+    "values": [
+      "background-color",
+      "background-image",
+      "background-repeat",
+      "background-position",
+      "background-size"
+    ],
+    "code": "body {\n  background: #ffffff url(\"bg.jpg\") no-repeat center / cover;\n}",
+    "note": "Ordre recommandé : background-color -> background-image -> background-repeat -> background-position / background-size.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-table-layout",
+    "name": "table-layout",
+    "category": "Propriétés des Tableaux",
+    "official": "Définit la façon de disposer les cellules, lignes et colonnes d'un tableau.",
+    "simple": "Détermine l'algorithme de calcul de largeur des colonnes.",
+    "values": [
+      "auto",
+      "fixed"
+    ],
+    "code": "table {\n  table-layout: fixed;\n}",
+    "note": "table-layout: fixed accélère l'affichage des grands tableaux.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-border-collapse",
+    "name": "border-collapse",
+    "category": "Propriétés des Tableaux",
+    "official": "Définit si les bordures des cellules sont fusionnées ou séparées.",
+    "simple": "Fusionne les bordures d'un tableau pour supprimer le double trait.",
+    "values": [
+      "collapse",
+      "separate"
+    ],
+    "code": "table {\n  border-collapse: collapse;\n}",
+    "note": "border-collapse: collapse est indispensable pour des tableaux propres !",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-list-type",
+    "name": "list-style-type",
+    "category": "Propriétés des Listes",
+    "official": "Définit le type de marqueur d'éléments de liste.",
+    "simple": "Forme des puces ou style de numérotation.",
+    "values": [
+      "circle",
+      "square",
+      "upper-roman",
+      "lower-alpha"
+    ],
+    "code": "ul {\n  list-style-type: square;\n}",
+    "note": "none permet de supprimer les puces d'un menu de navigation.",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-list-pos",
+    "name": "list-style-position",
+    "category": "Propriétés des Listes",
+    "official": "Spécifie la position des marqueurs d'éléments d'une liste à puces.",
+    "simple": "Place les puces à l'intérieur ou à l'extérieur du bloc de texte.",
+    "values": [
+      "outside",
+      "inside"
+    ],
+    "code": "ul {\n  list-style-position: inside;\n}",
+    "note": "inside place la puce dans l'alignement du texte.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-list-img",
+    "name": "list-style-image",
+    "category": "Propriétés des Listes",
+    "official": "Spécifie une image comme marqueur d'éléments de liste.",
+    "simple": "Remplace la puce standard par une petite icône image.",
+    "values": [
+      "url()"
+    ],
+    "code": "ul {\n  list-style-image: url(\"puce.png\");\n}",
+    "note": "Utilise une image comme puce.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-list-style",
+    "name": "list-style",
+    "isShorthand": true,
+    "category": "Propriétés des Listes",
+    "official": "Super-propriété de liste. Combine list-style-type, list-style-position et list-style-image.",
+    "simple": "Combine le type de puce, sa position et l'image de puce en une seule ligne.",
+    "values": [
+      "list-style-type",
+      "list-style-position",
+      "list-style-image"
+    ],
+    "code": "ul {\n  list-style: square inside;\n}",
+    "note": "Ordre recommandé : list-style-type -> list-style-position -> list-style-image.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-transition-property",
+    "name": "transition-property",
+    "category": "Transitions & Animations",
+    "official": "Spécifie les propriétés CSS sur lesquelles l'effet de transition sera appliqué.",
+    "simple": "Nom de la propriété CSS à animer (ex: width, opacity, all).",
+    "values": [
+      "all",
+      "opacity",
+      "width",
+      "background-color"
+    ],
+    "code": "button {\n  transition-property: background-color;\n}",
+    "note": "Indique la propriété visée par l'animation.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-transition-duration",
+    "name": "transition-duration",
+    "category": "Transitions & Animations",
+    "official": "Spécifie la durée de la transition.",
+    "simple": "Temps que met l'animation pour s'effectuer (ex: 0.3s, 500ms).",
+    "values": [
+      "s",
+      "ms"
+    ],
+    "code": "button {\n  transition-duration: 0.5s;\n}",
+    "note": "Exprimée en secondes (s) ou millisecondes (ms).",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-transition-delay",
+    "name": "transition-delay",
+    "category": "Transitions & Animations",
+    "official": "Spécifie le délai nécessaire avant que la transition commence.",
+    "simple": "Temps d'attente avant le démarrage de l'animation.",
+    "values": [
+      "s",
+      "ms"
+    ],
+    "code": "button {\n  transition-delay: 0.2s;\n}",
+    "note": "Permet de retarder le début de l'effet.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-transition",
+    "name": "transition",
+    "isShorthand": true,
+    "category": "Transitions & Animations",
+    "official": "Super-propriété de transition. Combine transition-property, transition-duration, transition-timing-function et transition-delay.",
+    "simple": "Anime l'évolution des propriétés CSS de manière fluide en une seule ligne.",
+    "values": [
+      "transition-property",
+      "transition-duration",
+      "transition-timing-function",
+      "transition-delay"
+    ],
+    "code": "button {\n  transition: all 0.3s ease 0.1s;\n}\nbutton:hover {\n  background-color: blue;\n}",
+    "note": "Ordre usuel : transition-property -> transition-duration -> timing-function -> transition-delay.",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-keyframes",
+    "name": "@keyframes",
+    "category": "Transitions & Animations",
+    "official": "Spécifie les états clés de l'animation.",
+    "simple": "Déclare la séquence des étapes d'une animation.",
+    "values": [
+      "from / to",
+      "0% à 100%"
+    ],
+    "code": "@keyframes clignoter {\n  0% { opacity: 1; }\n  50% { opacity: 0; }\n  100% { opacity: 1; }\n}",
+    "note": "Indispensable pour définir le nom de l'animation !",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-animation-name",
+    "name": "animation-name",
+    "category": "Transitions & Animations",
+    "official": "Spécifie le nom de l'animation.",
+    "simple": "Associe le nom d'une règle @keyframes définie.",
+    "values": [
+      "nom_animation"
+    ],
+    "code": "div {\n  animation-name: clignoter;\n}",
+    "note": "Doit correspondre au nom après @keyframes.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-animation-duration",
+    "name": "animation-duration",
+    "category": "Transitions & Animations",
+    "official": "Spécifie la durée de l'animation.",
+    "simple": "Durée d'un cycle complet d'animation.",
+    "values": [
+      "s",
+      "ms"
+    ],
+    "code": "div {\n  animation-duration: 2s;\n}",
+    "note": "Durée d'exécution de l'animation.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-animation-delay",
+    "name": "animation-delay",
+    "category": "Transitions & Animations",
+    "official": "Spécifie le délai nécessaire avant que l'animation commence.",
+    "simple": "Attente avant le lancement de l'animation.",
+    "values": [
+      "s",
+      "ms"
+    ],
+    "code": "div {\n  animation-delay: 1s;\n}",
+    "note": "Délai de démarrage.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-animation-iteration-count",
+    "name": "animation-iteration-count",
+    "category": "Transitions & Animations",
+    "official": "Spécifie le nombre de répétitions de l'animation.",
+    "simple": "Nombre de fois que l'animation doit se répéter (ou infinite).",
+    "values": [
+      "n",
+      "infinite"
+    ],
+    "code": "div {\n  animation-iteration-count: infinite;\n}",
+    "note": "Nom officiel standard CSS : animation-iteration-count (noté animation-interaction-count par coquille dans le document du programme).",
+    "noteType": "warning"
+  },
+  {
+    "id": "css-animation-direction",
+    "name": "animation-direction",
+    "category": "Transitions & Animations",
+    "official": "Définit la direction de l'animation.",
+    "simple": "Sens de lecture de l'animation (normale, inverse, alternée).",
+    "values": [
+      "normal",
+      "reverse",
+      "alternate",
+      "alternate-reverse"
+    ],
+    "code": "div {\n  animation-direction: alternate;\n}",
+    "note": "alternate fait faire des aller-retours.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-animation",
+    "name": "animation",
+    "isShorthand": true,
+    "category": "Transitions & Animations",
+    "official": "Super-propriété de l'animation. Combine animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count et animation-direction.",
+    "simple": "Applique une animation déclarée par @keyframes avec tous ses paramètres en une seule ligne.",
+    "values": [
+      "animation-name",
+      "animation-duration",
+      "animation-timing-function",
+      "animation-delay",
+      "animation-iteration-count",
+      "animation-direction"
+    ],
+    "code": "div {\n  animation: clignoter 2s ease 0s infinite alternate;\n}",
+    "note": "Ordre usuel : animation-name -> animation-duration -> animation-timing-function -> animation-delay -> animation-iteration-count -> animation-direction.",
+    "noteType": "remember"
+  },
+  {
+    "id": "css-transform",
+    "name": "transform",
+    "category": "Transformations & Filtres",
+    "official": "Applique un effet de transformation 2D ou 3D à un élément.",
+    "simple": "Permet de pivoter, agrandir, décaler ou incliner un bloc.",
+    "values": [
+      "rotate()",
+      "skew()",
+      "scale()",
+      "translate()"
+    ],
+    "code": "img:hover {\n  transform: scale(1.1) rotate(5deg);\n}",
+    "note": "scale(1.1) grossit de 10%. rotate(45deg) pivote de 45 degrés.",
+    "noteType": "tip"
+  },
+  {
+    "id": "css-filter",
+    "name": "filter",
+    "category": "Transformations & Filtres",
+    "official": "Définit des filtres sur un élément.",
+    "simple": "Applique des effets graphiques (flou, niveau de gris, négatif).",
+    "values": [
+      "blur()",
+      "grayscale()",
+      "invert()"
+    ],
+    "code": "img {\n  filter: grayscale(100%);\n}",
+    "note": "grayscale(100%) rend l'image complètement en noir et blanc.",
+    "noteType": "tip"
+  }
+]

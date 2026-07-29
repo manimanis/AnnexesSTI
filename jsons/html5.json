@@ -1,0 +1,2450 @@
+[
+  {
+    "id": "html",
+    "name": "<html>",
+    "category": "Structure & Racine",
+    "official": "Représente la racine d'un document HTML.",
+    "simple": "Conteneur racine global englobant toute la page web.",
+    "attrsDetail": [
+      {
+        "name": "lang",
+        "desc": "Spécifie la langue du contenu principal de la page web pour l'accessibilité et les synthèses vocales.",
+        "values": "'fr', 'ar', 'en'"
+      }
+    ],
+    "code": "<!DOCTYPE html>\n<html lang=\"fr\">\n  <!-- Contenu -->\n</html>",
+    "note": "Toujours inclure l'attribut lang=\"fr\" pour l'accessibilité.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "head",
+        "name": "<head>"
+      },
+      {
+        "id": "body",
+        "name": "<body>"
+      }
+    ]
+  },
+  {
+    "id": "head",
+    "name": "<head>",
+    "category": "Structure & Racine",
+    "official": "Conteneur de métadonnées placé entre <html> et <body>.",
+    "simple": "Stocke les informations invisibles : encodage, titre, styles et scripts.",
+    "attrsDetail": [],
+    "code": "<head>\n  <meta charset=\"UTF-8\">\n  <title>Titre</title>\n</head>",
+    "note": "Le contenu de <head> ne s'affiche pas dans le corps de la page.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "html",
+        "name": "<html>"
+      },
+      {
+        "id": "body",
+        "name": "<body>"
+      },
+      {
+        "id": "meta",
+        "name": "<meta>"
+      },
+      {
+        "id": "title",
+        "name": "<title>"
+      }
+    ]
+  },
+  {
+    "id": "body",
+    "name": "<body>",
+    "category": "Structure & Racine",
+    "official": "Définit le corps du document.",
+    "simple": "Contient tout le contenu visible par l'utilisateur.",
+    "attrsDetail": [],
+    "code": "<body>\n  <h1>Titre</h1>\n</body>",
+    "note": "Une seule balise <body> par document HTML !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "html",
+        "name": "<html>"
+      },
+      {
+        "id": "head",
+        "name": "<head>"
+      },
+      {
+        "id": "header",
+        "name": "<header>"
+      },
+      {
+        "id": "main",
+        "name": "<main>"
+      },
+      {
+        "id": "footer",
+        "name": "<footer>"
+      }
+    ]
+  },
+  {
+    "id": "header",
+    "name": "<header>",
+    "category": "Balises Sémantiques",
+    "official": "Conteneur pour le contenu d'introduction ou un ensemble de liens de navigation.",
+    "simple": "En-tête de page ou de section (logo, titre principal, sous-titre).",
+    "attrsDetail": [],
+    "code": "<header>\n  <h1>Mon Site Educatif</h1>\n  <p>Bienvenue</p>\n</header>",
+    "note": "Ne pas confondre &lt;header&gt; (en-tête visuel) avec &lt;head&gt; (métadonnées invisibles) !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "nav",
+        "name": "<nav>"
+      },
+      {
+        "id": "main",
+        "name": "<main>"
+      },
+      {
+        "id": "footer",
+        "name": "<footer>"
+      }
+    ]
+  },
+  {
+    "id": "nav",
+    "name": "<nav>",
+    "category": "Balises Sémantiques",
+    "official": "Définit un ensemble de liens de navigation.",
+    "simple": "Conteneur dédié au menu principal de navigation du site web.",
+    "attrsDetail": [],
+    "code": "<nav>\n  <a href=\"index.html\">Accueil</a>\n  <a href=\"cours.html\">Cours</a>\n</nav>",
+    "note": "Indispensable pour la sémantique de navigation et les lecteurs d'écran.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "header",
+        "name": "<header>"
+      },
+      {
+        "id": "a",
+        "name": "<a>"
+      }
+    ]
+  },
+  {
+    "id": "main",
+    "name": "<main>",
+    "category": "Balises Sémantiques",
+    "official": "Définit le contenu principal d'un document.",
+    "simple": "Englobe le contenu central unique de la page, à l'exclusion des menus et pieds de page.",
+    "attrsDetail": [],
+    "code": "<main>\n  <h2>Chapitre 1 : HTML5</h2>\n  <p>Contenu principal de la leçon...</p>\n</main>",
+    "note": "Il ne doit y avoir qu'un seul élément &lt;main&gt; visible par page !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "header",
+        "name": "<header>"
+      },
+      {
+        "id": "section",
+        "name": "<section>"
+      },
+      {
+        "id": "article",
+        "name": "<article>"
+      },
+      {
+        "id": "footer",
+        "name": "<footer>"
+      }
+    ]
+  },
+  {
+    "id": "section",
+    "name": "<section>",
+    "category": "Balises Sémantiques",
+    "official": "Définit une section autonome dans un document.",
+    "simple": "Regroupe du contenu thématique homogène (ex: une section de cours avec son propre titre).",
+    "attrsDetail": [],
+    "code": "<section>\n  <h3>1. Les balises de texte</h3>\n  <p>Les balises p et h1-h6...</p>\n</section>",
+    "note": "Une &lt;section&gt; contient généralement un titre (h1-h6) d'introduction.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "article",
+        "name": "<article>"
+      },
+      {
+        "id": "main",
+        "name": "<main>"
+      },
+      {
+        "id": "aside",
+        "name": "<aside>"
+      }
+    ]
+  },
+  {
+    "id": "article",
+    "name": "<article>",
+    "category": "Balises Sémantiques",
+    "official": "Spécifie un contenu indépendant, autonome et réutilisable.",
+    "simple": "Bloc de contenu pouvant être publié de manière autonome (ex: un article de blog, une actualité).",
+    "attrsDetail": [],
+    "code": "<article>\n  <h3>Session de Révision Bac</h3>\n  <p>Publication du 15 mai 2025...</p>\n</article>",
+    "note": "Un &lt;article&gt; peut contenir ses propres éléments &lt;header&gt; et &lt;footer&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "section",
+        "name": "<section>"
+      },
+      {
+        "id": "header",
+        "name": "<header>"
+      },
+      {
+        "id": "footer",
+        "name": "<footer>"
+      }
+    ]
+  },
+  {
+    "id": "aside",
+    "name": "<aside>",
+    "category": "Balises Sémantiques",
+    "official": "Définit un contenu secondaire en dehors du contenu principal.",
+    "simple": "Barre latérale (sidebar) contenant des informations complémentaires, des liens ou des publicités.",
+    "attrsDetail": [],
+    "code": "<aside>\n  <h4>Liens Utiles</h4>\n  <ul><li>Site Ministère</li></ul>\n</aside>",
+    "note": "Idéal pour les menus secondaires et encadrés d'informations annexes.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "main",
+        "name": "<main>"
+      },
+      {
+        "id": "section",
+        "name": "<section>"
+      }
+    ]
+  },
+  {
+    "id": "footer",
+    "name": "<footer>",
+    "category": "Balises Sémantiques",
+    "official": "Définit un pied de page pour un document ou une section.",
+    "simple": "Pied de page contenant les informations de copyright, liens de contact et mentions légales.",
+    "attrsDetail": [],
+    "code": "<footer>\n  <p>&copy; 2025 Ministère de l'Éducation - Tunisie</p>\n</footer>",
+    "note": "Placé généralement à la fin de la page ou d'une section.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "header",
+        "name": "<header>"
+      },
+      {
+        "id": "main",
+        "name": "<main>"
+      }
+    ]
+  },
+  {
+    "id": "link",
+    "name": "<link>",
+    "category": "Métadonnées & En-tête",
+    "official": "Définit la relation entre le document et une ressource externe.",
+    "simple": "Relie un fichier CSS externe à la page HTML.",
+    "attrsDetail": [
+      {
+        "name": "href",
+        "desc": "Spécifie le chemin d'accès (URL ou chemin relatif) du fichier CSS à lier.",
+        "values": "ex: 'style.css'"
+      },
+      {
+        "name": "rel",
+        "desc": "Définit le type de relation entre le document et la ressource.",
+        "values": "'stylesheet' (pour les feuilles de style)"
+      }
+    ],
+    "code": "<link\n  rel=\"stylesheet\"\n  href=\"style.css\">",
+    "note": "Se place obligatoirement dans l'élément <head>.",
+    "noteType": "remember",
+    "relatedTags": []
+  },
+  {
+    "id": "meta",
+    "name": "<meta>",
+    "category": "Métadonnées & En-tête",
+    "official": "Définit les métadonnées du document.",
+    "simple": "Spécifie l'encodage des caractères (UTF-8) et la configuration du viewport.",
+    "attrsDetail": [
+      {
+        "name": "charset",
+        "desc": "Spécifie le jeu de codage de caractères utilisé pour le document.",
+        "values": "'UTF-8' (recommandé)"
+      },
+      {
+        "name": "name",
+        "desc": "Définit le nom de la métadonné (ex: viewport, description, keywords).",
+        "values": "'viewport', 'description', 'keywords'"
+      },
+      {
+        "name": "content",
+        "desc": "Spécifie la valeur associée à l'attribut name.",
+        "values": "'width=device-width, initial-scale=1.0'"
+      }
+    ],
+    "code": "<meta charset=\"UTF-8\">\n<meta\n  name=\"viewport\"\n  content=\"width=device-width, initial-scale=1.0\">",
+    "note": "<meta charset=\"UTF-8\"> évite l'affichage incorrect des accents.",
+    "noteType": "warning",
+    "relatedTags": []
+  },
+  {
+    "id": "script",
+    "name": "<script>",
+    "category": "Métadonnées & En-tête",
+    "official": "Intègre un script côté client (JavaScript).",
+    "simple": "Intègre du code JS ou charge un fichier .js externe.",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie l'URL ou le chemin du fichier de script externe JavaScript.",
+        "values": "ex: 'script.js'"
+      }
+    ],
+    "code": "<script src=\"script.js\"></script>",
+    "note": "Ne pas oublier la balise fermante </script> même avec l'attribut src !",
+    "noteType": "warning",
+    "relatedTags": []
+  },
+  {
+    "id": "style",
+    "name": "<style>",
+    "category": "Métadonnées & En-tête",
+    "official": "Définit les informations de style (CSS) pour un document.",
+    "simple": "Permet d'écrire des règles CSS internes dans le <head>.",
+    "attrsDetail": [
+      {
+        "name": "media",
+        "desc": "Spécifie sur quel type de média les styles doivent s'appliquer.",
+        "values": "'screen', 'print', 'all'"
+      }
+    ],
+    "code": "<style>\n  h1 { color: red; }\n</style>",
+    "note": "Pour un code propre, privilégiez les fichiers .css externes.",
+    "noteType": "tip",
+    "relatedTags": []
+  },
+  {
+    "id": "title",
+    "name": "<title>",
+    "category": "Métadonnées & En-tête",
+    "official": "Définit le titre du document.",
+    "simple": "Affiche le titre dans l'onglet du navigateur web.",
+    "attrsDetail": [],
+    "code": "<title>Examen Bac SI</title>",
+    "note": "Indispensable pour le référencement et les onglets.",
+    "noteType": "remember",
+    "relatedTags": []
+  },
+  {
+    "id": "p",
+    "name": "<p>",
+    "category": "Texte",
+    "subcategory": "Texte & Titres",
+    "official": "Définit un paragraphe.",
+    "simple": "Regroupe un bloc de texte de paragraphe.",
+    "attrsDetail": [],
+    "code": "<p>Ceci est un paragraphe de texte.</p>",
+    "note": "Crée automatiquement un saut de ligne avant et après le paragraphe.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "hn",
+        "name": "<h1> à <h6>"
+      },
+      {
+        "id": "br",
+        "name": "<br>"
+      },
+      {
+        "id": "hr",
+        "name": "<hr>"
+      }
+    ]
+  },
+  {
+    "id": "hn",
+    "name": "<h1> à <h6>",
+    "category": "Texte",
+    "subcategory": "Texte & Titres",
+    "official": "Définit un titre de niveau n (de 1 à 6).",
+    "simple": "Titres hiérarchisés de la page (&lt;h1&gt; le plus important, &lt;h6&gt; le plus petit).",
+    "attrsDetail": [],
+    "code": "<h1>Titre Principal</h1>\n<h2>Sous-titre de Section</h2>",
+    "note": "Utilisez un seul &lt;h1&gt; par page web pour une sémantique parfaite !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      },
+      {
+        "id": "header",
+        "name": "<header>"
+      }
+    ]
+  },
+  {
+    "id": "br",
+    "name": "<br>",
+    "category": "Texte",
+    "subcategory": "Texte & Titres",
+    "official": "Définit un retour à la ligne.",
+    "simple": "Insère un saut de ligne simple au milieu d'un texte sans changer de paragraphe.",
+    "attrsDetail": [],
+    "code": "Ligne 1<br>Ligne 2",
+    "note": "Balise auto-fermante sans balise de fermeture.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      }
+    ]
+  },
+  {
+    "id": "hr",
+    "name": "<hr>",
+    "category": "Texte",
+    "subcategory": "Texte & Titres",
+    "official": "Définit une rupture thématique sous forme de ligne horizontale.",
+    "simple": "Trace une ligne horizontale de séparation entre deux sujets.",
+    "attrsDetail": [],
+    "code": "<hr>",
+    "note": "Separe visuellement deux parties de document.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      }
+    ]
+  },
+  {
+    "id": "mark",
+    "name": "<mark>",
+    "category": "Texte",
+    "subcategory": "Texte & Titres",
+    "official": "Définit le texte qui doit être marqué ou mis en surbrillance.",
+    "simple": "Surligne du texte en jaune pour attirer l'attention.",
+    "attrsDetail": [],
+    "code": "<p>Note <mark>importante</mark> à réviser.</p>",
+    "note": "Très utile pour faire ressortir les mots-clés.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      }
+    ]
+  },
+  {
+    "id": "b-strong",
+    "name": "<b> / <strong>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "<b> met en gras un texte à des fins visuelles. <strong> indique une importance sémantique forte ou une urgence.",
+    "simple": "Toutes deux affichent le texte en gras. Utilisez <b> pour du simple style et <strong> pour insister sur la valeur du mot.",
+    "attrsDetail": [],
+    "code": "<p>Style visuel : <b>texte en gras</b></p>\n<p>Importance forte : <strong>texte important</strong></p>",
+    "note": "Privilégiez &lt;strong&gt; pour les mots-clés importants (meilleur pour le SEO et l'accessibilité).",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "i-em",
+        "name": "<i> / <em>"
+      }
+    ]
+  },
+  {
+    "id": "i-em",
+    "name": "<i> / <em>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "<i> met en italique une portion de texte (terme technique, mot étranger). <em> marque l'emphase ou l'accentuation sémantique.",
+    "simple": "Toutes deux affichent le texte en italique. Utilisez <i> pour le style graphique et <em> pour donner de l'emphase au sens.",
+    "attrsDetail": [],
+    "code": "<p>Terme étranger : <i>HTML</i></p>\n<p>Emphase : <em>absolument</em> réviser ce chapitre</p>",
+    "note": "La synthèse vocale adapte le ton de la voix sur les mots entourés par la balise &lt;em&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "b-strong",
+        "name": "<b> / <strong>"
+      }
+    ]
+  },
+  {
+    "id": "u-ins",
+    "name": "<u> / <ins>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "<u> souligne une portion de texte à des fins visuelles. <ins> définit un texte inséré ou ajouté au document.",
+    "simple": "Toutes deux affichent le texte souligné. Utilisez &lt;u&gt; pour le style et &lt;ins&gt; pour indiquer un ajout de contenu.",
+    "attrsDetail": [
+      {
+        "name": "cite",
+        "desc": "URL expliquant la raison de l'ajout.",
+        "values": "URL"
+      },
+      {
+        "name": "datetime",
+        "desc": "Date et heure de l'ajout du texte.",
+        "values": "AAAA-MM-JJ"
+      }
+    ],
+    "code": "<p>Annotation : <u>mot mal orthographié</u></p>\n<p>Mise à jour : <ins>Nouveau tarif : 70 DT</ins></p>",
+    "note": "Évitez d'abuser de &lt;u&gt; pour ne pas confondre le texte souligné avec un lien hypertexte <a>.",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "s-del",
+        "name": "<s> / <del>"
+      }
+    ]
+  },
+  {
+    "id": "s-del",
+    "name": "<s> / <del>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "<s> affiche un texte barré qui n'est plus exact ou pertinent. <del> définit du texte supprimé d'un document.",
+    "simple": "Toutes deux affichent le texte barré d'un trait horizontal. &lt;s&gt; s'utilise pour les informations obsolètes et &lt;del&gt; pour marquer la suppression.",
+    "attrsDetail": [
+      {
+        "name": "cite",
+        "desc": "URL expliquant la raison de la suppression.",
+        "values": "URL"
+      },
+      {
+        "name": "datetime",
+        "desc": "Date et heure de la suppression du texte.",
+        "values": "AAAA-MM-JJ"
+      }
+    ],
+    "code": "<p>Indisponible : <s>Taille M</s></p>\n<p>Prix promotionnel : <del>100 DT</del> <ins>70 DT</ins></p>",
+    "note": "Système idéal d'affichage pour les promotions en associant &lt;del&gt; (ancien prix) et &lt;ins&gt; (nouveau prix).",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "u-ins",
+        "name": "<u> / <ins>"
+      }
+    ]
+  },
+  {
+    "id": "sub-sup",
+    "name": "<sub> / <sup>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "<sub> définit du texte en indice (abaissé). <sup> définit du texte en exposant (surélevé).",
+    "simple": "&lt;sub&gt; permet d'écrire des indices (ex: formules chimiques H₂O) et &lt;sup&gt; d'écrire des exposants (ex: équations X² ou 1er).",
+    "attrsDetail": [],
+    "code": "<p>Formule chimique : H<sub>2</sub>O</p>\n<p>Équation mathématique : X<sup>2</sup> + Y<sup>2</sup> = Z</p>",
+    "note": "Indispensables pour la mise en forme scientifique et les abréviations ordinales (1er, 2ème).",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      }
+    ]
+  },
+  {
+    "id": "small",
+    "name": "<small>",
+    "category": "Texte",
+    "subcategory": "Mise en forme du Texte",
+    "official": "Représente des commentaires secondaires ou de petites caractéristiques (mentions légales, copyright).",
+    "simple": "Affiche le texte dans une taille plus petite.",
+    "attrsDetail": [],
+    "code": "<p>Tarif : 50 DT <small>(TVA incluse)</small></p>",
+    "note": "Utilisé pour afficher les petits détails d'information et mentions légales.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "p",
+        "name": "<p>"
+      }
+    ]
+  },
+  {
+    "id": "a",
+    "name": "<a>",
+    "category": "Texte",
+    "subcategory": "Liens & Interactions",
+    "official": "Définit un lien hypertexte permettant de naviguer vers une autre page, une ressource ou un point d'ancrage.",
+    "simple": "Crée un élément ou un texte cliquable redirigeant vers une cible choisie.",
+    "attrsDetail": [
+      {
+        "name": "href",
+        "desc": "Spécifie l'URL de destination, le nom de fichier ou l'ancre du lien hypertexte.",
+        "values": "ex: 'index.html', 'http://...', '#section1'"
+      },
+      {
+        "name": "target",
+        "desc": "Spécifie la fenêtre, l'onglet ou le cadre d'affichage de la page cible.",
+        "values": "'_blank' (nouvel onglet), '_self' (même fenêtre), '_parent' (cadre parent), '_top' (pleine fenêtre sans cadres), 'nom_cadre' (nom de l'iframe cible)"
+      }
+    ],
+    "code": "<a\n  href=\"page2.html\"\n  target=\"_blank\">\n  Ouvrir dans un nouvel onglet\n</a>",
+    "note": "<ol><li>Cible Iframe : Pour ouvrir la page liée à l'intérieur d'une &lt;iframe name=\"cadre1\"&gt;, spécifiez target=\"cadre1\". </li><li>Ancre Interne : Utilisez href=\"#id_section\" pour sauter vers un élément de la même page. </li><li>Nouvel Onglet : target=\"_blank\" ouvre la cible sans quitter la page active.</li></ol>",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "nav",
+        "name": "<nav>"
+      },
+      {
+        "id": "iframe",
+        "name": "<iframe>"
+      }
+    ]
+  },
+  {
+    "id": "details",
+    "name": "<details>",
+    "category": "Texte",
+    "subcategory": "Liens & Interactions",
+    "official": "Spécifie des détails supplémentaires ouvrables à la demande.",
+    "simple": "Composant repliable/dépliable natif sans JavaScript.",
+    "attrsDetail": [
+      {
+        "name": "open",
+        "desc": "Spécifie que les détails doivent être affichés ouverts dès le chargement initial de la page.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<details open>\n  <summary>Solution</summary>\n  <p>Voici la réponse.</p>\n</details>",
+    "note": "L'attribut open permet de garder le bloc déplié par défaut.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "summary",
+        "name": "<summary>"
+      }
+    ]
+  },
+  {
+    "id": "summary",
+    "name": "<summary>",
+    "category": "Texte",
+    "subcategory": "Liens & Interactions",
+    "official": "Définit un en-tête visible pour l'élément <details>.",
+    "simple": "Intitulé cliquable d'un bloc dépliable &lt;details&gt;.",
+    "attrsDetail": [],
+    "code": "<details>\n  <summary>Cliquez pour voir la solution</summary>\n  <p>Contenu masqué</p>\n</details>",
+    "note": "Se place comme tout premier enfant à l'intérieur de &lt;details&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "details",
+        "name": "<details>"
+      }
+    ]
+  },
+  {
+    "id": "figure",
+    "name": "<figure>",
+    "category": "Multimédia",
+    "subcategory": "Images & Figures",
+    "official": "Spécifie un conteneur autonome d'illustration.",
+    "simple": "Regroupe une image, un schéma ou du code de manière isolée.",
+    "attrsDetail": [],
+    "code": "<figure>\n  <img src=\"sch.png\" alt=\"Schéma\">\n</figure>",
+    "note": "S'utilise souvent conjointement avec &lt;figcaption&gt;.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "figcaption",
+        "name": "<figcaption>"
+      },
+      {
+        "id": "img",
+        "name": "<img>"
+      }
+    ]
+  },
+  {
+    "id": "figcaption",
+    "name": "<figcaption>",
+    "category": "Multimédia",
+    "subcategory": "Images & Figures",
+    "official": "Définit la légende d'un élément <figure>.",
+    "simple": "Légende textuelle ou titre décrivant l'illustration contenue dans &lt;figure&gt;.",
+    "attrsDetail": [],
+    "code": "<figure>\n  <img src=\"sch.png\" alt=\"Schéma\">\n  <figcaption>Fig 1. Architecture du réseau</figcaption>\n</figure>",
+    "note": "Se place au début ou à la fin à l'intérieur de l'élément &lt;figure&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "figure",
+        "name": "<figure>"
+      },
+      {
+        "id": "img",
+        "name": "<img>"
+      }
+    ]
+  },
+  {
+    "id": "img",
+    "name": "<img>",
+    "category": "Multimédia",
+    "subcategory": "Images & Figures",
+    "official": "Intègre une image.",
+    "simple": "Affiche une image (JPEG, PNG, SVG).",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie le chemin d'accès ou l'URL du fichier image à afficher.",
+        "values": "chemin relatif (ex: 'images/logo.png') ou URL"
+      },
+      {
+        "name": "alt",
+        "desc": "Texte d'alternative affiché si l'image ne peut pas être chargée ou pour la synthèse vocale.",
+        "values": "texte descriptif de l'image"
+      }
+    ],
+    "code": "<img\n  src=\"schema.png\"\n  alt=\"Schéma BDR\">",
+    "note": "L'attribut alt est obligatoire aux examens du Bac !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "figure",
+        "name": "<figure>"
+      },
+      {
+        "id": "figcaption",
+        "name": "<figcaption>"
+      }
+    ]
+  },
+  {
+    "id": "source",
+    "name": "<source>",
+    "category": "Multimédia",
+    "subcategory": "Audio & Vidéo",
+    "official": "Spécifie plusieurs ressources multimédias pour les éléments multimédias.",
+    "simple": "Définit la source d'un fichier audio ou vidéo.",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie le chemin d'accès du fichier multimédia (audio ou vidéo).",
+        "values": "ex: 'audio.mp3', 'video.mp4'"
+      },
+      {
+        "name": "type",
+        "desc": "Spécifie le format MIME du fichier média pour le navigateur.",
+        "values": "'audio/mpeg', 'video/mp4'"
+      },
+      {
+        "name": "media",
+        "desc": "Spécifie la condition de média sous laquelle la ressource doit être chargée.",
+        "values": "ex: '(min-width: 800px)'"
+      }
+    ],
+    "code": "<video controls>\n  <source\n    src=\"cours.mp4\"\n    type=\"video/mp4\">\n</video>",
+    "note": "Placé à l'intérieur d'un élément &lt;audio&gt; ou &lt;video&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "audio",
+        "name": "<audio>"
+      },
+      {
+        "id": "video",
+        "name": "<video>"
+      }
+    ]
+  },
+  {
+    "id": "audio",
+    "name": "<audio>",
+    "category": "Multimédia",
+    "subcategory": "Audio & Vidéo",
+    "official": "Intégrer du contenu sonore dans un document.",
+    "simple": "Lecteur audio natif (MP3, WAV).",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie le chemin du fichier audio à lire.",
+        "values": "ex: 'son.mp3'"
+      },
+      {
+        "name": "controls",
+        "desc": "Affiche les boutons de contrôle natifs de la lecture (Play/Pause/Volume).",
+        "values": "attribut booléen (sans valeur)"
+      }
+    ],
+    "code": "<audio\n  src=\"son.mp3\"\n  controls>\n</audio>",
+    "note": "N'oubliez pas l'attribut controls pour afficher le lecteur.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "source",
+        "name": "<source>"
+      },
+      {
+        "id": "video",
+        "name": "<video>"
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "name": "<video>",
+    "category": "Multimédia",
+    "subcategory": "Audio & Vidéo",
+    "official": "Intègre du contenu vidéo dans un document.",
+    "simple": "Lecteur vidéo natif (MP4).",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie le chemin du fichier vidéo.",
+        "values": "ex: 'cours.mp4'"
+      },
+      {
+        "name": "controls",
+        "desc": "Affiche la barre de contrôle vidéo (Lecture/Pause/Plein écran).",
+        "values": "attribut booléen (sans valeur)"
+      }
+    ],
+    "code": "<video\n  src=\"cours.mp4\"\n  controls\n  width=\"400\">\n</video>",
+    "note": "Ajoutez controls pour permettre la lecture/pause.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "source",
+        "name": "<source>"
+      },
+      {
+        "id": "audio",
+        "name": "<audio>"
+      }
+    ]
+  },
+  {
+    "id": "div",
+    "name": "<div>",
+    "category": "Conteneurs & Blocs",
+    "official": "Groupe plusieurs éléments HTML de type block.",
+    "simple": "Conteneur générique de niveau bloc pour structurer la mise en page.",
+    "attrsDetail": [],
+    "code": "<div class=\"carte\">\n  <p>Contenu du bloc</p>\n</div>",
+    "note": "Conteneur neutre sans valeur sémantique propre.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "span",
+        "name": "<span>"
+      }
+    ]
+  },
+  {
+    "id": "span",
+    "name": "<span>",
+    "category": "Conteneurs & Blocs",
+    "official": "Regroupe des éléments dans un bloc de contenu en ligne (inline).",
+    "simple": "Conteneur générique en ligne pour styliser une partie de texte.",
+    "attrsDetail": [],
+    "code": "<p>Un mot <span class=\"rouge\">rouge</span> dans la phrase.</p>",
+    "note": "N'insère pas de saut de ligne (élément inline).",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "div",
+        "name": "<div>"
+      }
+    ]
+  },
+  {
+    "id": "iframe",
+    "name": "<iframe>",
+    "category": "Conteneurs & Blocs",
+    "official": "Définit un cadre en ligne.",
+    "simple": "Intègre une autre page web dans la page actuelle.",
+    "attrsDetail": [
+      {
+        "name": "src",
+        "desc": "Spécifie l'adresse URL de la page web ou ressource à afficher dans le cadre.",
+        "values": "ex: 'page_externe.html'"
+      },
+      {
+        "name": "name",
+        "desc": "Attribut le nom du cadre pour servir de cible (target) à des liens <a> ou des formulaires.",
+        "values": "nom unique du cadre"
+      }
+    ],
+    "code": "<iframe\n  src=\"page.html\"\n  name=\"monCadre\"\n  width=\"100%\">\n</iframe>",
+    "note": "Lien avec target=\"monCadre\" ouvre la page à l'intérieur de l'iframe !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "a",
+        "name": "<a>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "ul",
+    "name": "<ul>",
+    "category": "Listes",
+    "official": "Définit une liste à puces non ordonnée.",
+    "simple": "Liste d'éléments présentés sous forme de puces.",
+    "attrsDetail": [],
+    "code": "<ul>\n  <li>Élément 1</li>\n  <li>Élément 2</li>\n</ul>",
+    "note": "Contient des éléments &lt;li&gt;.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "ol",
+        "name": "<ol>"
+      },
+      {
+        "id": "li",
+        "name": "<li>"
+      }
+    ]
+  },
+  {
+    "id": "ol",
+    "name": "<ol>",
+    "category": "Listes",
+    "official": "Définit une liste ordonnée.",
+    "simple": "Liste d'éléments numérotés séquentiellement.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie le type de numérotation d'ordre des puces numérotées.",
+        "values": "'1' (nombres), 'a'/'A' (lettres), 'i'/'I' (chiffres romains)"
+      },
+      {
+        "name": "start",
+        "desc": "Spécifie le numéro de démarrage de la numérotation de la liste.",
+        "values": "nombre entier (ex: start=\"5\")"
+      },
+      {
+        "name": "reversed",
+        "desc": "Spécifie que l'ordre de numérotation doit être inversé (décroissant).",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<ol\n  type=\"A\"\n  start=\"3\">\n  <li>Étape C</li>\n</ol>",
+    "note": "start=\"3\" avec type=\"A\" commencera la numérotation à C !",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "ul",
+        "name": "<ul>"
+      },
+      {
+        "id": "li",
+        "name": "<li>"
+      }
+    ]
+  },
+  {
+    "id": "li",
+    "name": "<li>",
+    "category": "Listes",
+    "official": "Définit un élément dans une liste (List Item).",
+    "simple": "Élément individuel d'une liste &lt;ul&gt; ou &lt;ol&gt;.",
+    "attrsDetail": [],
+    "code": "<li>Élément de liste</li>",
+    "note": "Doit obligatoirement être placé à l'intérieur d'une liste &lt;ul&gt; ou &lt;ol&gt;.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "ul",
+        "name": "<ul>"
+      },
+      {
+        "id": "ol",
+        "name": "<ol>"
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "name": "<table>",
+    "category": "Tableaux",
+    "official": "Définit un tableau HTML.",
+    "simple": "Conteneur global pour créer un tableau de données structuré en lignes et colonnes.",
+    "attrsDetail": [],
+    "code": "<table>\n  <!-- Structure du tableau -->\n</table>",
+    "note": "Utilisez la propriété CSS border-collapse: collapse pour fusionner les bordures.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "caption",
+        "name": "<caption>"
+      },
+      {
+        "id": "thead",
+        "name": "<thead>"
+      },
+      {
+        "id": "tbody",
+        "name": "<tbody>"
+      },
+      {
+        "id": "tfoot",
+        "name": "<tfoot>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      },
+      {
+        "id": "th",
+        "name": "<th>"
+      },
+      {
+        "id": "td",
+        "name": "<td>"
+      }
+    ]
+  },
+  {
+    "id": "caption",
+    "name": "<caption>",
+    "category": "Tableaux",
+    "official": "Définit une légende pour un tableau.",
+    "simple": "Titre ou légende explicative affichée au-dessus du tableau.",
+    "attrsDetail": [],
+    "code": "<table>\n  <caption>Liste des Élèves</caption>\n  <!-- Contenu -->\n</table>",
+    "note": "La balise <caption> doit être placée immédiatement après la balise ouvrante <table> !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      }
+    ]
+  },
+  {
+    "id": "thead",
+    "name": "<thead>",
+    "category": "Tableaux",
+    "official": "Définit l'entête d'un tableau.",
+    "simple": "Regroupe le bloc des lignes d'en-tête contenant les intitulés des colonnes.",
+    "attrsDetail": [],
+    "code": "<thead>\n  <tr>\n    <th>Nom</th>\n    <th>Note</th>\n  </tr>\n</thead>",
+    "note": "Isole la partie supérieure du tableau.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "tbody",
+        "name": "<tbody>"
+      },
+      {
+        "id": "tfoot",
+        "name": "<tfoot>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      },
+      {
+        "id": "th",
+        "name": "<th>"
+      }
+    ]
+  },
+  {
+    "id": "tbody",
+    "name": "<tbody>",
+    "category": "Tableaux",
+    "official": "Définit le corps d'un tableau.",
+    "simple": "Regroupe le bloc principal contenant l'ensemble des données du tableau.",
+    "attrsDetail": [],
+    "code": "<tbody>\n  <tr>\n    <td>Ali</td>\n    <td>16.5</td>\n  </tr>\n</tbody>",
+    "note": "Contient toutes les lignes de données du tableau.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "thead",
+        "name": "<thead>"
+      },
+      {
+        "id": "tfoot",
+        "name": "<tfoot>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      },
+      {
+        "id": "td",
+        "name": "<td>"
+      }
+    ]
+  },
+  {
+    "id": "tfoot",
+    "name": "<tfoot>",
+    "category": "Tableaux",
+    "official": "Définit le pied d'un tableau.",
+    "simple": "Regroupe les lignes de résumé ou de totaux situées en bas de tableau.",
+    "attrsDetail": [],
+    "code": "<tfoot>\n  <tr>\n    <td>Moyenne Générale</td>\n    <td>15.0</td>\n  </tr>\n</tfoot>",
+    "note": "Placé en bas du tableau pour afficher des sommes ou moyennes de synthèses.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "thead",
+        "name": "<thead>"
+      },
+      {
+        "id": "tbody",
+        "name": "<tbody>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      }
+    ]
+  },
+  {
+    "id": "tr",
+    "name": "<tr>",
+    "category": "Tableaux",
+    "official": "Définit une ligne dans un tableau (Table Row).",
+    "simple": "Conteneur horizontal représentant une rangée complète de cellules.",
+    "attrsDetail": [],
+    "code": "<tr>\n  <td>Valeur 1</td>\n  <td>Valeur 2</td>\n</tr>",
+    "note": "Chaque &lt;tr&gt; contient des éléments &lt;th&gt; ou &lt;td&gt;.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "th",
+        "name": "<th>"
+      },
+      {
+        "id": "td",
+        "name": "<td>"
+      }
+    ]
+  },
+  {
+    "id": "th",
+    "name": "<th>",
+    "category": "Tableaux",
+    "official": "Définit une cellule d'en-tête dans un tableau (Table Header).",
+    "simple": "Cellule de titre (texte affiché en gras et centré par défaut).",
+    "attrsDetail": [
+      {
+        "name": "colspan",
+        "desc": "Spécifie le nombre de colonnes qu'une cellule doit fusionner horizontalement.",
+        "values": "nombre entier (ex: colspan='2')"
+      },
+      {
+        "name": "rowspan",
+        "desc": "Spécifie le nombre de lignes qu'une cellule doit fusionner verticalement.",
+        "values": "nombre entier (ex: rowspan='2')"
+      }
+    ],
+    "code": "<th\n  colspan=\"2\">\n  Identité complète\n</th>",
+    "note": "Utilisez colspan pour fusionner plusieurs colonnes et rowspan pour plusieurs lignes !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      },
+      {
+        "id": "td",
+        "name": "<td>"
+      }
+    ]
+  },
+  {
+    "id": "td",
+    "name": "<td>",
+    "category": "Tableaux",
+    "official": "Définit une cellule de données dans un tableau (Table Data).",
+    "simple": "Cellule standard d'information du tableau.",
+    "attrsDetail": [
+      {
+        "name": "colspan",
+        "desc": "Fusionne la cellule sur plusieurs colonnes adjacentes.",
+        "values": "nombre entier (ex: colspan='3')"
+      },
+      {
+        "name": "rowspan",
+        "desc": "Fusionne la cellule sur plusieurs lignes adjacentes.",
+        "values": "nombre entier (ex: rowspan='2')"
+      }
+    ],
+    "code": "<td\n  colspan=\"2\">\n  Résultat Admis\n</td>",
+    "note": "Ne pas confondre <td> (cellule de donnée ordinaire) et <th> (cellule d'en-tête).",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "table",
+        "name": "<table>"
+      },
+      {
+        "id": "tr",
+        "name": "<tr>"
+      },
+      {
+        "id": "th",
+        "name": "<th>"
+      }
+    ]
+  },
+  {
+    "id": "form",
+    "name": "<form>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Structure & Conteneurs",
+    "official": "Crée un formulaire HTML.",
+    "simple": "Conteneur global pour expédier des données vers le serveur PHP.",
+    "attrsDetail": [
+      {
+        "name": "action",
+        "desc": "Spécifie l'URL du fichier PHP cible chargé d'effectuer le traitement des données expédiées.",
+        "values": "ex: 'traitement.php'"
+      },
+      {
+        "name": "method",
+        "desc": "Spécifie le protocole d'envoi HTTP utilisé pour expédier le formulaire.",
+        "values": "'get' (données dans l'URL), 'post' (données masquées sécurisées)"
+      },
+      {
+        "name": "target",
+        "desc": "Spécifie où afficher la réponse retournée par le serveur après soumission.",
+        "values": "'_self', '_blank', '_parent', '_top', nom d'un <iframe>"
+      }
+    ],
+    "code": "<form\n  action=\"calcul.php\"\n  method=\"post\"\n  target=\"_self\">\n  <!-- champs de saisie -->\n</form>",
+    "note": "method=\"post\" est requis pour la confidentialité des formulaires !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "fieldset",
+        "name": "<fieldset>"
+      },
+      {
+        "id": "label",
+        "name": "<label>"
+      },
+      {
+        "id": "input-submit-reset-button",
+        "name": "<input type=\"submit | reset | button\">"
+      },
+      {
+        "id": "event-onsubmit",
+        "name": "onsubmit"
+      }
+    ]
+  },
+  {
+    "id": "fieldset",
+    "name": "<fieldset>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Structure & Conteneurs",
+    "official": "Regroupe des éléments liés dans un formulaire.",
+    "simple": "Trace un encadré visuel autour d'un groupe de champs de saisie.",
+    "attrsDetail": [],
+    "code": "<fieldset>\n  <legend>Informations</legend>\n  <!-- inputs -->\n</fieldset>",
+    "note": "Améliore la lisibilité des grands formulaires.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "legend",
+        "name": "<legend>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "legend",
+    "name": "<legend>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Structure & Conteneurs",
+    "official": "Définit une légende pour l'élément <fieldset>.",
+    "simple": "Titre d'encadré affiché sur le bord supérieur d'un &lt;fieldset&gt;.",
+    "attrsDetail": [],
+    "code": "<fieldset>\n  <legend>Coordonnées</legend>\n</fieldset>",
+    "note": "Doit être placé comme premier enfant de &lt;fieldset&gt;.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "fieldset",
+        "name": "<fieldset>"
+      }
+    ]
+  },
+  {
+    "id": "label",
+    "name": "<label>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Structure & Conteneurs",
+    "official": "Définit un libellé pour un élément de formulaire.",
+    "simple": "Texte descriptif relié à un champ &lt;input&gt; via l'attribut for.",
+    "attrsDetail": [
+      {
+        "name": "for",
+        "desc": "Renseigne l'identifiant id du champ &lt;input&gt; auquel le libellé est relié.",
+        "values": "ID du champ"
+      }
+    ],
+    "code": "<label for=\"age\">Votre Âge :</label>\n<input id=\"age\" name=\"age\">",
+    "note": "Cliquer sur le libellé &lt;label&gt; donne automatiquement le focus au champ relié !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "input-text-email-tel",
+        "name": "<input type=\"text | email | tel\">"
+      },
+      {
+        "id": "input-password",
+        "name": "<input type=\"password\">"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "input-all-attrs-summary",
+    "name": "Référence Synthétique des Attributs <input>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Champs & Texte",
+    "official": "Tableau récapitulatif de l'ensemble des attributs admis pour l'élément &lt;input&gt;.",
+    "simple": "Vision d'ensemble de tous les attributs de contrôle des formulaires HTML5.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Définit le type et le comportement général du contrôle de saisie &lt;input&gt;.",
+        "values": "'text', 'password', 'number', 'date', 'checkbox', 'radio', 'submit', etc."
+      },
+      {
+        "name": "name",
+        "desc": "Nom de la variable transmise en PHP.",
+        "values": "chaîne"
+      },
+      {
+        "name": "value",
+        "desc": "Valeur initiale ou sélectionnée.",
+        "values": "texte / nombre"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Texte d'aide en filigrane.",
+        "values": "texte"
+      },
+      {
+        "name": "required",
+        "desc": "Saisie ou sélection obligatoire.",
+        "values": "booléen"
+      },
+      {
+        "name": "readonly",
+        "desc": "Lecture seule (transmis en PHP).",
+        "values": "booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactivé (NON transmis en PHP).",
+        "values": "booléen"
+      },
+      {
+        "name": "checked",
+        "desc": "Coché par défaut (radio/checkbox).",
+        "values": "booléen"
+      },
+      {
+        "name": "min / max",
+        "desc": "Bornes minimale et maximale.",
+        "values": "nombre / date"
+      },
+      {
+        "name": "list",
+        "desc": "Connexion avec un &lt;datalist&gt;.",
+        "values": "ID datalist"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  name=\"pseudo\"\n  placeholder=\"Pseudonyme\"\n  required\n  maxlength=\"20\">",
+    "note": "Rappel de distinction : readonly envoie la donnée au serveur, disabled ne l'envoie pas !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "input-text-email-tel",
+        "name": "<input type=\"text | email | tel\">"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      },
+      {
+        "id": "attr-globaux",
+        "name": "Attributs Globaux HTML5"
+      }
+    ]
+  },
+  {
+    "id": "input-text-email-tel",
+    "name": "<input type=\"text | email | tel\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Champs & Texte",
+    "official": "Champs de saisie de ligne de texte simple, adresse e-mail ou numéro de téléphone.",
+    "simple": "Permet à l'utilisateur de saisir une chaîne de caractères courte (nom, prénom, e-mail, téléphone).",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie la nature du champ de saisie.",
+        "values": "'text', 'email', 'tel'"
+      },
+      {
+        "name": "name",
+        "desc": "Nom de la variable transmise et récupérée en PHP ($_POST['nom']).",
+        "values": "nom de variable unique"
+      },
+      {
+        "name": "value",
+        "desc": "Valeur initiale contenue dans le champ.",
+        "values": "texte"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Texte indicatif en filigrane (disparaît dès la frappe).",
+        "values": "ex: 'nom@exemple.tn'"
+      },
+      {
+        "name": "required",
+        "desc": "Rend la saisie du champ obligatoire avant de soumettre.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "readonly",
+        "desc": "Empêche la modification du texte tout en le transmettant au serveur PHP.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive le champ (inactif, gris) et bloque la transmission en PHP.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "list",
+        "desc": "Relie le champ à une liste d'autocomplétion <datalist>.",
+        "values": "ID d'un élément <datalist>"
+      }
+    ],
+    "code": "<input\n  type=\"email\"\n  name=\"user_email\"\n  placeholder=\"nom@domaine.tn\"\n  required>",
+    "note": "L'attribut required est vérifié automatiquement par le navigateur lors du clic sur le bouton Submit.",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "label",
+        "name": "<label>"
+      },
+      {
+        "id": "datalist",
+        "name": "<datalist>"
+      },
+      {
+        "id": "event-oninput",
+        "name": "oninput"
+      }
+    ]
+  },
+  {
+    "id": "input-password",
+    "name": "<input type=\"password\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Champs & Texte",
+    "official": "Champ de saisie sécurisé de mot de passe.",
+    "simple": "Masque automatiquement les caractères saisis (puces/astérisques) pour des raisons de confidentialité visuelle.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie que le champ est un mot de passe sécurisé (caractères masqués).",
+        "values": "'password'"
+      },
+      {
+        "name": "name",
+        "desc": "Identifiant de la variable de mot de passe transmise en PHP.",
+        "values": "ex: 'pwd'"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Texte d'aide en filigrane.",
+        "values": "ex: 'Mot de passe'"
+      },
+      {
+        "name": "required",
+        "desc": "Saisie obligatoire du mot de passe.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "readonly",
+        "desc": "Empêche l'édition mais conserve l'envoi de la valeur.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive le champ.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"password\"\n  name=\"pwd\"\n  placeholder=\"Saisir mot de passe\"\n  required>",
+    "note": "Les caractères sont masqués à l'écran mais sont envoyés en clair si la méthode du formulaire est GET (préférez POST !).",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "label",
+        "name": "<label>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "textarea",
+    "name": "<textarea>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Champs & Texte",
+    "official": "Définit une zone de saisie de texte multilingues (plusieurs lignes).",
+    "simple": "Champ de texte multi-lignes pour commentaires ou messages.",
+    "attrsDetail": [
+      {
+        "name": "name",
+        "desc": "Nom du paramètre de formulaire récupéré en PHP.",
+        "values": "nom de variable"
+      },
+      {
+        "name": "rows",
+        "desc": "Spécifie le nombre de lignes de hauteur visibles par défaut.",
+        "values": "nombre entier (ex: 5)"
+      },
+      {
+        "name": "cols",
+        "desc": "Spécifie le nombre de colonnes de largeur visibles par défaut.",
+        "values": "nombre entier (ex: 40)"
+      },
+      {
+        "name": "maxlength",
+        "desc": "Spécifie le nombre maximal de caractères que l'utilisateur peut saisir.",
+        "values": "nombre entier"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Texte d'arrière-plan d'aide à la saisie.",
+        "values": "texte explicatif"
+      },
+      {
+        "name": "required",
+        "desc": "Rend la saisie du message obligatoire.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "readonly",
+        "desc": "Empêche la modification du texte.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive la zone de texte.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<textarea\n  name=\"msg\"\n  rows=\"4\"\n  cols=\"50\"\n  maxlength=\"200\"\n  placeholder=\"Votre avis...\">\n</textarea>",
+    "note": "Balise fermante </textarea> obligatoire !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "label",
+        "name": "<label>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "input-number",
+    "name": "<input type=\"number\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Nombres, Dates & Curseurs",
+    "official": "Définit un champ de saisie réservé exclusivement aux valeurs numériques.",
+    "simple": "Champ acceptant uniquement des chiffres avec flèches d'incrémentation et décrémentation.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie que la saisie est réservée exclusivement aux valeurs numériques.",
+        "values": "'number'"
+      },
+      {
+        "name": "name",
+        "desc": "Nom du paramètre numérique transmis en PHP.",
+        "values": "nom de variable"
+      },
+      {
+        "name": "value",
+        "desc": "Valeur numérique initiale au chargement.",
+        "values": "nombre"
+      },
+      {
+        "name": "min",
+        "desc": "Spécifie la valeur numérique minimale autorisée.",
+        "values": "nombre (ex: min='0')"
+      },
+      {
+        "name": "max",
+        "desc": "Spécifie la valeur numérique maximale autorisée.",
+        "values": "nombre (ex: max='20')"
+      },
+      {
+        "name": "step",
+        "desc": "Pas d'incrémentation/décrémentation des valeurs (décimales ou entiers).",
+        "values": "nombre (ex: step='0.5')"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Texte indicatif en filigrane.",
+        "values": "texte"
+      },
+      {
+        "name": "required",
+        "desc": "Saisie numérique obligatoire.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "readonly",
+        "desc": "Empêche la modification de la valeur.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive le champ numérique.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"number\"\n  name=\"note\"\n  min=\"0\"\n  max=\"20\"\n  step=\"0.5\"\n  value=\"10\"\n  required>",
+    "note": "Par défaut, step vaut 1. Pour autoriser la saisie de décimales (ex: 12.5), spécifiez impérativement step='0.5' ou step='any' !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "input-range",
+        "name": "<input type=\"range\">"
+      },
+      {
+        "id": "label",
+        "name": "<label>"
+      }
+    ]
+  },
+  {
+    "id": "input-range",
+    "name": "<input type=\"range\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Nombres, Dates & Curseurs",
+    "official": "Définit un contrôle sous forme de curseur coulissant (potentiomètre).",
+    "simple": "Curseur visuel permettant à l'utilisateur de sélectionner une valeur dans un intervalle en faisant glisser le curseur.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie un contrôle sous forme de curseur glissant (potentiomètre).",
+        "values": "'range'"
+      },
+      {
+        "name": "name",
+        "desc": "Nom de la variable transmise au serveur PHP.",
+        "values": "nom de variable"
+      },
+      {
+        "name": "value",
+        "desc": "Position et valeur initiale du curseur.",
+        "values": "nombre"
+      },
+      {
+        "name": "min",
+        "desc": "Borne minimale du curseur (valeur par défaut : 0).",
+        "values": "nombre (ex: min='0')"
+      },
+      {
+        "name": "max",
+        "desc": "Borne maximale du curseur (valeur par défaut : 100).",
+        "values": "nombre (ex: max='100')"
+      },
+      {
+        "name": "step",
+        "desc": "Pas de déplacement du curseur (valeur par défaut : 1).",
+        "values": "nombre (ex: step='5')"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive le curseur glissant.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"range\"\n  name=\"volume\"\n  min=\"0\"\n  max=\"100\"\n  step=\"5\"\n  value=\"50\">",
+    "note": "Le curseur type=\"range\" n'affiche pas sa valeur numérique par défaut. Associez un événement JS (oninput) pour l'afficher en temps réel !",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "input-number",
+        "name": "<input type=\"number\">"
+      },
+      {
+        "id": "label",
+        "name": "<label>"
+      }
+    ]
+  },
+  {
+    "id": "input-date-time",
+    "name": "<input type=\"date | time\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Nombres, Dates & Curseurs",
+    "official": "Sélecteurs de calendrier (date) et d'horaire (heure).",
+    "simple": "Affiche un calendrier interactif ou un sélecteur d'heure natif du navigateur.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie un sélecteur de calendrier (date) ou d'horaire (heure).",
+        "values": "'date', 'time'"
+      },
+      {
+        "name": "name",
+        "desc": "Nom de la variable temporelle transmise en PHP.",
+        "values": "ex: 'date_naiss'"
+      },
+      {
+        "name": "value",
+        "desc": "Date ou heure initiale par défaut.",
+        "values": "format 'AAAA-MM-JJ' ou 'HH:MM'"
+      },
+      {
+        "name": "min",
+        "desc": "Date ou heure minimale autorisée.",
+        "values": "ex: min='2000-01-01'"
+      },
+      {
+        "name": "max",
+        "desc": "Date ou heure maximale autorisée.",
+        "values": "ex: max='2025-12-31'"
+      },
+      {
+        "name": "required",
+        "desc": "Sélection obligatoire de date/heure.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive le sélecteur.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"date\"\n  name=\"date_naiss\"\n  min=\"2000-01-01\"\n  max=\"2010-12-31\"\n  required>",
+    "note": "Le format de la date transmise au serveur PHP est systématiquement AAAA-MM-JJ.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "label",
+        "name": "<label>"
+      }
+    ]
+  },
+  {
+    "id": "select",
+    "name": "<select>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Menus & Sélections",
+    "official": "Définit une liste déroulante de sélection.",
+    "simple": "Crée un menu déroulant permettant à l'utilisateur de choisir une ou plusieurs options.",
+    "attrsDetail": [
+      {
+        "name": "name",
+        "desc": "Nom du paramètre de formulaire récupéré en PHP ($_POST['section']).",
+        "values": "nom de variable"
+      },
+      {
+        "name": "required",
+        "desc": "Rend la sélection d'une option obligatoire avant soumission.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive la liste déroulante.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "multiple",
+        "desc": "Permet la sélection de plusieurs options simultanément.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "size",
+        "desc": "Spécifie le nombre d'options visibles sans dérouler le menu.",
+        "values": "nombre entier (ex: size='4')"
+      }
+    ],
+    "code": "<select\n  name=\"section\"\n  required>\n  <option value=\"\" disabled selected>Choisir une section</option>\n  <option value=\"SI\">Sciences de l'Info</option>\n  <option value=\"Math\">Mathématiques</option>\n</select>",
+    "note": "Pour récupérer l'indice de l'option choisie en JavaScript, utilisez la propriété selectedIndex.",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "option",
+        "name": "<option>"
+      },
+      {
+        "id": "datalist",
+        "name": "<datalist>"
+      },
+      {
+        "id": "event-onchange",
+        "name": "onchange"
+      }
+    ]
+  },
+  {
+    "id": "option",
+    "name": "<option>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Menus & Sélections",
+    "official": "Définit une option dans une liste de sélection.",
+    "simple": "Choix individuel dans un &lt;select&gt; ou &lt;datalist&gt;.",
+    "attrsDetail": [
+      {
+        "name": "value",
+        "desc": "Spécifie la valeur réellement transmise au serveur PHP lors de la sélection de cette option.",
+        "values": "texte ou code de la valeur"
+      },
+      {
+        "name": "selected",
+        "desc": "Spécifie que cette option est la sélection par défaut à l'ouverture de la liste.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<select name=\"section\">\n  <option value=\"SI\" selected>Sciences de l'Info</option>\n  <option value=\"Math\">Maths</option>\n</select>",
+    "note": "L'attribut selected sélectionne par défaut cette option.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "select",
+        "name": "<select>"
+      },
+      {
+        "id": "datalist",
+        "name": "<datalist>"
+      }
+    ]
+  },
+  {
+    "id": "datalist",
+    "name": "<datalist>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Menus & Sélections",
+    "official": "Spécifie une liste d'options prédéfinies connectée à un élément <input>.",
+    "simple": "Propose une liste d'autocomplétion / de suggestions lors de la saisie.",
+    "attrsDetail": [
+      {
+        "name": "id",
+        "desc": "Identifiant unique relié à l'attribut list d'un &lt;input&gt;.",
+        "values": "ex: id='villes'"
+      }
+    ],
+    "code": "<input list=\"villes\" name=\"ville\">\n<datalist id=\"villes\">\n  <option value=\"Tunis\">\n  <option value=\"Sousse\">\n</datalist>",
+    "note": "Permet à l'utilisateur de choisir dans la liste OU de saisir son propre texte.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "select",
+        "name": "<select>"
+      },
+      {
+        "id": "input-text-email-tel",
+        "name": "<input type=\"text | email | tel\">"
+      },
+      {
+        "id": "option",
+        "name": "<option>"
+      }
+    ]
+  },
+  {
+    "id": "input-checkbox-radio",
+    "name": "<input type=\"checkbox | radio\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Menus & Sélections",
+    "official": "Cases à cocher (sélection multiple) et boutons radio (sélection exclusive).",
+    "simple": "checkbox permet de sélectionner plusieurs options ; radio impose un choix unique parmi un groupe ayant le même attribut name.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie une case à cocher (sélection multiple) ou un bouton radio (sélection exclusive).",
+        "values": "'checkbox', 'radio'"
+      },
+      {
+        "name": "name",
+        "desc": "Identifiant du groupe. Obligatoirement identique pour l'exclusivité d'un groupe radio !",
+        "values": "nom de groupe"
+      },
+      {
+        "name": "value",
+        "desc": "Valeur transmise au serveur si l'option est cochée.",
+        "values": "valeur de l'option"
+      },
+      {
+        "name": "checked",
+        "desc": "Pré-sélectionne l'option par défaut lors de l'ouverture de la page.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "required",
+        "desc": "Rend le cochange obligatoire.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "disabled",
+        "desc": "Désactive l'option.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"radio\"\n  name=\"genre\"\n  value=\"M\"\n  checked> Homme\n<input\n  type=\"radio\"\n  name=\"genre\"\n  value=\"F\"> Femme",
+    "note": "Pour les boutons radio, tous les choix d'un même groupe doivent impérativement posséder LE MÊME attribut name !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "label",
+        "name": "<label>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      }
+    ]
+  },
+  {
+    "id": "button-tag",
+    "name": "<button>",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Boutons d'Action",
+    "official": "Définit un bouton cliquable interactif pouvant contenir du contenu HTML.",
+    "simple": "Bouton interactif riche pouvant intégrer du texte, des icônes ou des images.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie le comportement du bouton dans un formulaire.",
+        "values": "'submit' (envoie), 'reset' (efface), 'button' (action JS)"
+      },
+      {
+        "name": "name",
+        "desc": "Nom du bouton transmis au serveur s'il est cliqué.",
+        "values": "nom de variable"
+      },
+      {
+        "name": "value",
+        "desc": "Valeur associée au bouton transmise en PHP.",
+        "values": "valeur"
+      },
+      {
+        "name": "disabled",
+        "desc": "Inactive et grise le bouton.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<button\n  type=\"submit\"\n  name=\"btn_envoyer\">\n  Enregistrer\n</button>",
+    "note": "Si l'attribut type n'est pas spécifié à l'intérieur d'un &lt;form&gt;, le navigateur lui attribue le type 'submit' par défaut !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "input-submit-reset-button",
+        "name": "<input type=\"submit | reset | button\">"
+      },
+      {
+        "id": "event-onclick",
+        "name": "onclick"
+      }
+    ]
+  },
+  {
+    "id": "input-submit-reset-button",
+    "name": "<input type=\"submit | reset | button\">",
+    "category": "Formulaires & Saisie",
+    "subcategory": "Boutons d'Action",
+    "official": "Boutons d'action du formulaire (envoi submit, réinitialisation reset ou action JS button).",
+    "simple": "submit expédie les champs vers le fichier PHP cible (action) ; reset efface toutes les saisies ; button exécute une fonction JS.",
+    "attrsDetail": [
+      {
+        "name": "type",
+        "desc": "Spécifie le type de bouton d'action (soumission submit, effacement reset ou bouton JS).",
+        "values": "'submit', 'reset', 'button'"
+      },
+      {
+        "name": "value",
+        "desc": "Texte affiché sur le bouton.",
+        "values": "ex: 'Valider', 'Effacer'"
+      },
+      {
+        "name": "name",
+        "desc": "Nom optionnel transmis si le bouton est cliqué.",
+        "values": "nom de variable"
+      },
+      {
+        "name": "disabled",
+        "desc": "Inactive et grise le bouton.",
+        "values": "attribut booléen"
+      }
+    ],
+    "code": "<input\n  type=\"submit\"\n  value=\"Valider mon inscription\">\n<input\n  type=\"reset\"\n  value=\"Vider le formulaire\">",
+    "note": "Le clic sur type=\"submit\" déclenche automatiquement l'événement onsubmit de la balise &lt;form&gt;.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "button-tag",
+        "name": "<button>"
+      },
+      {
+        "id": "form",
+        "name": "<form>"
+      },
+      {
+        "id": "event-onsubmit",
+        "name": "onsubmit"
+      }
+    ]
+  },
+  {
+    "id": "attr-globaux",
+    "name": "Attributs Globaux HTML5",
+    "category": "Attributs Globaux",
+    "official": "Attributs pouvant être utilisés sur N'IMPORTE QUELLE balise HTML5.",
+    "simple": "Attributs universels applicables à tous les éléments HTML.",
+    "attrsDetail": [
+      {
+        "name": "class",
+        "desc": "Spécifie un ou plusieurs noms de classes CSS pour cibler des éléments en style.",
+        "values": "noms de classes séparés par espace"
+      },
+      {
+        "name": "id",
+        "desc": "Spécifie un identifiant unique universel pour cibler l'élément en CSS (#id) et JS (getElementById).",
+        "values": "identifiant unique"
+      },
+      {
+        "name": "hidden",
+        "desc": "Masque l'élément visuellement à l'affichage sur la page.",
+        "values": "attribut booléen"
+      },
+      {
+        "name": "lang",
+        "desc": "Spécifie la langue du texte contenu dans l'élément.",
+        "values": "'fr', 'ar', 'en'"
+      },
+      {
+        "name": "style",
+        "desc": "Applique directement des règles de style CSS en ligne sur l'élément.",
+        "values": "code CSS (ex: 'color:red;')"
+      },
+      {
+        "name": "title",
+        "desc": "Spécifie une infobulle (tooltip) d'information affichée lors du survol par la souris.",
+        "values": "texte explicatif"
+      }
+    ],
+    "code": "<div\n  id=\"zone1\"\n  class=\"carte important\"\n  style=\"color:blue;\"\n  title=\"Aide\">\n  Bloc\n</div>",
+    "note": "L'attribut id doit être absolument unique dans tout le document HTML.",
+    "noteType": "warning",
+    "relatedTags": []
+  },
+  {
+    "id": "event-onclick",
+    "name": "onclick",
+    "category": "Événements HTML5",
+    "subcategory": "Souris",
+    "official": "Se déclenche lors d'un clic sur l'élément HTML.",
+    "simple": "Exécute une fonction JavaScript lorsque l'utilisateur clique avec la souris sur le composant (bouton, image, lien).",
+    "attrsDetail": [
+      {
+        "name": "onclick",
+        "desc": "Contient le nom de la fonction JavaScript à exécuter au clic.",
+        "values": "ex: onclick='calculer()'"
+      }
+    ],
+    "code": "<button\n  onclick=\"validerFormulaire()\">\n  Valider\n</button>",
+    "note": "Peut être placé sur n'importe quel élément HTML visible de la page.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "button-tag",
+        "name": "<button>"
+      },
+      {
+        "id": "a",
+        "name": "<a>"
+      }
+    ]
+  },
+  {
+    "id": "event-onmouseover",
+    "name": "onmouseover",
+    "category": "Événements HTML5",
+    "subcategory": "Souris",
+    "official": "Se déclenche lorsque le pointeur de la souris survole l'élément.",
+    "simple": "Déclenche un script dès que le curseur de la souris passe au-dessus de l'élément.",
+    "attrsDetail": [
+      {
+        "name": "onmouseover",
+        "desc": "Code JS exécuté à l'entrée de la souris.",
+        "values": "ex: onmouseover='zoom(this)'"
+      }
+    ],
+    "code": "<img\n  src=\"image.png\"\n  onmouseover=\"agrandir(this)\">",
+    "note": "S'associe généralement avec onmouseout pour créer des effets visuels au survol.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onmouseout",
+        "name": "onmouseout"
+      }
+    ]
+  },
+  {
+    "id": "event-onmouseout",
+    "name": "onmouseout",
+    "category": "Événements HTML5",
+    "subcategory": "Souris",
+    "official": "Se déclenche lorsque le pointeur de la souris sort de l'élément.",
+    "simple": "Déclenche un script dès que le curseur de la souris quitte l'élément.",
+    "attrsDetail": [
+      {
+        "name": "onmouseout",
+        "desc": "Code JS exécuté à la sortie de la souris.",
+        "values": "ex: onmouseout='dezoom(this)'"
+      }
+    ],
+    "code": "<img\n  src=\"image.png\"\n  onmouseout=\"tailleNormale(this)\">",
+    "note": "Permet de rétablir l'apparence normale du composant après le survol.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onmouseover",
+        "name": "onmouseover"
+      }
+    ]
+  },
+  {
+    "id": "event-onsubmit",
+    "name": "onsubmit",
+    "category": "Événements HTML5",
+    "subcategory": "Formulaires",
+    "official": "Se déclenche lorsqu'un formulaire est soumis.",
+    "simple": "Exécute une fonction de contrôle des champs juste avant d'expédier les données au serveur PHP.",
+    "attrsDetail": [
+      {
+        "name": "onsubmit",
+        "desc": "Instruction JS. 'return verif()' annule l'envoi si verif() retourne false.",
+        "values": "ex: onsubmit='return verif()'"
+      }
+    ],
+    "code": "<form\n  action=\"ajout.php\"\n  method=\"post\"\n  onsubmit=\"return verif();\">\n  <!-- inputs -->\n</form>",
+    "note": "L'expression 'return verif();' avec le mot-clé 'return' est obligatoire pour bloquer l'envoi du formulaire en cas d'erreur de saisie !",
+    "noteType": "warning",
+    "relatedTags": [
+      {
+        "id": "form",
+        "name": "<form>"
+      },
+      {
+        "id": "input-submit-reset-button",
+        "name": "<input type=\"submit | reset | button\">"
+      }
+    ]
+  },
+  {
+    "id": "event-onchange",
+    "name": "onchange",
+    "category": "Événements HTML5",
+    "subcategory": "Formulaires",
+    "official": "Se déclenche lorsque la valeur d'un élément est modifiée et validée.",
+    "simple": "Réagit aux changements de choix dans une liste déroulante &lt;select&gt; ou à la modification validée d'un champ.",
+    "attrsDetail": [
+      {
+        "name": "onchange",
+        "desc": "Appelle une fonction JS dès qu'une nouvelle option est sélectionnée.",
+        "values": "ex: onchange='filtrer()'"
+      }
+    ],
+    "code": "<select\n  name=\"section\"\n  onchange=\"afficherOptions()\">\n  <option value=\"SI\">SI</option>\n</select>",
+    "note": "Très souvent utilisé pour mettre à jour une deuxième liste déroulante en fonction de la première.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "select",
+        "name": "<select>"
+      },
+      {
+        "id": "input-checkbox-radio",
+        "name": "<input type=\"checkbox | radio\">"
+      }
+    ]
+  },
+  {
+    "id": "event-oninput",
+    "name": "oninput",
+    "category": "Événements HTML5",
+    "subcategory": "Formulaires",
+    "official": "Se déclenche instantanément dès que la valeur d'un champ change.",
+    "simple": "S'exécute à chaque frappe de touche en temps réel sans attendre la perte de focus du champ.",
+    "attrsDetail": [
+      {
+        "name": "oninput",
+        "desc": "Exécute un traitement instantané pendant la frappe.",
+        "values": "ex: oninput='compter(this.value)'"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  oninput=\"compterCaracteres(this.value)\">",
+    "note": "Différence avec onchange : oninput réagit en temps réel à chaque caractère saisi !",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "input-text-email-tel",
+        "name": "<input type=\"text | email | tel\">"
+      },
+      {
+        "id": "textarea",
+        "name": "<textarea>"
+      }
+    ]
+  },
+  {
+    "id": "event-onblur",
+    "name": "onblur",
+    "category": "Événements HTML5",
+    "subcategory": "Formulaires",
+    "official": "Se déclenche au moment où l'élément perd le focus.",
+    "simple": "S'exécute lorsque l'utilisateur quitte un champ de saisie (le curseur quitte le champ).",
+    "attrsDetail": [
+      {
+        "name": "onblur",
+        "desc": "Permet d'effectuer le contrôle individuel d'un champ dès qu'on le quitte.",
+        "values": "ex: onblur='verifierCin(this)'"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  name=\"cin\"\n  onblur=\"validerCin(this)\">",
+    "note": "Idéal pour vérifier la validité de chaque champ immédiatement lorsque l'élève passe au champ suivant.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "event-onfocus",
+        "name": "onfocus"
+      }
+    ]
+  },
+  {
+    "id": "event-onfocus",
+    "name": "onfocus",
+    "category": "Événements HTML5",
+    "subcategory": "Formulaires",
+    "official": "Se déclenche au moment où l'élément obtient le focus.",
+    "simple": "S'exécute dès que l'utilisateur clique ou navigue dans un champ de saisie.",
+    "attrsDetail": [
+      {
+        "name": "onfocus",
+        "desc": "Active un surlignage ou une aide contextuelle.",
+        "values": "ex: onfocus='afficherAide()'"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  onfocus=\"surlignerChamp(this)\">",
+    "note": "Utile pour guider la saisie en affichant un message d'aide au clic dans le champ.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onblur",
+        "name": "onblur"
+      }
+    ]
+  },
+  {
+    "id": "event-onkeydown",
+    "name": "onkeydown",
+    "category": "Événements HTML5",
+    "subcategory": "Clavier",
+    "official": "Se déclenche lorsqu'une touche du clavier est enfoncée.",
+    "simple": "Intercepte l'appui physique sur une touche du clavier.",
+    "attrsDetail": [
+      {
+        "name": "onkeydown",
+        "desc": "Détecte la touche pressée avant l'insertion.",
+        "values": "ex: onkeydown='filtrer(event)'"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  onkeydown=\"bloquerChiffres(event)\">",
+    "note": "Se déclenche AVANT que le caractère ne soit réellement inscrit dans le champ.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "event-onkeyup",
+        "name": "onkeyup"
+      }
+    ]
+  },
+  {
+    "id": "event-onkeyup",
+    "name": "onkeyup",
+    "category": "Événements HTML5",
+    "subcategory": "Clavier",
+    "official": "Se déclenche lorsqu'une touche du clavier est relâchée.",
+    "simple": "S'exécute immédiatement après le relâchement d'une touche du clavier.",
+    "attrsDetail": [
+      {
+        "name": "onkeyup",
+        "desc": "Déclenche une action après saisie de la touche.",
+        "values": "ex: onkeyup='enMajuscules(this)'"
+      }
+    ],
+    "code": "<input\n  type=\"text\"\n  onkeyup=\"convertirMaj(this)\">",
+    "note": "Fréquemment utilisé pour transformer la saisie de l'élève en majuscules en direct.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onkeydown",
+        "name": "onkeydown"
+      }
+    ]
+  },
+  {
+    "id": "event-onload",
+    "name": "onload",
+    "category": "Événements HTML5",
+    "subcategory": "Page & Médias",
+    "official": "Se déclenche lorsque la page web est complètement chargée.",
+    "simple": "Exécute une fonction d'initialisation dès l'affichage complet du document.",
+    "attrsDetail": [
+      {
+        "name": "onload",
+        "desc": "Placé généralement sur la balise <body> pour lancer des vérifications au démarrage.",
+        "values": "ex: onload='init()'"
+      }
+    ],
+    "code": "<body onload=\"initialiserPage()\">",
+    "note": "Garantit que tous les éléments HTML du DOM sont bien chargés avant d'exécuter le code JS.",
+    "noteType": "remember",
+    "relatedTags": [
+      {
+        "id": "body",
+        "name": "<body>"
+      }
+    ]
+  },
+  {
+    "id": "event-onplay",
+    "name": "onplay",
+    "category": "Événements HTML5",
+    "subcategory": "Page & Médias",
+    "official": "Se déclenche lorsque la lecture d'un fichier audio ou vidéo commence.",
+    "simple": "S'exécute dès que l'utilisateur lance la lecture multimédia.",
+    "attrsDetail": [
+      {
+        "name": "onplay",
+        "desc": "Code JS déclenché au clic sur Play.",
+        "values": "ex: onplay='demarrerCompteur()'"
+      }
+    ],
+    "code": "<video\n  src=\"cours.mp4\"\n  controls\n  onplay=\"compterVues()\">\n</video>",
+    "note": "S'applique spécifiquement sur les lecteurs <audio> et <video>.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onpause",
+        "name": "onpause"
+      },
+      {
+        "id": "video",
+        "name": "<video>"
+      },
+      {
+        "id": "audio",
+        "name": "<audio>"
+      }
+    ]
+  },
+  {
+    "id": "event-onpause",
+    "name": "onpause",
+    "category": "Événements HTML5",
+    "subcategory": "Page & Médias",
+    "official": "Se déclenche lorsqu'un élément audio ou vidéo est mis en pause.",
+    "simple": "S'exécute dès l'interruption temporaire de la lecture multimédia.",
+    "attrsDetail": [
+      {
+        "name": "onpause",
+        "desc": "Code JS déclenché au clic sur Pause.",
+        "values": "ex: onpause='sauverPosition()'"
+      }
+    ],
+    "code": "<audio\n  src=\"son.mp3\"\n  controls\n  onpause=\"sauvegarder(this.currentTime)\">\n</audio>",
+    "note": "Utile pour mémoriser la position exacte de lecture de l'utilisateur.",
+    "noteType": "tip",
+    "relatedTags": [
+      {
+        "id": "event-onplay",
+        "name": "onplay"
+      },
+      {
+        "id": "video",
+        "name": "<video>"
+      },
+      {
+        "id": "audio",
+        "name": "<audio>"
+      }
+    ]
+  }
+]
