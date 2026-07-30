@@ -12,13 +12,13 @@
   },
   {
     "id": "op-compare",
-    "name": "==, !=, >, >=, <, <=",
+    "name": "==, !=, ===, !==, <, <=, >, >=",
     "category": "Opérateurs Logiques",
     "subcategory": "Comparaison",
-    "official": "Égal (==), Différent (!=), Supérieur (>), Supérieur ou égal (>=), Inférieur (<), Inférieur ou égal (<=).",
-    "simple": "Comparent deux valeurs et retournent un booléen (true ou false).",
-    "code": "if (moyenne != 10) {\n  // traitement\n}",
-    "note": "Attention à ne pas confondre l'égalité == avec l'affectation = !",
+    "official": "Égalité (==), Différence (!=), Égalité stricte / Identique (===), Non identique (!==), Supérieur (>), Supérieur ou égal (>=), Inférieur (<), Inférieur ou égal (<=).",
+    "simple": "Comparent deux valeurs et retournent un booléen (true ou false). L'égalité simple == et la différence != comparent la valeur (avec conversion de type auto). Les opérateurs stricts === et !== comparent la valeur ET le type !",
+    "code": "// 1. Égalité simple et différence\nif (age == \"18\") { /* true */ }\nif (note != 10) { /* true si note différente de 10 */ }\n\n// 2. Égalité et différence strictes (Valeur ET Type)\nif (moyenne === 10) { /* true uniquement si nombre 10 */ }\nif (val !== \"10\") { /* true si valeur ou type différent */ }",
+    "note": "Attention : 1) Ne pas confondre l'affectation = avec l'égalité == ! 2) === et !== comparent le type en plus de la valeur.",
     "noteType": "warning"
   },
   {

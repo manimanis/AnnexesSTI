@@ -45,14 +45,26 @@
   },
   {
     "id": "php-array",
-    "name": "array",
+    "name": "array()",
     "category": "Types & Transtypage (Casting)",
     "subcategory": "Types de Données",
-    "official": "Type tableau indicé ou associatif.",
-    "simple": "Structure regroupant plusieurs données sous un même nom.",
-    "code": "$notes = array(12, 15, 18);\n$eleve = array(\"nom\" => \"Ali\", \"age\" => 18);",
-    "note": "Deux types au programme : tableau indicé ($t[0]) et tableau associatif ($t['nom']).",
-    "noteType": "warning"
+    "official": "Structure de données permettant de regrouper plusieurs éléments. PHP distingue deux types principaux au programme du Bac : les tableaux à indices numériques et les tableaux associatifs.",
+    "simple": "Permet de stocker plusieurs données dans une seule variable. 1) Tableau numérique : accès par indice de 0 à n-1 ($t[0]). 2) Tableau associatif : accès par des clés textuelles ($t['nom']).",
+    "code": "// --- 1. TABLEAU À INDICES NUMÉRIQUES ---\n// Les indices sont attribués automatiquement de 0 à (taille - 1)\n$notes = array(12, 15, 18);\necho $notes[0]; // Affiche 12 (1er élément)\necho $notes[1]; // Affiche 15 (2ème élément)\n\n// --- 2. TABLEAU ASSOCIATIF ---\n// Chaque valeur est associée à une clé textuelle via l'opérateur '=>'\n$eleve = array(\"nom\" => \"Ben Ali\", \"prenom\" => \"Sami\", \"moyenne\" => 15.5);\necho $eleve['nom'];     // Affiche \"Ben Ali\"\necho $eleve['moyenne']; // Affiche 15.5",
+    "note": "Différence essentielle pour l'examen Bac : 1) Tableau Numérique : Clés = entiers de 0 à N-1 -> Accès via $t[0]. Exemple : mysqli_fetch_row(). 2) Tableau Associatif : Clés = chaînes textuelles ('cle' => valeur) -> Accès via $t['cle']. Exemples : $_POST['nom'], $_GET['id'], mysqli_fetch_array().",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "Tableau à indices numériques (Indexé)",
+        "desc": "Indexé automatiquement par des entiers consécutifs partant de 0 (0, 1, 2...). Accès via $notes[0]. Utilisé pour des séries ou listes ordonnées de valeurs.",
+        "values": "$tab = array(val0, val1, val2); // Accès: $tab[0]"
+      },
+      {
+        "name": "Tableau associatif (Clé => Valeur)",
+        "desc": "Clés nominatives uniques (chaînes de texte) associées à des valeurs via '=>'. Accès via $eleve['nom']. Indispensable pour traiter les tuples de BDD et les données de formulaires ($_POST, $_GET).",
+        "values": "$tab = array('cle1' => val1, 'cle2' => val2); // Accès: $tab['cle1']"
+      }
+    ]
   },
   {
     "id": "cast-int",
@@ -122,14 +134,36 @@
   },
   {
     "id": "php-op-compare",
-    "name": "==, <>, <, <=, >, >=",
+    "name": "==, !=, <>, ===, !==, <, <=, >, >=",
     "category": "Opérateurs PHP",
     "subcategory": "Logique & Comparaison",
-    "official": "Égal (==), Différent (<>), Inférieur (<), Inférieur ou égal (<=), Supérieur (>), Supérieur ou égal (>=).",
-    "simple": "Comparent des valeurs. Remarquez que le différent s'écrit <> en PHP !",
-    "code": "if ($a <> $b) {\n  echo \"Valeurs différentes\";\n}",
-    "note": "Attention piège du Bac : le symbole de différence en PHP s'écrit <> !",
-    "noteType": "warning"
+    "official": "Opérateurs de comparaison de valeur et de type : Égalité (==), Différence (!= ou <>), Identique (===), Non identique (!==), Supérieur (>), Supérieur ou égal (>=), Inférieur (<), Inférieur ou égal (<=).",
+    "simple": "Comparent deux valeurs et renvoient un booléen (true ou false). Remarquez que la différence s'écrit != ou <> en PHP. Les opérateurs stricts === et !== vérifient aussi le type de donnée !",
+    "code": "// 1. Égalité simple et différence (avec conversion de type auto)\nif ($age == \"18\") { /* Vrai (valeurs égales) */ }\nif ($val != 5) { /* Vrai si $val différent de 5 (s'écrit aussi $val <> 5) */ }\n\n// 2. Égalité stricte === et différence stricte !== (valeur ET type)\nif ($note === 10) { /* Vrai uniquement si $note est un entier valant 10 */ }\nif ($a !== $b) { /* Vrai si la valeur OU le type est différent */ }",
+    "note": "Règle essentielle Bac : 1) == et != (ou <>) ne comparent QUE les valeurs. 2) === et !== comparent la valeur ET le type (ex: 10 === '10' est faux car int != string).",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "Égalité simple == et Différence != ou <>",
+        "desc": "Compare uniquement la valeur des deux opérandes après conversion automatique de type si nécessaire. (10 == '10' renvoie true ; 10 != 5 et 10 <> 5 renvoient true).",
+        "values": "$a == $b  |  $a != $b  |  $a <> $b"
+      },
+      {
+        "name": "Égalité stricte === (Identique)",
+        "desc": "Renvoie true SI ET SEULEMENT SI les deux opérandes ont la MÊME valeur ET le MÊME type de donnée. (10 === 10 est true ; 10 === '10' est false).",
+        "values": "$a === $b (Valeur ET Type)"
+      },
+      {
+        "name": "Différence stricte !== (Non identique)",
+        "desc": "Renvoie true si la valeur est différente OU si le type de donnée est différent. (10 !== '10' renvoie true car int != string).",
+        "values": "$a !== $b (Valeur OU Type différent)"
+      },
+      {
+        "name": "Comparaisons d'ordre (<, <=, >, >=)",
+        "desc": "Inférieur (<), Inférieur ou égal (<=), Supérieur (>), Supérieur ou égal (>=). Utilisés pour comparer des nombres ou des dates.",
+        "values": "$a < $b  |  $a >= $b"
+      }
+    ]
   },
   {
     "id": "php-op-arith",
@@ -191,33 +225,89 @@
     "name": "substr()",
     "category": "Fonctions sur les Chaînes",
     "subcategory": "Longueur & Recherche",
-    "official": "Retourne une sous-chaîne.",
-    "simple": "Extrait une partie du texte à partir d'un indice et d'une longueur.",
-    "code": "$sub = substr(\"Informatique\", 0, 4); // \"Info\"",
-    "note": "Syntaxe : substr(chaîne, départ, longueur). Le 1er caractère est à l'indice 0.",
-    "noteType": "warning"
+    "official": "Retourne une partie d'une chaîne de caractères définie par un indice de départ et une longueur (nombre de caractères).",
+    "simple": "Extrait une sous-chaîne. Syntaxe : substr($chaine, $depart, $longueur). Attention : le 3ème paramètre est la LONGUEUR (nombre de caractères) et PAS l'indice de fin !",
+    "code": "// 1. Extrait 4 caractères à partir de l'indice 0\n$sub1 = substr(\"Informatique\", 0, 4); // \"Info\"\n\n// 2. Extrait 3 caractères à partir de l'indice 4\n$sub2 = substr(\"Informatique\", 4, 3); // \"orm\"\n\n// 3. Omission de la longueur : extrait jusqu'à la FIN du texte\n$domain = substr(\"user@education.tn\", 5); // \"education.tn\"\n\n// 4. PIÈGE DE CONFUSION BAC (PHP vs JS / Python / Algo) :\n// Algo/JS/Python : substring(4, 7) ou ch[4:7] va de l'indice 4 à 7 (3 caractères).\n// En PHP : substr(\"Informatique\", 4, 7) extrait 7 CARACTÈRES à partir de l'indice 4 ! -> \"ormatiq\"",
+    "note": "PIÈGE DE CONFUSION MAJEUR AU BAC : Ne confondez pas PHP avec JavaScript (ch.substring(d, f)), Python (ch[d:f]) ou l'Algorithmique (sous_chaine(ch, d, f)) ! En PHP, le 3ème paramètre de substr($ch, $d, $n) est la LONGUEUR (nombre de caractères à prendre), et NON PAS l'indice de fin !",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "PHP : substr($ch, $départ, $longueur)",
+        "desc": "1er arg: la chaîne. 2ème arg: indice de départ (0 = 1er car). 3ème arg: le NOMBRE DE CARACTÈRES à extraire (Longueur).",
+        "values": "substr(\"Informatique\", 4, 3) -> \"orm\""
+      },
+      {
+        "name": "JavaScript : ch.substring($d, $f)",
+        "desc": "2ème arg: début ($d). 3ème arg: INDICE DE FIN exclu ($f). Pour les indices 4 à 7, on met 4, 7.",
+        "values": "\"Informatique\".substring(4, 7) -> \"orm\""
+      },
+      {
+        "name": "Python : ch[$d:$f] & Algo : sous_chaine(ch, d, f)",
+        "desc": "Slicing Python et Algorithmique : extraient les caractères du texte entre l'indice de début $d et l'indice de fin $f.",
+        "values": "\"Informatique\"[4:7] -> \"orm\""
+      },
+      {
+        "name": "Cas sans 3ème paramètre (Jusqu'à la fin)",
+        "desc": "Si le 3ème paramètre $longueur est omis, substr() extrait tout le reste de la chaîne jusqu'à la fin.",
+        "values": "substr(\"user@site.tn\", 5) -> \"site.tn\""
+      }
+    ]
   },
   {
     "id": "php-strpos",
     "name": "strpos()",
     "category": "Fonctions sur les Chaînes",
     "subcategory": "Longueur & Recherche",
-    "official": "Retourne la position de la 1ère occurrence du 2ème argument dans le 1er.",
-    "simple": "Cherche la position d'un mot ou d'une lettre (retourne false si introuvable).",
-    "code": "$pos = strpos(\"education.tn\", \"@\"); // false",
-    "note": "Attention : si introuvable, strpos retourne false !",
-    "noteType": "warning"
+    "official": "Cherche la position numérique de la première occurrence d'une sous-chaîne dans une chaîne de caractères.",
+    "simple": "Cherche un mot ou un caractère dans un texte et renvoie son indice (de 0 à n-1). Si la chaîne est INTROUVABLE, elle renvoie la valeur booléenne FALSE !",
+    "code": "// 1. Test de présence d'un caractère (ex: validation e-mail)\n$email = \"eleve@education.tn\";\nif (strpos($email, \"@\") === false) {\n  echo \"Erreur : le symbole @ est introuvable !\";\n} else {\n  echo \"Arobase trouvé à l'indice : \" . strpos($email, \"@\"); // Indice 5\n}\n\n// 2. ATTENTION AU PIÈGE DU BAC : Indice 0 vs FALSE\n$txt = \"admin@site.tn\";\n// strpos($txt, \"a\") renvoie 0 (trouvé tout au début !)\n// Ne JAMAIS écrire : if (strpos(...) == false) car 0 == false est VRAI !\n// Utiliser OBLIGATOIREMENT l'égalité stricte : (=== false) ou (!== false)",
+    "note": "PIÈGE CRUCIAL DU BAC : Si la recherche échoue, strpos() renvoie la valeur booléenne FALSE (et NON PAS -1). Comme l'indice du premier caractère est 0, une comparaison simple (== false) confond l'indice 0 et false ! Vous DEVEZ OBLIGATOIREMENT tester avec l'opérateur strict (=== false) ou (!== false).",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "Chaîne trouvée (Retour = Indice >= 0)",
+        "desc": "Renvoie un entier >= 0 représentant la position du 1er caractère (0 = tout début de la chaîne).",
+        "values": "strpos(\"admin\", \"a\") renvoie 0"
+      },
+      {
+        "name": "Chaîne INTROUVABLE (Retour = FALSE)",
+        "desc": "Renvoie la valeur booléenne FALSE (et pas -1 ni null !).",
+        "values": "strpos(\"education.tn\", \"@\") === false"
+      },
+      {
+        "name": "RÈGLE BAC : Test Strict Obligatoire (=== false)",
+        "desc": "Ne JAMAIS faire (strpos() == false) car en PHP 0 == false vaut TRUE ! Utiliser OBLIGATOIREMENT === false (introuvable) ou !== false (trouvé).",
+        "values": "if (strpos($email, '@') === false)"
+      }
+    ]
   },
   {
     "id": "php-strcmp",
     "name": "strcmp()",
     "category": "Fonctions sur les Chaînes",
     "subcategory": "Comparaison & Remplacement",
-    "official": "Retourne le résultat de comparaison de deux chaînes (<0, 0, >0).",
-    "simple": "Compare deux textes par ordre alphabétique. Retourne 0 si identiques !",
-    "code": "if (strcmp($p1, $p2) == 0) {\n  echo \"Mots de passe identiques\";\n}",
-    "note": "Retourne 0 lorsque les deux chaînes sont EXACTEMENT identiques.",
-    "noteType": "warning"
+    "official": "Effectue une comparaison binaire sensible à la casse (case-sensitive) de deux chaînes de caractères basée sur leurs codes ASCII.",
+    "simple": "Compare deux textes caractère par caractère selon leur valeur ASCII (sensible à la casse). Renvoie 0 si les deux chaînes sont exactement identiques !",
+    "code": "// 1. Tester l'égalité exacte de deux chaînes (ex: mot de passe)\nif (strcmp($pass1, $pass2) == 0) {\n  echo \"Mots de passe identiquement identiques (casse respectée)\";\n}\n\n// 2. Comparaison ASCII (sensible à la casse)\n$res1 = strcmp(\"abc\", \"abc\"); // 0  (identiques)\n$res2 = strcmp(\"A\", \"a\");     // < 0 (négatif car 'A'=65 < 'a'=97)\n$res3 = strcmp(\"b\", \"a\");     // > 0 (positif car 'b'=98 > 'a'=97)",
+    "note": "Attention piège du Bac : strcmp() ne fait PAS une simple comparaison alphabétique, mais une comparaison ASCII sensible à la casse ! Les majuscules ('A' = 65) précèdent les minuscules ('a' = 97). strcmp() renvoie 0 lorsque les deux chaînes sont strictement identiques.",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "Retour == 0 (Chaînes identiques)",
+        "desc": "Les deux chaînes contiennent exactement les mêmes caractères avec le même respect des majuscules/minuscules.",
+        "values": "strcmp(\"bac\", \"bac\") == 0"
+      },
+      {
+        "name": "Retour < 0 (Négatif)",
+        "desc": "La 1ère chaîne est inférieure à la 2ème selon l'ordre des codes ASCII (ex: 'A' (65) < 'a' (97)).",
+        "values": "strcmp(\"A\", \"a\") < 0"
+      },
+      {
+        "name": "Retour > 0 (Positif)",
+        "desc": "La 1ère chaîne est supérieure à la 2ème selon l'ordre des codes ASCII (ex: 'b' (98) > 'a' (97)).",
+        "values": "strcmp(\"b\", \"a\") > 0"
+      }
+    ]
   },
   {
     "id": "php-str-replace",
@@ -279,21 +369,38 @@
     "name": "date()",
     "category": "Fonctions Date & Heure",
     "subcategory": "Validation & Formatage",
-    "official": "Formate une date et la retourne sous forme de chaîne.",
-    "simple": "Génère une date formatée (ex: Y-m-d H:i:s).",
-    "code": "$today = date(\"d/m/Y\"); // \"15/06/2025\"",
-    "note": "d = jour (01-31), m = mois (01-12), Y = année sur 4 chiffres.",
-    "noteType": "remember"
+    "official": "Formate une date locale et/ou une heure sous forme de chaîne de caractères selon le format spécifié.",
+    "simple": "Formate et affiche une date ou une heure selon les caractères de format (ex: 'd/m/Y' donne '15/06/2025'). Accepte un 2ème argument optionnel (timestamp).",
+    "code": "// 1. Date courante au format francophone (JJ/MM/AAAA)\n$today = date(\"d/m/Y\"); // Ex: \"15/06/2025\"\n\n// 2. Format MySQL DATETIME (AAAA-MM-JJ HH:MM:SS)\n$sqlDate = date(\"Y-m-d H:i:s\"); // Ex: \"2025-06-15 14:30:00\"\n\n// 3. Formater un timestamp spécifique (ex: date de retour d'emprunt)\n$ts_futur = time() + (7 * 24 * 3600); // +7 jours\n$date_retour = date(\"d/m/Y\", $ts_futur);",
+    "note": "Attention au Bac : Distinguez majuscules et minuscules ! 'Y' = année 4 chiffres (2025) mais 'y' = 2 chiffres (25). 'd' = jour sur 2 chiffres (01-31). 'm' = mois sur 2 chiffres (01-12). 'H' = heure 24h (00-23), 'i' = minutes (00-59), 's' = secondes (00-59).",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "d / m / Y (Format de Date)",
+        "desc": "d = Jour sur 2 chiffres (01 à 31), m = Mois sur 2 chiffres (01 à 12), Y = Année sur 4 chiffres (ex: 2025). Format officiel Bac.",
+        "values": "date(\"d/m/Y\") // Ex: 15/06/2025"
+      },
+      {
+        "name": "H : i : s (Format d'Heure)",
+        "desc": "H = Heure format 24h (00 à 23), i = Minutes (00 à 59), s = Secondes (00 à 59). Remarquez que les minutes s'écrivent 'i' (et non m) !",
+        "values": "date(\"H:i:s\") // Ex: 14:30:00"
+      },
+      {
+        "name": "2ème paramètre $timestamp (Optionnel)",
+        "desc": "Horodatage Unix en secondes. Si omis, la fonction date() utilise l'instant présent time(). Permet d'afficher la date correspondant à n'importe quel timestamp.",
+        "values": "date(\"Y-m-d\", $timestamp)"
+      }
+    ]
   },
   {
     "id": "php-time",
     "name": "time()",
     "category": "Fonctions Date & Heure",
     "subcategory": "Timestamp",
-    "official": "Retourne l'heure actuelle sous forme de timestamp (secondes).",
-    "simple": "Donne le nombre de secondes écoulées depuis le 1er janvier 1970.",
-    "code": "$maintenant = time();",
-    "note": "Valeur numérique du timestamp actuel.",
+    "official": "Retourne l'heure actuelle sous forme de timestamp (secondes écoulées depuis l'époque Unix : 1er Janvier 1970 00:00:00 GMT).",
+    "simple": "Donne la valeur numérique courante en secondes. Utilisé pour calculer l'âge, l'ancienneté ou ajouter du temps (ex: +7 jours = +7*86400).",
+    "code": "$maintenant = time(); // Ex: 1750000000\n$dans_un_jour = time() + (24 * 3600); // Aujourd'hui + 86400 secondes",
+    "note": "1 jour = 24 heures * 60 minutes * 60 secondes = 86 400 secondes.",
     "noteType": "tip"
   },
   {
@@ -301,11 +408,28 @@
     "name": "strtotime()",
     "category": "Fonctions Date & Heure",
     "subcategory": "Timestamp",
-    "official": "Transforme une chaîne contenant une date en timestamp.",
-    "simple": "Convertit un texte de date en nombre de secondes timestamp.",
-    "code": "$ts = strtotime(\"2025-06-15\");",
-    "note": "Utile pour calculer la différence entre deux dates.",
-    "noteType": "tip"
+    "official": "Convertit une chaîne de texte contenant une date/heure au format ISO ou anglais en horodatage Unix (Timestamp en secondes).",
+    "simple": "Transforme un texte de date (ex: '2025-06-15') en nombre de secondes timestamp. Indispensable pour calculer l'écart en jours ou l'âge !",
+    "code": "// 1. Convertir une date ISO de formulaire en Timestamp\n$ts_naiss = strtotime($_POST['date_naissance']);\n$ts_now = time();\n\n// 2. Calculer l'âge en années (Bac SI)\n$age = floor(($ts_now - $ts_naiss) / (365 * 24 * 3600));\n\n// 3. Calculer la différence en jours entre deux dates\n$ts1 = strtotime(\"2025-06-01\");\n$ts2 = strtotime(\"2025-06-15\");\n$nb_jours = ($ts2 - $ts1) / (24 * 3600); // 14 jours\n\n// 4. Calcul de date d'échéance (ex: emprunt livre +7 jours)\n$date_retour = date(\"Y-m-d\", strtotime(\"+7 days\"));",
+    "note": "Règle clé Bac : Pour calculer l'écart entre 2 dates : 1) Convertir les 2 dates avec strtotime(). 2) Soustraire les timestamps ($ts2 - $ts1). 3) Diviser par 86400 (24*3600) pour obtenir le nombre de jours.",
+    "noteType": "warning",
+    "attrsDetail": [
+      {
+        "name": "Conversion de date ISO en Timestamp",
+        "desc": "Prend une chaîne au format 'YYYY-MM-DD' (issue d'un &lt;input type='date'&gt; ou de MySQL) et retourne un nombre entier de secondes.",
+        "values": "$ts = strtotime(\"2025-06-15\")"
+      },
+      {
+        "name": "Calcul d'écart entre 2 dates",
+        "desc": "Soustraction des timestamps : ($ts2 - $ts1) donne la différence en secondes. On divise par 86400 (24 * 3600) pour avoir le nombre de jours.",
+        "values": "($ts2 - $ts1) / 86400"
+      },
+      {
+        "name": "Calcul de dates relatives (Échéances)",
+        "desc": "Accepte des expressions anglaises relatives : '+1 day', '+7 days', '+1 month', '+1 year', 'next Monday'. Très pratique pour les dates de retour ou d'expiration.",
+        "values": "strtotime(\"+7 days\")"
+      }
+    ]
   },
   {
     "id": "php-mysqli-connect",

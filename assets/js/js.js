@@ -4,12 +4,13 @@
 const categoryOrder = [
   'Opérateurs Logiques',
   'Entrées & Sorties',
-  'Conversions & Types',
-  'Manipulation du DOM',
-  'Objet Math',
-  'Chaînes de Caractères',
-  'Objet Date',
-  'Modification du DOM'
+  'Manipulation de Chaînes (String)',
+  'Conversion de Types (Casting)',
+  'Fonctions Mathématiques (Math)',
+  'Date et Heure (Date)',
+  'Propriétés & Méthodes Spécifiques',
+  'Événements JavaScript',
+  'Gestion du DOM'
 ];
 
 const { createApp } = Vue;
@@ -19,9 +20,9 @@ createApp({
       isDarkMode: false,
       searchQuery: '',
       selectedCategory: 'ALL',
-      viewMode: 'grid',
       selectedTocItemId: localStorage.getItem('js_last_selected_item') || null,
-      items: []
+      items: [],
+      activeModalItem: null
     };
   },
   async created() {
@@ -29,7 +30,7 @@ createApp({
       const response = await fetch('jsons/js.json');
       this.items = await response.json();
       const hashId = this.getHashItemId();
-      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : this.selectedTocItemId;
+      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : null;
       if (initialId) {
         this.$nextTick(() => {
           this.selectTocItem(initialId, false);
@@ -44,6 +45,16 @@ createApp({
       const hashId = this.getHashItemId();
       if (hashId && this.items.some(i => i.id === hashId)) {
         this.selectTocItem(hashId, false);
+      }
+    });
+    window.addEventListener('keydown', (e) => {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl && modalEl.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') {
+          this.prevModalItem();
+        } else if (e.key === 'ArrowRight') {
+          this.nextModalItem();
+        }
       }
     });
   },
@@ -112,6 +123,29 @@ createApp({
         });
       });
       return sortedGroups;
+    },
+    groupedItemsColumns() {
+      const allCats = Object.keys(this.groupedItems);
+      const col1 = {};
+      const col2 = {};
+      allCats.forEach((cat, idx) => {
+        if (idx % 2 === 0) {
+          col1[cat] = this.groupedItems[cat];
+        } else {
+          col2[cat] = this.groupedItems[cat];
+        }
+      });
+      return { col1, col2 };
+    },
+    currentModalIndex() {
+      if (!this.activeModalItem) return -1;
+      return this.filteredItems.findIndex(i => i.id === this.activeModalItem.id);
+    },
+    hasPrevModalItem() {
+      return this.currentModalIndex > 0;
+    },
+    hasNextModalItem() {
+      return this.currentModalIndex >= 0 && this.currentModalIndex < this.filteredItems.length - 1;
     }
   },
   methods: {
@@ -120,35 +154,53 @@ createApp({
       if (!hash) return null;
       return hash.replace(/^#(item-)?/, '') || null;
     },
-    selectTocItem(itemId, updateHash = true) {
-      this.selectedTocItemId = itemId;
-      if (updateHash && itemId) {
-        if (window.history && window.history.pushState) {
-          history.pushState(null, null, '#item-' + itemId);
-        } else {
-          window.location.hash = 'item-' + itemId;
-        }
+    prevModalItem() {
+      if (this.hasPrevModalItem) {
+        const item = this.filteredItems[this.currentModalIndex - 1];
+        this.openModal(item);
+      }
+    },
+    nextModalItem() {
+      if (this.hasNextModalItem) {
+        const item = this.filteredItems[this.currentModalIndex + 1];
+        this.openModal(item);
+      }
+    },
+    openModal(item) {
+      if (!item) return;
+      this.activeModalItem = item;
+      this.selectedTocItemId = item.id;
+      if (window.history && window.history.pushState) {
+        history.pushState(null, null, '#item-' + item.id);
+      } else {
+        window.location.hash = 'item-' + item.id;
+      }
+      const offcanvasEl = document.getElementById('tocOffcanvas');
+      if (offcanvasEl) {
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+        if (bsOffcanvas) bsOffcanvas.hide();
       }
       this.$nextTick(() => {
-        const collapseEl = document.getElementById('col-' + itemId);
-        if (collapseEl) {
-          const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
-          bsCollapse.show();
-        }
-        const itemObj = this.items.find(i => i.id === itemId);
-        if (itemObj && itemObj.category) {
-          const catId = 'toc-col-' + itemObj.category.replace(/[^a-zA-Z0-9]/g, '');
-          const tocCollapseEl = document.getElementById(catId);
-          if (tocCollapseEl) {
-            const bsTocCollapse = bootstrap.Collapse.getOrCreateInstance(tocCollapseEl, { toggle: false });
-            bsTocCollapse.show();
-          }
-        }
-        const targetEl = document.getElementById('item-' + itemId);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const modalEl = document.getElementById('itemDetailModal');
+        if (modalEl) {
+          const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          bsModal.show();
         }
       });
+    },
+    closeModal() {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl) {
+        const bsModal = bootstrap.Modal.getInstance(modalEl);
+        if (bsModal) bsModal.hide();
+      }
+    },
+    selectTocItem(itemId, updateHash = true) {
+      this.selectedTocItemId = itemId;
+      const itemObj = this.items.find(i => i.id === itemId);
+      if (itemObj) {
+        this.openModal(itemObj);
+      }
     },
     getCategoryCount(subGroups) {
       if (!subGroups) return 0;
@@ -168,26 +220,19 @@ createApp({
     },
     formatJsName(name) {
       if (!name) return '';
-      let escaped = name
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-      let text = this.highlight(escaped);
-      if (text.includes('.') || text.includes('()')) {
+      let text = this.highlight(name);
+      if (name.includes('()') || name.includes('.')) {
         return `<span class="syn-obj">${text}</span>`;
       }
       return `<span class="syn-kw">${text}</span>`;
     },
     formatCodeSnippet(code) {
       if (!code) return '';
-      let text = code
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+      let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      
+      const jsRegex = /(\/\/.*|\/\*[\s\S]*?\*\/)|(".*?"|'.*?'|`[\s\S]*?`)|(\b(?:let|var|const|function|if|else|return|for|while|new|class|import|export|true|false|null|typeof|instanceof)\b)|(\b(?:document|window|Math|Date|Array|String|Number|Object|console|alert|prompt|confirm)\b)|(\b\d+\b)/g;
 
-      const tokenRegex = /(\/\/[^\n]*)|(".*?"|'.*?')|\b(let|const|var|if|else|while|for|return|new|function|true|false)\b|\b(document|getElementById|getElementsByName|Math|String|Number|parseInt|parseFloat|isNaN|alert|prompt|console)\b|\b(\d+)\b/g;
-
-      return text.replace(tokenRegex, (match, comment, str, kw, obj, num) => {
+      return escaped.replace(jsRegex, (match, comment, str, kw, obj, num) => {
         if (comment) return `<span class="syn-comment">${comment}</span>`;
         if (str) return `<span class="syn-str">${str}</span>`;
         if (kw) return `<span class="syn-kw">${kw}</span>`;

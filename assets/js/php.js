@@ -3,11 +3,14 @@
    ============================================= */
 const categoryOrder = [
   'Types & Transtypage (Casting)',
-  'Opérateurs PHP',
-  'Fonctions sur les Chaînes',
-  'Fonctions Date & Heure',
-  'Extension MySQLi (MySQL)',
-  'Superglobales & Inclusions'
+  'Variables Superglobales',
+  'Fonctions d\'Affichage & Sortie',
+  'Traitement des Chaînes (String)',
+  'Gestion des Tableaux (Array)',
+  'Connexion & BDD (MySQLi)',
+  'Opérations & Requêtes MySQLi',
+  'Dates & Temps (Date)',
+  'Fichiers & Inclusions'
 ];
 
 const { createApp } = Vue;
@@ -17,9 +20,9 @@ createApp({
       isDarkMode: false,
       searchQuery: '',
       selectedCategory: 'ALL',
-      viewMode: 'grid',
       selectedTocItemId: localStorage.getItem('php_last_selected_item') || null,
-      items: []
+      items: [],
+      activeModalItem: null
     };
   },
   async created() {
@@ -27,7 +30,7 @@ createApp({
       const response = await fetch('jsons/php.json');
       this.items = await response.json();
       const hashId = this.getHashItemId();
-      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : this.selectedTocItemId;
+      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : null;
       if (initialId) {
         this.$nextTick(() => {
           this.selectTocItem(initialId, false);
@@ -42,6 +45,16 @@ createApp({
       const hashId = this.getHashItemId();
       if (hashId && this.items.some(i => i.id === hashId)) {
         this.selectTocItem(hashId, false);
+      }
+    });
+    window.addEventListener('keydown', (e) => {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl && modalEl.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') {
+          this.prevModalItem();
+        } else if (e.key === 'ArrowRight') {
+          this.nextModalItem();
+        }
       }
     });
   },
@@ -110,6 +123,29 @@ createApp({
         });
       });
       return sortedGroups;
+    },
+    groupedItemsColumns() {
+      const allCats = Object.keys(this.groupedItems);
+      const col1 = {};
+      const col2 = {};
+      allCats.forEach((cat, idx) => {
+        if (idx % 2 === 0) {
+          col1[cat] = this.groupedItems[cat];
+        } else {
+          col2[cat] = this.groupedItems[cat];
+        }
+      });
+      return { col1, col2 };
+    },
+    currentModalIndex() {
+      if (!this.activeModalItem) return -1;
+      return this.filteredItems.findIndex(i => i.id === this.activeModalItem.id);
+    },
+    hasPrevModalItem() {
+      return this.currentModalIndex > 0;
+    },
+    hasNextModalItem() {
+      return this.currentModalIndex >= 0 && this.currentModalIndex < this.filteredItems.length - 1;
     }
   },
   methods: {
@@ -118,35 +154,53 @@ createApp({
       if (!hash) return null;
       return hash.replace(/^#(item-)?/, '') || null;
     },
-    selectTocItem(itemId, updateHash = true) {
-      this.selectedTocItemId = itemId;
-      if (updateHash && itemId) {
-        if (window.history && window.history.pushState) {
-          history.pushState(null, null, '#item-' + itemId);
-        } else {
-          window.location.hash = 'item-' + itemId;
-        }
+    prevModalItem() {
+      if (this.hasPrevModalItem) {
+        const item = this.filteredItems[this.currentModalIndex - 1];
+        this.openModal(item);
+      }
+    },
+    nextModalItem() {
+      if (this.hasNextModalItem) {
+        const item = this.filteredItems[this.currentModalIndex + 1];
+        this.openModal(item);
+      }
+    },
+    openModal(item) {
+      if (!item) return;
+      this.activeModalItem = item;
+      this.selectedTocItemId = item.id;
+      if (window.history && window.history.pushState) {
+        history.pushState(null, null, '#item-' + item.id);
+      } else {
+        window.location.hash = 'item-' + item.id;
+      }
+      const offcanvasEl = document.getElementById('tocOffcanvas');
+      if (offcanvasEl) {
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+        if (bsOffcanvas) bsOffcanvas.hide();
       }
       this.$nextTick(() => {
-        const collapseEl = document.getElementById('col-' + itemId);
-        if (collapseEl) {
-          const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
-          bsCollapse.show();
-        }
-        const itemObj = this.items.find(i => i.id === itemId);
-        if (itemObj && itemObj.category) {
-          const catId = 'toc-col-' + itemObj.category.replace(/[^a-zA-Z0-9]/g, '');
-          const tocCollapseEl = document.getElementById(catId);
-          if (tocCollapseEl) {
-            const bsTocCollapse = bootstrap.Collapse.getOrCreateInstance(tocCollapseEl, { toggle: false });
-            bsTocCollapse.show();
-          }
-        }
-        const targetEl = document.getElementById('item-' + itemId);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const modalEl = document.getElementById('itemDetailModal');
+        if (modalEl) {
+          const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          bsModal.show();
         }
       });
+    },
+    closeModal() {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl) {
+        const bsModal = bootstrap.Modal.getInstance(modalEl);
+        if (bsModal) bsModal.hide();
+      }
+    },
+    selectTocItem(itemId, updateHash = true) {
+      this.selectedTocItemId = itemId;
+      const itemObj = this.items.find(i => i.id === itemId);
+      if (itemObj) {
+        this.openModal(itemObj);
+      }
     },
     getCategoryCount(subGroups) {
       if (!subGroups) return 0;
@@ -166,33 +220,27 @@ createApp({
     },
     formatPhpName(name) {
       if (!name) return '';
-      let escaped = name
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-      let text = this.highlight(escaped);
-      if (text.startsWith('$')) {
+      let text = this.highlight(name);
+      if (name.startsWith('$') || name.startsWith('$_')) {
         return `<span class="syn-var">${text}</span>`;
-      } else if (text.includes('()')) {
+      }
+      if (name.includes('(') || name.includes('_')) {
         return `<span class="syn-fn">${text}</span>`;
       }
       return `<span class="syn-kw">${text}</span>`;
     },
     formatCodeSnippet(code) {
       if (!code) return '';
-      let text = code
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+      let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      
+      const phpRegex = /(\/\/.*|\/\*[\s\S]*?\*\/)|(".*?"|'.*?')|(\$[a-zA-Z0-9_]+)|(\b(?:echo|if|else|elseif|return|require|include|require_once|include_once|array|die|exit|function|class|public|private|protected|new|and|or|not)\b)|(\b\d+\b)/g;
 
-      const tokenRegex = /(\/\/[^\n]*)|(\$[a-zA-Z0-9_]+)|\b(mysqli_[a-z_]+|strlen|substr|strpos|strcmp|str_replace|strtolower|strtoupper|trim|chr|ord|checkdate|date|time|strtotime|isset|die|require)\b|\b(if|else|while|echo|array|true|false|int|float|string|bool)\b|(".*?"|'.*?')/g;
-
-      return text.replace(tokenRegex, (match, comment, variable, fn, kw, str) => {
+      return escaped.replace(phpRegex, (match, comment, str, variable, kw, num) => {
         if (comment) return `<span class="syn-comment">${comment}</span>`;
-        if (variable) return `<span class="syn-var">${variable}</span>`;
-        if (fn) return `<span class="syn-fn">${fn}</span>`;
-        if (kw) return `<span class="syn-kw">${kw}</span>`;
         if (str) return `<span class="syn-str">${str}</span>`;
+        if (variable) return `<span class="syn-var">${variable}</span>`;
+        if (kw) return `<span class="syn-kw">${kw}</span>`;
+        if (num) return `<span class="syn-num">${num}</span>`;
         return match;
       });
     },

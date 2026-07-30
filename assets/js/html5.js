@@ -21,10 +21,10 @@ createApp({
       isDarkMode: false,
       searchQuery: '',
       selectedCategory: 'ALL',
-      viewMode: 'grid',
       selectedTocItemId: localStorage.getItem('html5_last_selected_item') || null,
       items: [],
-      activeAttr: {}
+      activeAttr: {},
+      activeModalItem: null
     };
   },
   async created() {
@@ -32,7 +32,7 @@ createApp({
       const response = await fetch('jsons/html5.json');
       this.items = await response.json();
       const hashId = this.getHashItemId();
-      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : this.selectedTocItemId;
+      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : null;
       if (initialId) {
         this.$nextTick(() => {
           this.selectTocItem(initialId, false);
@@ -47,6 +47,16 @@ createApp({
       const hashId = this.getHashItemId();
       if (hashId && this.items.some(i => i.id === hashId)) {
         this.selectTocItem(hashId, false);
+      }
+    });
+    window.addEventListener('keydown', (e) => {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl && modalEl.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') {
+          this.prevModalItem();
+        } else if (e.key === 'ArrowRight') {
+          this.nextModalItem();
+        }
       }
     });
   },
@@ -117,6 +127,29 @@ createApp({
         });
       });
       return sortedGroups;
+    },
+    groupedItemsColumns() {
+      const allCats = Object.keys(this.groupedItems);
+      const col1 = {};
+      const col2 = {};
+      allCats.forEach((cat, idx) => {
+        if (idx % 2 === 0) {
+          col1[cat] = this.groupedItems[cat];
+        } else {
+          col2[cat] = this.groupedItems[cat];
+        }
+      });
+      return { col1, col2 };
+    },
+    currentModalIndex() {
+      if (!this.activeModalItem) return -1;
+      return this.filteredItems.findIndex(i => i.id === this.activeModalItem.id);
+    },
+    hasPrevModalItem() {
+      return this.currentModalIndex > 0;
+    },
+    hasNextModalItem() {
+      return this.currentModalIndex >= 0 && this.currentModalIndex < this.filteredItems.length - 1;
     }
   },
   methods: {
@@ -125,35 +158,53 @@ createApp({
       if (!hash) return null;
       return hash.replace(/^#(item-)?/, '') || null;
     },
-    selectTocItem(itemId, updateHash = true) {
-      this.selectedTocItemId = itemId;
-      if (updateHash && itemId) {
-        if (window.history && window.history.pushState) {
-          history.pushState(null, null, '#item-' + itemId);
-        } else {
-          window.location.hash = 'item-' + itemId;
-        }
+    prevModalItem() {
+      if (this.hasPrevModalItem) {
+        const item = this.filteredItems[this.currentModalIndex - 1];
+        this.openModal(item);
+      }
+    },
+    nextModalItem() {
+      if (this.hasNextModalItem) {
+        const item = this.filteredItems[this.currentModalIndex + 1];
+        this.openModal(item);
+      }
+    },
+    openModal(item) {
+      if (!item) return;
+      this.activeModalItem = item;
+      this.selectedTocItemId = item.id;
+      if (window.history && window.history.pushState) {
+        history.pushState(null, null, '#item-' + item.id);
+      } else {
+        window.location.hash = 'item-' + item.id;
+      }
+      const offcanvasEl = document.getElementById('tocOffcanvas');
+      if (offcanvasEl) {
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+        if (bsOffcanvas) bsOffcanvas.hide();
       }
       this.$nextTick(() => {
-        const collapseEl = document.getElementById('col-' + itemId);
-        if (collapseEl) {
-          const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
-          bsCollapse.show();
-        }
-        const itemObj = this.items.find(i => i.id === itemId);
-        if (itemObj && itemObj.category) {
-          const catId = 'toc-col-' + itemObj.category.replace(/[^a-zA-Z0-9]/g, '');
-          const tocCollapseEl = document.getElementById(catId);
-          if (tocCollapseEl) {
-            const bsTocCollapse = bootstrap.Collapse.getOrCreateInstance(tocCollapseEl, { toggle: false });
-            bsTocCollapse.show();
-          }
-        }
-        const targetEl = document.getElementById('item-' + itemId);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const modalEl = document.getElementById('itemDetailModal');
+        if (modalEl) {
+          const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          bsModal.show();
         }
       });
+    },
+    closeModal() {
+      const modalEl = document.getElementById('itemDetailModal');
+      if (modalEl) {
+        const bsModal = bootstrap.Modal.getInstance(modalEl);
+        if (bsModal) bsModal.hide();
+      }
+    },
+    selectTocItem(itemId, updateHash = true) {
+      this.selectedTocItemId = itemId;
+      const itemObj = this.items.find(i => i.id === itemId);
+      if (itemObj) {
+        this.openModal(itemObj);
+      }
     },
     getCategoryCount(subGroups) {
       if (!subGroups) return 0;
@@ -202,6 +253,18 @@ createApp({
         .replace(/&lt;/g, '<span class="syn-bracket">&lt;</span>')
         .replace(/&gt;/g, '<span class="syn-bracket">&gt;</span>')
         .replace(/(<span class="syn-bracket">&lt;<\/span>)([a-zA-Z0-9!/-]+)/g, '$1<span class="syn-tag">$2</span>');
+    },
+    formatTableTagName(tagName) {
+      if (!tagName) return '';
+      if (tagName.includes('type=')) {
+        const match = tagName.match(/^<([a-zA-Z0-9]+)\s+type="(.*?)"\/?>$/);
+        if (match) {
+          const tag = match[1];
+          const types = match[2];
+          return `<span class="syn-bracket">&lt;</span><span class="syn-tag">${tag}</span><span class="syn-bracket">&gt;</span><div class="text-muted font-monospace fw-normal" style="font-size:0.7rem; line-height:1.25; margin-top:2px; word-break:break-word;"><span class="syn-attr">type</span>=<span class="syn-val">"${types}"</span></div>`;
+        }
+      }
+      return this.syntaxHighlightTag(tagName);
     },
     formatCodeSnippet(code) {
       if (!code) return '';

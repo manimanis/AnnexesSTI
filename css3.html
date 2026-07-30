@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Annexe Officielle CSS3 - Coloration Syntaxique - Section SI (Tunisie)</title>
+  <title>Annexe Officielle CSS3 - Fiches de Révision - Section SI (Tunisie)</title>
   <meta name="description"
-    content="Documentation pédagogique de l'Annexe CSS3 avec coloration syntaxique des sélecteurs et propriétés.">
+    content="Fiches de révision synthétiques CSS3 avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
 
   <!-- Bootstrap 5 CSS (Local) -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -30,10 +30,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-2">
       <div class="container-fluid px-lg-4">
         <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
-          <span class="badge bg-primary fs-6 p-2 rounded-3">
-            <i class="bi bi-filetype-css"></i> CSS3
+          <span class="badge bg-primary fs-6 p-2 rounded-3 d-inline-flex align-items-center gap-1">
+            <img src="assets/img/css-3.svg" alt="CSS3" width="20" height="20"> CSS3
           </span>
-          <span class="fs-6 d-none d-sm-inline text-light">Annexe Officielle CSS3 (Coloration Syntaxique)</span>
+          <span class="fs-6 d-none d-sm-inline text-light">Fiches de Révision CSS3</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -44,15 +44,16 @@
           <ul class="navbar-nav me-auto ms-lg-4 mb-2 mb-lg-0 fw-semibold">
             <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="html5.html"><i class="bi bi-filetype-html me-1"></i>
-                HTML5</a></li>
-            <li class="nav-item"><a class="nav-link active" href="css3.html"><i class="bi bi-filetype-css me-1"></i>
-                CSS3</a></li>
-            <li class="nav-item"><a class="nav-link" href="js.html"><i class="bi bi-filetype-js me-1"></i>
-                JavaScript</a></li>
-            <li class="nav-item"><a class="nav-link" href="php.html"><i class="bi bi-filetype-php me-1"></i> PHP</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="sql.html"><i class="bi bi-database me-1"></i> SQL</a></li>
+            <li class="nav-item"><a class="nav-link" href="html5.html"><img src="assets/img/html-5.svg" alt="HTML5"
+                  width="18" height="18" class="me-1"> HTML5</a></li>
+            <li class="nav-item"><a class="nav-link active" href="css3.html"><img src="assets/img/css-3.svg" alt="CSS3"
+                  width="18" height="18" class="me-1"> CSS3</a></li>
+            <li class="nav-item"><a class="nav-link" href="js.html"><img src="assets/img/js.svg" alt="JS" width="18"
+                  height="18" class="me-1"> JavaScript</a></li>
+            <li class="nav-item"><a class="nav-link" href="php.html"><img src="assets/img/php.svg" alt="PHP" width="18"
+                  height="18" class="me-1"> PHP</a></li>
+            <li class="nav-item"><a class="nav-link" href="sql.html"><img src="assets/img/database.svg" alt="SQL"
+                  width="18" height="18" class="me-1"> SQL</a></li>
           </ul>
 
           <button class="btn btn-outline-light btn-sm rounded-circle p-2" @click="toggleTheme" title="Changer de thème">
@@ -65,244 +66,375 @@
     <!-- Main Container -->
     <div class="container-fluid px-lg-4 py-4">
 
-      <!-- Header Banner -->
-      <div class="bg-primary bg-gradient text-white p-4 p-md-5 rounded-4 mb-4 shadow">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <span class="badge bg-white text-primary fw-bold mb-2"><i class="bi bi-palette me-1"></i> Mise en
-              page</span>
-            <h1 class="display-5 fw-extrabold">Annexe CSS3</h1>
-          </div>
-        </div>
-      </div>
-
-      <!-- Search and Filters -->
-      <div class="row g-3 mb-4 align-items-center">
-        <div class="col-md-6">
-          <div class="position-relative">
-            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-            <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill"
-              placeholder="Rechercher une règle ou propriété (ex: box-shadow, :hover, border-radius)...">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <select class="form-select rounded-pill" v-model="selectedCategory">
-            <option value="ALL">Tous les thèmes ({{ categories.length }})</option>
-            <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
-          </select>
-        </div>
-        <div class="col-md-2 text-end">
-          <div class="btn-group w-100" role="group">
-            <button class="btn btn-outline-secondary" :class="{active: viewMode==='grid'}" @click="viewMode='grid'"><i
-                class="bi bi-grid-fill"></i> Cartes</button>
-            <button class="btn btn-outline-secondary" :class="{active: viewMode==='accordion'}"
-              @click="viewMode='accordion'"><i class="bi bi-list-nested"></i> Liste</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Content Layout -->
-      <div class="row g-4">
-        <!-- Sidebar Table of Contents (Groupé par Thème & Ordonné Alphabétiquement) -->
-        <div class="col-lg-3 d-none d-lg-block">
-          <div class="card border-0 shadow-sm rounded-4 sticky-sidebar p-3">
-            <h6 class="fw-bold text-uppercase text-muted small mb-3 border-bottom pb-2">
-              <i class="bi bi-folder-fill text-primary me-1"></i> Sommaire Pédagogique
-            </h6>
-            <div class="accordion accordion-flush small" id="tocAccordion" style="max-height: 540px; overflow-y: auto;">
-              <div v-for="(subGroups, catName, index) in groupedItems" :key="'toc-cat-'+catName"
-                class="accordion-item border-0 border-bottom mb-1">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button py-2 px-2 text-primary fw-bold bg-light rounded-3 small border-0 shadow-none d-flex align-items-center justify-content-between"
-                    :class="{ collapsed: index !== 0 }" type="button" data-bs-toggle="collapse"
-                    :data-bs-target="'#toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')">
-                    <div class="d-flex align-items-center gap-1 me-auto text-truncate">
-                      <i class="bi bi-folder2-open me-1 text-primary"></i>
-                      <span>{{ catName }}</span>
-                    </div>
-                  </button>
-                </h2>
-                <div :id="'toc-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')" class="accordion-collapse collapse"
-                  :class="{ show: index === 0 }" data-bs-parent="#tocAccordion">
-                  <div class="accordion-body p-1 bg-white">
-                    <template v-for="(groupItems, subcatName) in subGroups" :key="'toc-subcat-'+catName+'-'+subcatName">
-                      <div v-if="subcatName"
-                        class="text-primary fw-bold px-2 pt-2 pb-1 small fst-italic border-bottom border-light">
-                        <i class="bi bi-tag-fill me-1 text-primary"></i> {{ subcatName }}
-                      </div>
-                      <a v-for="item in groupItems" :key="'toc-'+item.id" :href="'#item-'+item.id"
-                        class="list-group-item list-group-item-action border-0 px-3 py-1 rounded-2 d-flex align-items-center justify-content-between"
-                        :class="{ 'toc-item-active': selectedTocItemId === item.id }"
-                        @click.prevent="selectTocItem(item.id)">
-                        <code class="fw-bold" v-html="formatCssName(item.name)"></code>
-                        <span v-if="isShorthand(item)" class="badge bg-warning text-dark p-1 ms-1 rounded-pill" style="font-size: 0.65rem;" title="Super-propriété (Raccourci CSS)">
-                          <i class="bi bi-layers-fill"></i>
-                        </span>
-                      </a>
-                    </template>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Items List Grouped by Theme -->
-        <div class="col-lg-9">
-
-          <div v-if="Object.keys(groupedItems).length === 0" class="text-center py-5">
-            <i class="bi bi-search fs-1 text-muted d-block mb-3"></i>
-            <h5>Aucun élément ne correspond à votre recherche</h5>
-            <button @click="searchQuery=''; selectedCategory='ALL';"
-              class="btn btn-primary btn-sm rounded-pill mt-2">Réinitialiser les filtres</button>
-          </div>
-
-          <!-- Group Iteration -->
-          <div v-for="(subGroups, categoryName) in groupedItems" :key="categoryName" class="mb-5"
-            :id="'cat-'+categoryName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()">
-
-            <!-- Category Theme Header -->
-            <div class="category-header d-flex align-items-center justify-content-between mb-4">
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-palette-fill text-primary fs-5"></i>
-                <h4 class="fw-bold mb-0 text-primary">{{ categoryName }}</h4>
-              </div>
-              <span class="badge bg-primary rounded-pill fs-6 px-3">{{ getCategoryCount(subGroups) }} élément(s)</span>
-            </div>
-
-            <!-- Subcategory Iteration -->
-            <div v-for="(groupItems, subcatName) in subGroups" :key="subcatName" class="mb-4">
-
-              <!-- Subcategory Banner Header (si sous-catégorie présente) -->
-              <div v-if="subcatName"
-                class="d-flex align-items-center gap-2 mb-3 pb-1 border-bottom border-2 border-primary-subtle mt-4">
-                <h5 class="fw-bold mb-0 text-primary-emphasis">{{ subcatName }}</h5>
-                <span class="badge bg-primary text-white rounded-pill ms-auto small">{{ groupItems.length }}
-                  élément(s)</span>
-              </div>
-
-              <!-- Grid View for this subcategory -->
-              <div v-if="viewMode === 'grid'" class="row g-4 mb-3">
-                <div v-for="item in groupItems" :key="item.id" class="col-md-6" :id="'item-'+item.id">
-                  <div class="notion-card p-4 d-flex flex-column justify-content-between"
-                    :class="{ 'border border-2 border-primary shadow-sm': selectedTocItemId === item.id }">
-                    <div>
-                      <!-- Header Card -->
-                      <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
-                        <div class="d-flex align-items-center gap-2 flex-wrap">
-                          <h5 class="fw-bold font-monospace mb-0" v-html="formatCssName(item.name)"></h5>
-                          <span v-if="isShorthand(item)" class="badge bg-warning text-dark border border-warning-subtle small ms-1" title="Super-propriété (Raccourci combinant plusieurs sous-propriétés)">
-                            <i class="bi bi-layers-fill me-1"></i>Super-propriété
-                          </span>
-                        </div>
-                        <div>
-                          <span class="badge bg-secondary-subtle text-secondary small border me-1">{{ item.category
-                            }}</span>
-                          <span v-if="item.subcategory"
-                            class="badge bg-primary-subtle text-primary border border-primary-subtle small"><i
-                              class="bi bi-tag-fill me-1"></i>{{ item.subcategory }}</span>
-                        </div>
-                      </div>
-
-                      <!-- 1. Définition -->
-                      <div class="mb-3">
-                        <div class="fw-bold small text-primary mb-1"><i class="bi bi-file-earmark-text me-1"></i>
-                          Définition</div>
-                        <div class="small text-muted mb-1">{{ item.official }}</div>
-                        <div class="p-2 rounded bg-light border-start border-3 border-primary small">
-                          <i class="bi bi-lightbulb text-primary me-1"></i>
-                          <strong>En clair :</strong> <span v-html="highlight(item.simple)"></span>
-                        </div>
-                      </div>
-
-                      <!-- 2. Valeurs clés -->
-                      <div v-if="item.values && item.values.length > 0" class="mb-3">
-                        <div class="fw-bold small text-primary mb-1"><i class="bi bi-tags me-1"></i> Valeurs clés</div>
-                        <div class="d-flex flex-wrap gap-1">
-                          <span v-for="val in item.values" :key="val"
-                            class="badge bg-secondary-subtle text-primary border font-monospace syn-val">
-                            {{ val }}
-                          </span>
-                        </div>
-                      </div>
-
-                      <!-- 3. Exemple -->
-                      <div v-if="item.code" class="mb-3">
-                        <strong class="small text-primary"><i class="bi bi-code-slash me-1"></i> Exemple :</strong>
-                        <div class="code-box mt-1">
-                          <button @click="copy(item.code)" class="copy-btn">Copier</button>
-                          <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
-                        </div>
-                      </div>
-
-                      <!-- 4. Pedago-box -->
-                      <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
-                        <div class="fw-bold small d-flex align-items-center gap-1">
-                          <i :class="getPedagoIcon(item.noteType)"></i> {{ getPedagoTitle(item.noteType) }}
-                        </div>
-                        <div class="small mt-1" v-html="highlight(item.note)"></div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Accordion View for this subcategory -->
-              <div v-if="viewMode === 'accordion'" class="accordion shadow-sm rounded-4 overflow-hidden mb-3"
-                :id="'acc-'+categoryName.replace(/[^a-zA-Z0-9]/g, '')">
-                <div v-for="item in groupItems" :key="'acc-'+item.id" class="accordion-item" :id="'item-'+item.id">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse"
-                      :data-bs-target="'#col-'+item.id">
-                      <span class="fw-bold font-monospace me-2" v-html="formatCssName(item.name)"></span>
-                      <span v-if="isShorthand(item)" class="badge bg-warning text-dark border border-warning-subtle small me-2" title="Super-propriété">
-                        <i class="bi bi-layers-fill me-1"></i>Super-propriété
+      <table class="print-page-layout w-100">
+        <thead class="print-page-header">
+          <tr>
+            <td>
+              <!-- Header Banner -->
+              <div class="bg-primary bg-gradient text-white p-4 p-md-5 rounded-4 mb-4 shadow">
+                <div class="row align-items-center">
+                  <div class="col-md-8">
+                    <div class="d-flex align-items-center gap-3">
+                      <span
+                        class="badge bg-white text-primary fs-3 p-3 rounded-4 shadow-sm d-inline-flex align-items-center justify-content-center">
+                        <img src="assets/img/css-3.svg" alt="CSS3" width="48">
                       </span>
-                      <span class="badge bg-secondary-subtle text-secondary border small ms-auto me-2">{{ item.category
-                        }}</span>
+                      <div>
+                        <span class="badge bg-white text-primary fw-bold mb-1"><i
+                            class="bi bi-journal-bookmark-fill me-1"></i>
+                          Fiches de Révision Synthétiques</span>
+                        <h1 class="display-5 fw-extrabold mb-1">Annexe CSS3</h1>
+                        <p class="lead mb-0 opacity-90">Tableaux synthétiques par catégories sur 2 colonnes. Utilisez le
+                          sommaire
+                          flottant pour naviguer ou cliquez sur une propriété.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 text-md-end mt-3 mt-md-0 d-print-none">
+                    <button class="btn btn-light text-primary fw-bold rounded-pill shadow-sm px-4 py-2" type="button"
+                      data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas">
+                      <i class="bi bi-list-nested me-1"></i> Ouvrir le Sommaire
                     </button>
-                  </h2>
-                  <div :id="'col-'+item.id" class="accordion-collapse collapse"
-                    :data-bs-parent="'#acc-'+categoryName.replace(/[^a-zA-Z0-9]/g, '')">
-                    <div class="accordion-body bg-body-tertiary">
-                      <div class="row g-3">
-                        <div class="col-md-6">
-                          <p class="mb-1"><strong>Définition Officielle :</strong> {{ item.official }}</p>
-                          <p class="mb-2"><strong>Explication Simple :</strong> <span
-                              v-html="highlight(item.simple)"></span></p>
-                          <div v-if="item.values && item.values.length > 0">
-                            <strong>Valeurs :</strong>
-                            <span v-for="val in item.values" :key="val"
-                              class="badge bg-secondary ms-1 font-monospace syn-val">{{ val }}</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- Search and Filters Bar -->
+              <div class="row g-3 mb-4 align-items-center d-print-none">
+                <div class="col-md-7">
+                  <div class="position-relative">
+                    <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                    <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill shadow-sm"
+                      placeholder="Rechercher une règle ou propriété (ex: box-shadow, :hover, border-radius)...">
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <select class="form-select rounded-pill shadow-sm" v-model="selectedCategory">
+                    <option value="ALL">Tous les thèmes ({{ categories.length }})</option>
+                    <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Content Area (Pleine largeur avec Sommaire Flottant) -->
+              <div class="row">
+                <div class="col-12">
+
+                  <div v-if="Object.keys(groupedItems).length === 0" class="text-center py-5">
+                    <i class="bi bi-search fs-1 text-muted d-block mb-3"></i>
+                    <h5>Aucun élément ne correspond à votre recherche</h5>
+                    <button @click="searchQuery=''; selectedCategory='ALL';"
+                      class="btn btn-primary btn-sm rounded-pill mt-2">Réinitialiser les filtres</button>
+                  </div>
+
+                  <!-- FICHES DE RÉVISION SUR 2 COLONNES -->
+                  <div class="row g-4">
+
+                    <!-- COLONNE GAUCHE (COLONNE 1) -->
+                    <div class="col-lg-6">
+                      <div v-for="(subGroups, categoryName) in groupedItemsColumns.col1" :key="'col1-'+categoryName"
+                        class="revision-card p-3 p-md-4 mb-4">
+                        <!-- Category Header -->
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                          <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-bookmark-star-fill text-primary fs-5"></i>
+                            <h5 class="fw-bold mb-0 text-primary">{{ categoryName }}</h5>
                           </div>
+                          <span
+                            class="badge bg-primary-subtle text-primary rounded-pill fs-7 fw-bold px-2.5 py-1 d-print-none">{{
+                            getCategoryCount(subGroups) }} élément(s)</span>
                         </div>
-                        <div class="col-md-6">
-                          <div v-if="item.code" class="code-box mb-2">
-                            <button @click="copy(item.code)" class="copy-btn">Copier</button>
-                            <pre class="m-0 small"><code v-html="formatCodeSnippet(item.code)"></code></pre>
+
+                        <!-- Subcategory Loop -->
+                        <div v-for="(groupItems, subcatName) in subGroups" :key="'col1-sub-'+subcatName" class="mb-3">
+                          <div v-if="subcatName"
+                            class="fw-bold text-primary small mb-2 d-flex align-items-center gap-1">
+                            <i class="bi bi-tag-fill"></i> {{ subcatName }}
                           </div>
-                          <div v-if="item.note" class="pedago-box" :class="getPedagoClass(item.noteType)">
-                            <strong>{{ getPedagoTitle(item.noteType) }} :</strong> <span
-                              v-html="highlight(item.note)"></span>
+
+                          <!-- Revision Table -->
+                          <div class="revision-table-wrapper rounded-3 border">
+                            <table class="table revision-table table-hover align-middle">
+                              <thead class="d-print-none">
+                                <tr>
+                                  <th style="width: 28%;">Propriété / Sélecteur</th>
+                                  <th>Rôle / Description</th>
+                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="item in groupItems" :key="'tbl1-'+item.id" @click="openModal(item)"
+                                  title="Cliquer pour afficher la fiche complète">
+                                  <td>
+                                    <span class="tag-code-badge" v-html="formatCssName(item.name)"></span>
+                                    <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
+                                      style="font-size: 0.65rem;" title="Super-propriété">
+                                      <i class="bi bi-layers-fill"></i>
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <div class="fw-semibold text-body small mb-1"
+                                      v-html="highlight(item.simple || item.official)"></div>
+                                  </td>
+                                  <td class="text-end d-print-none">
+                                    <button
+                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      style="font-size: 0.78rem;" @click.stop="openModal(item)">
+                                      <i class="bi bi-box-arrow-up-right me-1"></i> Détails
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    <!-- COLONNE DROITE (COLONNE 2) -->
+                    <div class="col-lg-6">
+                      <div v-for="(subGroups, categoryName) in groupedItemsColumns.col2" :key="'col2-'+categoryName"
+                        class="revision-card p-3 p-md-4 mb-4">
+                        <!-- Category Header -->
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                          <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-bookmark-star-fill text-primary fs-5"></i>
+                            <h5 class="fw-bold mb-0 text-primary">{{ categoryName }}</h5>
+                          </div>
+                          <span
+                            class="badge bg-primary-subtle text-primary rounded-pill fs-7 fw-bold px-2.5 py-1 d-print-none">{{
+                            getCategoryCount(subGroups) }} élément(s)</span>
+                        </div>
+
+                        <!-- Subcategory Loop -->
+                        <div v-for="(groupItems, subcatName) in subGroups" :key="'col2-sub-'+subcatName" class="mb-3">
+                          <div v-if="subcatName"
+                            class="fw-bold text-primary small mb-2 d-flex align-items-center gap-1">
+                            <i class="bi bi-tag-fill"></i> {{ subcatName }}
+                          </div>
+
+                          <!-- Revision Table -->
+                          <div class="revision-table-wrapper rounded-3 border">
+                            <table class="table revision-table table-hover align-middle">
+                              <thead class="d-print-none">
+                                <tr>
+                                  <th style="width: 28%;">Propriété / Sélecteur</th>
+                                  <th>Rôle / Description</th>
+                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="item in groupItems" :key="'tbl2-'+item.id" @click="openModal(item)"
+                                  title="Cliquer pour afficher la fiche complète">
+                                  <td>
+                                    <span class="tag-code-badge" v-html="formatCssName(item.name)"></span>
+                                    <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
+                                      style="font-size: 0.65rem;" title="Super-propriété">
+                                      <i class="bi bi-layers-fill"></i>
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <div class="fw-semibold text-body small mb-1"
+                                      v-html="highlight(item.simple || item.official)"></div>
+                                  </td>
+                                  <td class="text-end d-print-none">
+                                    <button
+                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      style="font-size: 0.78rem;" @click.stop="openModal(item)">
+                                      <i class="bi bi-box-arrow-up-right me-1"></i> Détails
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
+
                 </div>
               </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
-  </div>
+
+    <!-- BOUTON FLOTTANT DU SOMMAIRE PÉDAGOGIQUE -->
+    <button
+      class="btn btn-primary floating-toc-btn rounded-pill px-3 py-2.5 d-flex align-items-center gap-2 d-print-none"
+      type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" title="Ouvrir le Sommaire Flottant">
+      <i class="bi bi-list-nested fs-5"></i>
+      <span class="fw-bold d-none d-sm-inline">Sommaire</span>
+      <span class="badge bg-white text-primary rounded-pill fs-7">{{ items.length }}</span>
+    </button>
+
+    <!-- TIROIR FLOTTANT (OFFCANVAS) DU SOMMAIRE PÉDAGOGIQUE -->
+    <div class="offcanvas offcanvas-start offcanvas-toc rounded-end-4" tabindex="-1" id="tocOffcanvas"
+      aria-labelledby="tocOffcanvasLabel">
+      <div class="offcanvas-header d-flex align-items-center justify-content-between">
+        <h5 class="offcanvas-title fw-bold text-primary d-flex align-items-center gap-2 mb-0" id="tocOffcanvasLabel">
+          <i class="bi bi-folder-fill"></i> Sommaire Pédagogique
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+      </div>
+      <div class="offcanvas-body p-3">
+        <div class="position-relative mb-3">
+          <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+          <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill form-control-sm"
+            placeholder="Filtrer les propriétés...">
+        </div>
+        <div class="accordion accordion-flush small" id="tocOffcanvasAccordion">
+          <div v-for="(subGroups, catName, index) in groupedItems" :key="'toc-off-'+catName"
+            class="accordion-item border-0 border-bottom mb-1">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button py-2 px-2 text-primary fw-bold bg-light rounded-3 small border-0 shadow-none d-flex align-items-center justify-content-between"
+                :class="{ collapsed: index !== 0 }" type="button" data-bs-toggle="collapse"
+                :data-bs-target="'#toc-off-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')">
+                <div class="d-flex align-items-center gap-1 me-auto text-truncate">
+                  <i class="bi bi-folder2-open me-1 text-primary"></i>
+                  <span>{{ catName }}</span>
+                </div>
+              </button>
+            </h2>
+            <div :id="'toc-off-col-'+catName.replace(/[^a-zA-Z0-9]/g, '')" class="accordion-collapse collapse"
+              :class="{ show: index === 0 }" data-bs-parent="#tocOffcanvasAccordion">
+              <div class="accordion-body p-1 bg-white">
+                <template v-for="(groupItems, subcatName) in subGroups" :key="'toc-off-subcat-'+catName+'-'+subcatName">
+                  <div v-if="subcatName"
+                    class="text-primary fw-bold px-2 pt-2 pb-1 small fst-italic border-bottom border-light">
+                    <i class="bi bi-tag-fill me-1 text-primary"></i> {{ subcatName }}
+                  </div>
+                  <a v-for="item in groupItems" :key="'toc-off-'+item.id" href="javascript:void(0)"
+                    class="list-group-item list-group-item-action border-0 px-3 py-1.5 rounded-2 d-flex align-items-center justify-content-between"
+                    :class="{ 'toc-item-active': selectedTocItemId === item.id }" @click.prevent="openModal(item)">
+                    <code class="fw-bold" v-html="formatCssName(item.name)"></code>
+                    <i class="bi bi-box-arrow-up-right text-muted small ms-1"></i>
+                  </a>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FENÊTRE FLOTTANTE TYPE DIALOGUE (MODAL DE DÉTAILS) -->
+    <div class="modal fade" id="itemDetailModal" tabindex="-1" aria-labelledby="itemDetailModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content modal-content-custom" v-if="activeModalItem">
+
+          <!-- En-tête de la modale -->
+          <div class="modal-header modal-header-custom d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-3">
+              <span class="fs-5 font-monospace fw-bold" v-html="formatCssName(activeModalItem.name)"></span>
+              <span class="badge bg-primary text-white rounded-pill px-3 py-1">{{ activeModalItem.category }}</span>
+              <span v-if="activeModalItem.subcategory"
+                class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1">
+                <i class="bi bi-tag-fill me-1"></i>{{ activeModalItem.subcategory }}
+              </span>
+              <span v-if="isShorthand(activeModalItem)" class="badge bg-warning text-dark rounded-pill px-2.5 py-1">
+                <i class="bi bi-layers-fill me-1"></i>Super-propriété
+              </span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-sm btn-outline-primary rounded-circle p-1.5"
+                :disabled="!hasPrevModalItem" @click="prevModalItem" title="Précédent (Flèche Gauche)">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary rounded-circle p-1.5"
+                :disabled="!hasNextModalItem" @click="nextModalItem" title="Suivant (Flèche Droite)">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+              <button type="button" class="btn-close ms-2" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+          </div>
+
+          <!-- Corps de la modale -->
+          <div class="modal-body modal-body-custom">
+
+            <!-- 1. Définition officielle & En clair -->
+            <div class="mb-4">
+              <h6 class="fw-bold text-primary text-uppercase small mb-2">
+                <i class="bi bi-file-earmark-text me-1"></i> Définition & Rôle
+              </h6>
+              <p class="text-body mb-2 fs-6">{{ activeModalItem.official }}</p>
+              <div class="p-3 rounded-3 bg-light border-start border-4 border-primary shadow-sm">
+                <i class="bi bi-lightbulb-fill text-primary me-2 fs-5 align-middle"></i>
+                <strong>En clair :</strong> <span v-html="highlight(activeModalItem.simple)"></span>
+              </div>
+            </div>
+
+            <!-- 2. Valeurs clés -->
+            <div v-if="activeModalItem.values && activeModalItem.values.length > 0" class="mb-4">
+              <h6 class="fw-bold text-primary text-uppercase small mb-2">
+                <i class="bi bi-tags me-1"></i> Valeurs clés & Syntaxe
+              </h6>
+              <div class="d-flex flex-wrap gap-2">
+                <span v-for="val in activeModalItem.values" :key="val"
+                  class="badge bg-secondary-subtle text-primary border font-monospace px-2.5 py-1.5 fs-7">
+                  {{ val }}
+                </span>
+              </div>
+            </div>
+
+            <!-- 3. Exemple d'utilisation -->
+            <div v-if="activeModalItem.code" class="mb-4">
+              <h6 class="fw-bold text-primary text-uppercase small mb-2">
+                <i class="bi bi-code-slash me-1"></i> Exemple d'utilisation
+              </h6>
+              <div class="code-box m-0 shadow-sm">
+                <button @click="copy(activeModalItem.code)" class="copy-btn">
+                  <i class="bi bi-clipboard me-1"></i> Copier
+                </button>
+                <pre class="m-0 small"><code v-html="formatCodeSnippet(activeModalItem.code)"></code></pre>
+              </div>
+            </div>
+
+            <!-- 4. Note Pédagogique -->
+            <div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
+              <div class="fw-bold small d-flex align-items-center gap-2 mb-1">
+                <i :class="getPedagoIcon(activeModalItem.noteType)" class="fs-5"></i>
+                <span>{{ getPedagoTitle(activeModalItem.noteType) }}</span>
+              </div>
+              <div class="small" v-html="highlight(activeModalItem.note)"></div>
+            </div>
+
+          </div>
+
+          <!-- Pied de la modale -->
+          <div class="modal-footer border-top bg-light d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                :disabled="!hasPrevModalItem" @click="prevModalItem" title="Précédent (Flèche Gauche)">
+                <i class="bi bi-chevron-left me-1"></i> Précédent
+              </button>
+              <span class="text-muted small fw-bold mx-1" v-if="currentModalIndex >= 0">
+                {{ currentModalIndex + 1 }} / {{ filteredItems.length }}
+              </span>
+              <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3"
+                :disabled="!hasNextModalItem" @click="nextModalItem" title="Suivant (Flèche Droite)">
+                Suivant <i class="bi bi-chevron-right ms-1"></i>
+              </button>
+            </div>
+            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Fermer</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- FIN DE #app -->
 
   <!-- Scripts locaux -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
