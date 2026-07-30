@@ -198,6 +198,50 @@
     "noteType": "tip"
   },
   {
+    "id": "sql-alter-table-drop-constraint",
+    "name": "DROP CONSTRAINT / FOREIGN KEY",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Modification de Structure",
+    "official": "Supprime une contrainte d'intégrité nommée (clé étrangère, CHECK, UNIQUE ou clé primaire) d'une table.",
+    "simple": "Enlève une clé étrangère ou une règle de validation sans supprimer la colonne elle-même.",
+    "code": "-- 1. Supprimer une clé étrangère sous MariaDB / MySQL (OBLIGATOIRE) :\nALTER TABLE eleve DROP FOREIGN KEY fk_eleve_classe;\n\n-- 2. Supprimer la clé primaire :\nALTER TABLE eleve DROP PRIMARY KEY;\n\n-- 3. Supprimer une contrainte CHECK (MariaDB 10.2.1+) :\nALTER TABLE eleve DROP CONSTRAINT chk_moyenne;",
+    "note": "INCOMPATIBILITÉ MARIADB / XAMPP : Pour supprimer une clé étrangère sous MariaDB, la syntaxe 'DROP CONSTRAINT' échoue ! Il faut impérativement utiliser 'ALTER TABLE table DROP FOREIGN KEY nom_fk;'.",
+    "noteType": "warning"
+  },
+  {
+    "id": "sql-alter-table-alter-default",
+    "name": "ALTER COLUMN (SET / DROP DEFAULT)",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Modification de Structure",
+    "official": "Définit (SET DEFAULT) ou supprime (DROP DEFAULT) la valeur par défaut d'une colonne sans modifier son type de données.",
+    "simple": "Permet d'ajouter une valeur par défaut à un champ existant ou d'annuler une valeur par défaut prédéfinie.",
+    "code": "-- 1. Définir une nouvelle valeur par défaut :\nALTER TABLE eleve ALTER ville SET DEFAULT 'Tunis';\n\n-- 2. Supprimer la valeur par défaut d'une colonne :\nALTER TABLE eleve ALTER ville DROP DEFAULT;",
+    "note": "COMPATIBILITÉ MARIADB / XAMPP : La syntaxe 'ALTER TABLE table ALTER col SET DEFAULT val;' est 100% supportée par MariaDB et MySQL.",
+    "noteType": "tip"
+  },
+  {
+    "id": "sql-alter-table-rename",
+    "name": "RENAME (Table / Colonne)",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Modification de Structure",
+    "official": "Renomme une table entière (RENAME TO) ou renomme une colonne existante (RENAME COLUMN ... TO ou CHANGE).",
+    "simple": "Permet de changer le nom d'une table ou d'un champ sans altérer son contenu.",
+    "code": "-- 1. Renommer une table entière (Compatible MariaDB) :\nALTER TABLE etudiant RENAME TO eleve;\n\n-- 2. Renommer une colonne sous MariaDB historique (CHANGE) :\nALTER TABLE eleve CHANGE ancienne_moyenne moyenne DECIMAL(4,2);\n\n-- 3. Renommer une colonne (MariaDB 10.5.2+ / Standard SQL) :\nALTER TABLE eleve RENAME COLUMN ancienne_moyenne TO moyenne;",
+    "note": "ATTENTION MARIADB / XAMPP : Sur les versions antérieures à MariaDB 10.5.2 (XAMPP classique), 'RENAME COLUMN' provoque une erreur de syntaxe. Il faut utiliser la clause 'CHANGE ancien_nom nouveau_nom type;'.",
+    "noteType": "warning"
+  },
+  {
+    "id": "sql-alter-table-enable-disable",
+    "name": "ENABLE / DISABLE (Index & Contraintes)",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Modification de Structure",
+    "official": "Désactive temporairement ou réactive les vérifications d'index et de contraintes lors de l'insertion massive de données.",
+    "simple": "Permet de désactiver la vérification des contraintes et des index lors des chargements de données volumineuses pour accélérer le traitement.",
+    "code": "-- 1. Désactiver les clés étrangères sous MariaDB / XAMPP (COMMANDE GLOBALE) :\nSET FOREIGN_KEY_CHECKS = 0;\n-- Insérer vos données sans blocage de clés...\nSET FOREIGN_KEY_CHECKS = 1;\n\n-- 2. Désactiver les index MyISAM sous MariaDB :\nALTER TABLE eleve DISABLE KEYS;\nALTER TABLE eleve ENABLE KEYS;",
+    "note": "INCOMPATIBILITÉ MAJEURE MARIADB / XAMPP : La commande 'ALTER TABLE ... DISABLE CONSTRAINT' N'EXISTE PAS sous MariaDB ! Sous XAMPP, pour désactiver les vérifications de clés étrangères lors d'un import, il faut obligatoirement exécuter 'SET FOREIGN_KEY_CHECKS = 0;'.",
+    "noteType": "warning"
+  },
+  {
     "id": "sql-drop-table",
     "name": "DROP TABLE [IF EXISTS]",
     "category": "Définition de Données (DDL)",
@@ -441,13 +485,13 @@
   },
   {
     "id": "sql-like",
-    "name": "LIKE 'motif' (%, _)",
+    "name": "LIKE 'motif' (% et _)",
     "category": "Filtres & Conditions (WHERE)",
     "subcategory": "Masques & Logique",
-    "official": "Recherche par motif textuel (% = plusieurs caractères, _ = un seul caractère).",
-    "simple": "Recherche dans un texte. % remplace une suite de lettres, _ remplace exactement 1 lettre.",
-    "code": "SELECT * FROM eleve WHERE nom LIKE 'A%'; -- Commence par A\nSELECT * FROM eleve WHERE nom LIKE '_a%'; -- 2ème lettre est 'a'",
-    "note": "% = 0, 1 ou plusieurs caractères. _ = exactement 1 seul caractère.",
+    "official": "Permet d'effectuer des recherches par motif (pattern matching) sur des chaînes de caractères au moyen de deux caractères génériques (jokers) : % (qui remplace une suite de 0, 1 ou plusieurs caractères) et _ (qui remplace exactement un seul caractère).",
+    "simple": "Sert à filtrer des textes en utilisant des masques (jokers) : % pour remplacer n'importe quelle suite de lettres et _ pour remplacer exactement une seule lettre.",
+    "code": "-- 1. Texte commençant par une lettre (ex: commence par 'A') :\nSELECT * FROM eleve WHERE nom LIKE 'A%';\n\n-- 2. Texte se terminant par un suffixe (ex: se termine par 'ne') :\nSELECT * FROM eleve WHERE nom LIKE '%ne';\n\n-- 3. Texte contenant un mot ou sous-chaîne (ex: contient 'ben') :\nSELECT * FROM eleve WHERE nom LIKE '%ben%';\n\n-- 4. Position exacte avec le joker _ (ex: 2ème lettre est 'a') :\nSELECT * FROM eleve WHERE nom LIKE '_a%';\n\n-- 5. Longueur exacte de 4 caractères (ex: 4 tirets bas _ _ _ _) :\nSELECT * FROM classe WHERE code_classe LIKE '____';\n\n-- 6. Exclusion de motif avec NOT LIKE (ex: ne commence pas par 'T') :\nSELECT * FROM eleve WHERE ville NOT LIKE 'T%';",
+    "note": "Règles absolues du Bac :\n• % = 0, 1 ou plusieurs caractères quelconques.\n• _ = exactement 1 seul caractère à cette position.\n• NOT LIKE permet d'exclure un motif.",
     "noteType": "warning"
   },
   {
@@ -517,25 +561,47 @@
     "noteType": "tip"
   },
   {
-    "id": "sql-date-functions",
-    "name": "NOW() / YEAR() / MONTH() / DAY()",
+    "id": "sql-date-sys",
+    "name": "NOW() / CURDATE() / YEAR() / MONTH() / DAY()",
     "category": "Fonctions SQL & Agrégats",
     "subcategory": "Dates & Heures",
-    "official": "Retourne la date système ou extrait des composantes (année, mois, jour) d'une date.",
-    "simple": "Obtient la date actuelle ou isole une partie d'un champ DATE.",
-    "code": "SELECT nom FROM eleve WHERE YEAR(date_naissance) = 2007;\nINSERT INTO commande VALUES (1, NOW());",
-    "note": "YEAR(date) extrait uniquement l'année sous forme d'un nombre à 4 chiffres.",
+    "official": "Retourne la date/heure système (NOW), la date courante (CURDATE) ou extrait l'année (YEAR), le mois (MONTH) ou le jour (DAY) d'un champ DATE.",
+    "simple": "Obtient la date du jour ou isole une composante (année, mois, jour) d'une date.",
+    "code": "-- 1. Insérer la date actuelle :\nINSERT INTO commande VALUES (101, CURDATE());\n\n-- 2. Filtrer les élèves nés en 2007 :\nSELECT nom, prenom FROM eleve WHERE YEAR(date_naissance) = 2007;",
+    "note": "YEAR(date) extrait uniquement l'année sous forme d'un nombre entier à 4 chiffres.",
     "noteType": "tip"
   },
   {
+    "id": "sql-adddate",
+    "name": "ADDDATE(date, n)",
+    "category": "Fonctions SQL & Agrégats",
+    "subcategory": "Dates & Heures",
+    "official": "Ajoute un nombre entier n de jours (ou un intervalle) à une date spécifiée.",
+    "simple": "Permet de calculer une date future à partir d'une date initiale (ex: calculer la date limite de retour d'un livre = date d'emprunt + 15 jours).",
+    "code": "-- 1. Calculer la date de retour d'un prêt (+15 jours) :\nSELECT id_emprunt, date_emprunt, ADDDATE(date_emprunt, 15) AS date_limite\nFROM emprunt;\n\n-- 2. Ajouter un intervalle d'un mois à la date courante :\nSELECT ADDDATE(CURDATE(), INTERVAL 1 MONTH);\n\n-- 3. Mettre à jour une date d'échéance (+30 jours) :\nUPDATE facture SET date_echeance = ADDDATE(date_facture, 30);",
+    "note": "ADDDATE(date, 15) ajoute 15 jours à la date. On peut aussi passer un nombre négatif pour soustraire des jours (ex: ADDDATE(date, -7)).",
+    "noteType": "tip"
+  },
+  {
+    "id": "sql-datediff",
+    "name": "DATEDIFF(date1, date2)",
+    "category": "Fonctions SQL & Agrégats",
+    "subcategory": "Dates & Heures",
+    "official": "Calcule le nombre de jours d'écart entre deux dates en effectuant la soustraction (date1 - date2).",
+    "simple": "Mesure l'intervalle en jours écoulés entre deux dates (ex: calculer la durée réelle d'un emprunt ou le retard d'un paiement).",
+    "code": "-- 1. Calculer le nombre de jours d'un emprunt (date_retour - date_emprunt) :\nSELECT id_emprunt, DATEDIFF(date_retour, date_emprunt) AS nb_jours_emprunt\nFROM emprunt;\n\n-- 2. Trouver les emprunts en cours depuis plus de 30 jours :\nSELECT * FROM emprunt WHERE DATEDIFF(CURDATE(), date_emprunt) > 30;\n\n-- 3. Calculer l'âge d'un élève en jours par rapport à aujourd'hui :\nSELECT nom, DATEDIFF(CURDATE(), date_naissance) AS age_en_jours FROM eleve;",
+    "note": "Règle absolue du Bac : DATEDIFF(d1, d2) effectue toujours (d1 - d2). Si d1 est plus récente que d2, le nombre est positif. Si d1 est antérieure à d2, le résultat est négatif.",
+    "noteType": "warning"
+  },
+  {
     "id": "sql-string-functions",
-    "name": "CONCAT() / UPPER() / LOWER() / LENGTH()",
+    "name": "CONCAT() / UPPER() / LOWER() / LENGTH() / SUBSTRING()",
     "category": "Fonctions SQL & Agrégats",
     "subcategory": "Manipulation de Texte",
-    "official": "Fonctions SQL de concaténation et transformation de chaînes de caractères.",
-    "simple": "Assemble des textes (CONCAT), met en majuscules (UPPER), minuscules (LOWER) ou calcule la longueur (LENGTH).",
-    "code": "SELECT CONCAT(nom, ' ', prenom) AS nom_complet FROM eleve;\nSELECT UPPER(nom) FROM eleve;",
-    "note": "Permet de formater élégamment les textes lors de l'affichage.",
-    "noteType": "tip"
+    "official": "Fonctions SQL de manipulation de texte : concaténation (CONCAT), conversion de casse (UPPER/LOWER), longueur (LENGTH) et sous-chaîne (SUBSTRING).",
+    "simple": "Assemble des textes (CONCAT), met en majuscules (UPPER), minuscules (LOWER), calcule la longueur (LENGTH) ou extrait des lettres (SUBSTRING).",
+    "code": "-- 1. Concaténer nom et prénom :\nSELECT CONCAT(nom, ' ', prenom) AS nom_complet FROM eleve;\n\n-- 2. Mettre en majuscules :\nSELECT UPPER(nom) FROM eleve;\n\n-- 3. Extraire la 1ère lettre du prénom (initiale) :\nSELECT SUBSTRING(prenom, 1, 1) AS initiale FROM eleve;",
+    "note": "Attention : SUBSTRING(chaine, pos, len) commence à la position 1 en SQL (et pas 0) !",
+    "noteType": "warning"
   }
 ]
