@@ -61,3 +61,98 @@ body {
   justify-content: center;
   font-size: 1.75rem;
 }
+
+/* =============================================
+   Optimisation Mobile (< 768px) : Marges & Paddings au Strict Minimum
+   ============================================= */
+@media (max-width: 768px) {
+  body {
+    padding-top: 0 !important;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+
+  .row {
+    --bs-gutter-x: 0.5rem !important;
+    --bs-gutter-y: 0.5rem !important;
+  }
+
+  .navbar-custom {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  .hero-banner,
+  .category-header {
+    padding: 0.75rem 0.85rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .revision-card,
+  .notion-card,
+  .module-card {
+    padding: 0.6rem 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 0.65rem !important;
+  }
+
+  .revision-card .border-bottom {
+    padding-bottom: 0.35rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .revision-table-wrapper {
+    margin-bottom: 0.25rem !important;
+  }
+
+  .revision-table th {
+    padding: 0.3rem 0.4rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .revision-table td {
+    padding: 0.3rem 0.4rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .pedago-box {
+    padding: 0.5rem 0.65rem !important;
+    margin-top: 0.4rem !important;
+    margin-bottom: 0.4rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .code-box {
+    padding: 0.5rem 0.65rem !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .modal-dialog {
+    margin: 0.35rem !important;
+  }
+
+  .modal-header,
+  .modal-footer {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .modal-body {
+    padding: 0.75rem !important;
+  }
+
+  .btn-details,
+  .btn-details-col,
+  .modal-header .btn-nav-chevron,
+  .modal-header button:has(.bi-chevron-left),
+  .modal-header button:has(.bi-chevron-right),
+  .revision-table th:last-child,
+  .revision-table td:last-child {
+    display: none !important;
+  }
+}

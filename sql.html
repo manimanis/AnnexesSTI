@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Annexe Officielle SQL - Fiches de Révision - Section SI (Tunisie)</title>
   <meta name="description"
-    content="Fiches de révision synthétiques SQL avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
+    content="Fiches de Révision SQL avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
 
   <!-- Bootstrap 5 CSS (Local) -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -82,7 +82,7 @@
                       <div>
                         <span class="badge bg-white text-success fw-bold mb-1"><i
                             class="bi bi-journal-bookmark-fill me-1"></i>
-                          Fiches de Révision Synthétiques</span>
+                          Fiches de Révision</span>
                         <h1 class="display-5 fw-extrabold mb-1">Annexe SQL & BDR</h1>
                       </div>
                     </div>
@@ -161,7 +161,8 @@
                                 <tr>
                                   <th style="width: 28%;">Commande / Type</th>
                                   <th>Rôle / Description</th>
-                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                  <th class="text-end d-print-none btn-details-col d-none d-md-table-cell"
+                                    style="width: 22%;">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -174,9 +175,9 @@
                                     <div class="fw-semibold text-body small mb-1"
                                       v-html="highlight(item.simple || item.official)"></div>
                                   </td>
-                                  <td class="text-end d-print-none">
+                                  <td class="text-end d-print-none btn-details-col d-none d-md-table-cell">
                                     <button
-                                      class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 shadow-sm d-print-none btn-details"
                                       style="font-size: 0.78rem;" @click.stop="openModal(item)">
                                       <i class="bi bi-box-arrow-up-right me-1"></i> Détails
                                     </button>
@@ -218,7 +219,8 @@
                                 <tr>
                                   <th style="width: 28%;">Commande / Type</th>
                                   <th>Rôle / Description</th>
-                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                  <th class="text-end d-print-none btn-details-col d-none d-md-table-cell"
+                                    style="width: 22%;">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -231,9 +233,9 @@
                                     <div class="fw-semibold text-body small mb-1"
                                       v-html="highlight(item.simple || item.official)"></div>
                                   </td>
-                                  <td class="text-end d-print-none">
+                                  <td class="text-end d-print-none btn-details-col d-none d-md-table-cell">
                                     <button
-                                      class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      class="btn btn-sm btn-outline-success rounded-pill px-2.5 py-1 shadow-sm d-print-none btn-details"
                                       style="font-size: 0.78rem;" @click.stop="openModal(item)">
                                       <i class="bi bi-box-arrow-up-right me-1"></i> Détails
                                     </button>
@@ -326,19 +328,16 @@
           <!-- En-tête de la modale -->
           <div class="modal-header modal-header-custom d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
-              <span class="fs-5 font-monospace fw-bold" v-html="formatSqlName(activeModalItem.name)"></span>
-              <span class="badge bg-success text-white rounded-pill px-3 py-1">{{ activeModalItem.category }}</span>
-              <span v-if="activeModalItem.subcategory"
-                class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1">
-                <i class="bi bi-tag-fill me-1"></i>{{ activeModalItem.subcategory }}
-              </span>
+              <span class="fs-6 font-monospace fw-bold" v-html="formatSqlName(activeModalItem.name)"></span>
             </div>
             <div class="d-flex align-items-center gap-2">
-              <button type="button" class="btn btn-sm btn-outline-success rounded-circle p-1.5"
+              <button type="button"
+                class="btn btn-sm btn-outline-success rounded-circle p-1.5 btn-nav-chevron d-none d-md-inline-block"
                 :disabled="!hasPrevModalItem" @click="prevModalItem" title="Précédent (Flèche Gauche)">
                 <i class="bi bi-chevron-left"></i>
               </button>
-              <button type="button" class="btn btn-sm btn-outline-success rounded-circle p-1.5"
+              <button type="button"
+                class="btn btn-sm btn-outline-success rounded-circle p-1.5 btn-nav-chevron d-none d-md-inline-block"
                 :disabled="!hasNextModalItem" @click="nextModalItem" title="Suivant (Flèche Droite)">
                 <i class="bi bi-chevron-right"></i>
               </button>
@@ -348,6 +347,14 @@
 
           <!-- Corps de la modale -->
           <div class="modal-body modal-body-custom">
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="badge bg-success text-white rounded-pill px-3 py-1">{{ activeModalItem.category }}</span>
+              <span v-if="activeModalItem.subcategory"
+                class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1">
+                <i class="bi bi-tag-fill me-1"></i>{{ activeModalItem.subcategory }}
+              </span>
+            </div>
 
             <!-- 1. Définition officielle & En clair -->
             <div class="mb-4">

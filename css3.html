@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Annexe Officielle CSS3 - Fiches de Révision - Section SI (Tunisie)</title>
   <meta name="description"
-    content="Fiches de révision synthétiques CSS3 avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
+    content="Fiches de Révision CSS3 avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
 
   <!-- Bootstrap 5 CSS (Local) -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
           <span class="badge bg-primary fs-6 p-2 rounded-3 d-inline-flex align-items-center gap-1">
             <img src="assets/img/css-3.svg" alt="CSS3" width="20" height="20"> CSS3
           </span>
-          <span class="fs-6 d-none d-sm-inline text-light">Fiches de Révision CSS3</span>
+          <span class="fs-6 d-none d-sm-inline text-light">Fiches CSS3</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -82,7 +82,7 @@
                       <div>
                         <span class="badge bg-white text-primary fw-bold mb-1"><i
                             class="bi bi-journal-bookmark-fill me-1"></i>
-                          Fiches de Révision Synthétiques</span>
+                          Fiches de Révision</span>
                         <h1 class="display-5 fw-extrabold mb-1">Annexe CSS3</h1>
                       </div>
                     </div>
@@ -161,7 +161,8 @@
                                 <tr>
                                   <th style="width: 28%;">Propriété / Sélecteur</th>
                                   <th>Rôle / Description</th>
-                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                  <th class="text-end d-print-none btn-details-col d-none d-md-table-cell"
+                                    style="width: 22%;">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -178,9 +179,9 @@
                                     <div class="fw-semibold text-body small mb-1"
                                       v-html="highlight(item.simple || item.official)"></div>
                                   </td>
-                                  <td class="text-end d-print-none">
+                                  <td class="text-end d-print-none btn-details-col d-none d-md-table-cell">
                                     <button
-                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none btn-details"
                                       style="font-size: 0.78rem;" @click.stop="openModal(item)">
                                       <i class="bi bi-box-arrow-up-right me-1"></i> Détails
                                     </button>
@@ -222,7 +223,8 @@
                                 <tr>
                                   <th style="width: 28%;">Propriété / Sélecteur</th>
                                   <th>Rôle / Description</th>
-                                  <th class="text-end d-print-none" style="width: 22%;">Action</th>
+                                  <th class="text-end d-print-none btn-details-col d-none d-md-table-cell"
+                                    style="width: 22%;">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -239,9 +241,9 @@
                                     <div class="fw-semibold text-body small mb-1"
                                       v-html="highlight(item.simple || item.official)"></div>
                                   </td>
-                                  <td class="text-end d-print-none">
+                                  <td class="text-end d-print-none btn-details-col d-none d-md-table-cell">
                                     <button
-                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none"
+                                      class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 shadow-sm d-print-none btn-details"
                                       style="font-size: 0.78rem;" @click.stop="openModal(item)">
                                       <i class="bi bi-box-arrow-up-right me-1"></i> Détails
                                     </button>
@@ -334,22 +336,16 @@
           <!-- En-tête de la modale -->
           <div class="modal-header modal-header-custom d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
-              <span class="fs-5 font-monospace fw-bold" v-html="formatCssName(activeModalItem.name)"></span>
-              <span class="badge bg-primary text-white rounded-pill px-3 py-1">{{ activeModalItem.category }}</span>
-              <span v-if="activeModalItem.subcategory"
-                class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1">
-                <i class="bi bi-tag-fill me-1"></i>{{ activeModalItem.subcategory }}
-              </span>
-              <span v-if="isShorthand(activeModalItem)" class="badge bg-warning text-dark rounded-pill px-2.5 py-1">
-                <i class="bi bi-layers-fill me-1"></i>Super-propriété
-              </span>
+              <span class="fs-6 font-monospace fw-bold" v-html="formatCssName(activeModalItem.name)"></span>
             </div>
             <div class="d-flex align-items-center gap-2">
-              <button type="button" class="btn btn-sm btn-outline-primary rounded-circle p-1.5"
+              <button type="button"
+                class="btn btn-sm btn-outline-primary rounded-circle p-1.5 btn-nav-chevron d-none d-md-inline-block"
                 :disabled="!hasPrevModalItem" @click="prevModalItem" title="Précédent (Flèche Gauche)">
                 <i class="bi bi-chevron-left"></i>
               </button>
-              <button type="button" class="btn btn-sm btn-outline-primary rounded-circle p-1.5"
+              <button type="button"
+                class="btn btn-sm btn-outline-primary rounded-circle p-1.5 btn-nav-chevron d-none d-md-inline-block"
                 :disabled="!hasNextModalItem" @click="nextModalItem" title="Suivant (Flèche Droite)">
                 <i class="bi bi-chevron-right"></i>
               </button>
@@ -359,6 +355,17 @@
 
           <!-- Corps de la modale -->
           <div class="modal-body modal-body-custom">
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="badge bg-primary text-white rounded-pill px-3 py-1">{{ activeModalItem.category }}</span>
+              <span v-if="activeModalItem.subcategory"
+                class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1">
+                <i class="bi bi-tag-fill me-1"></i>{{ activeModalItem.subcategory }}
+              </span>
+              <span v-if="isShorthand(activeModalItem)" class="badge bg-warning text-dark rounded-pill px-2.5 py-1">
+                <i class="bi bi-layers-fill me-1"></i>Super-propriété
+              </span>
+            </div>
 
             <!-- 1. Définition officielle & En clair -->
             <div class="mb-4">
