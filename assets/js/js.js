@@ -139,15 +139,25 @@ createApp({
       });
       return { col1, col2 };
     },
+    displayOrderedItems() {
+      const items = [];
+      const groups = this.groupedItems;
+      Object.keys(groups).forEach(cat => {
+        Object.keys(groups[cat]).forEach(subcat => {
+          items.push(...groups[cat][subcat]);
+        });
+      });
+      return items;
+    },
     currentModalIndex() {
       if (!this.activeModalItem) return -1;
-      return this.filteredItems.findIndex(i => i.id === this.activeModalItem.id);
+      return this.displayOrderedItems.findIndex(i => i.id === this.activeModalItem.id);
     },
     hasPrevModalItem() {
       return this.currentModalIndex > 0;
     },
     hasNextModalItem() {
-      return this.currentModalIndex >= 0 && this.currentModalIndex < this.filteredItems.length - 1;
+      return this.currentModalIndex >= 0 && this.currentModalIndex < this.displayOrderedItems.length - 1;
     }
   },
   methods: {
@@ -158,13 +168,13 @@ createApp({
     },
     prevModalItem() {
       if (this.hasPrevModalItem) {
-        const item = this.filteredItems[this.currentModalIndex - 1];
+        const item = this.displayOrderedItems[this.currentModalIndex - 1];
         this.openModal(item);
       }
     },
     nextModalItem() {
       if (this.hasNextModalItem) {
-        const item = this.filteredItems[this.currentModalIndex + 1];
+        const item = this.displayOrderedItems[this.currentModalIndex + 1];
         this.openModal(item);
       }
     },

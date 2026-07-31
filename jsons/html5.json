@@ -142,7 +142,7 @@
     "simple": "Englobe le contenu central unique de la page, à l'exclusion des menus et pieds de page.",
     "attrsDetail": [],
     "code": "<main>\n  <h2>Chapitre 1 : HTML5</h2>\n  <p>Contenu principal de la leçon...</p>\n</main>",
-    "note": "Un document doit posséder un seul balisage <main> pour englober le contenu central de la page.",
+    "note": "Un document doit posséder un seul balisage &lt;main&gt; pour englober le contenu central de la page.",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -171,7 +171,7 @@
     "simple": "Regroupe du contenu thématique homogène (ex: une section de cours avec son propre titre).",
     "attrsDetail": [],
     "code": "<section>\n  <h3>1. Les balises de texte</h3>\n  <p>Les balises p et h1-h6...</p>\n</section>",
-    "note": "Représente une section thématique du document, contenant idéalement un titre (<h2> - <h6>).",
+    "note": "Représente une section thématique du document, contenant idéalement un titre (&lt;h2&gt; - &lt;h6&gt;).",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -196,7 +196,7 @@
     "simple": "Bloc de contenu pouvant être publié de manière autonome (ex: un article de blog, une actualité).",
     "attrsDetail": [],
     "code": "<article>\n  <h3>Session de Révision Bac</h3>\n  <p>Publication du 15 mai 2025...</p>\n</article>",
-    "note": "Utiliser <article> pour du contenu autonome et réutilisable (ex: actualité, article de blog, fiche produit).",
+    "note": "Utiliser &lt;article&gt; pour du contenu autonome et réutilisable (ex: actualité, article de blog, fiche produit).",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -274,7 +274,7 @@
       }
     ],
     "code": "<link\n  rel=\"stylesheet\"\n  href=\"style.css\">",
-    "note": "Se place obligatoirement dans l'élément <head>.",
+    "note": "Se place obligatoirement dans l'élément &lt;head&gt;.",
     "noteType": "warning",
     "relatedTags": []
   },
@@ -302,7 +302,7 @@
       }
     ],
     "code": "<meta charset=\"UTF-8\">\n<meta\n  name=\"viewport\"\n  content=\"width=device-width, initial-scale=1.0\">",
-    "note": "<meta charset=\"UTF-8\"> évite l'affichage incorrect des accents.",
+    "note": "&lt;meta charset=&quot;UTF-8&quot;&gt; évite l'affichage incorrect des accents.",
     "noteType": "warning",
     "relatedTags": []
   },
@@ -1675,7 +1675,7 @@
       }
     ],
     "code": "<input\n  type=\"number\"\n  name=\"note\"\n  min=\"0\"\n  max=\"20\"\n  step=\"0.5\"\n  value=\"10\"\n  required>",
-    "note": "<ul class=\"mb-0 ps-3 mt-1\"><li>Par défaut, step vaut</li><li>Pour autoriser la saisie de décimales (ex: 12.5), spécifiez impérativement step='0.5' ou step='any' !</li></ul>",
+    "note": "<ul class=\"mb-0 ps-3 mt-1\"><li>Par défaut, step vaut 1.</li><li>Pour autoriser la saisie de décimales (ex: 12.5), spécifiez impérativement step='0.5' ou step='any' !</li></ul>",
     "noteType": "warning",
     "relatedTags": [
       {

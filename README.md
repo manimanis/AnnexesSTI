@@ -57,9 +57,10 @@ La plateforme est composée de **5 modules indépendants** accessibles directeme
 
 - ⚖️ **Distribution Équilibrée sur 2 Colonnes** : Algorithme dynamique garantissant une hauteur égale entre la colonne gauche et la colonne droite.
 - 🔍 **Recherche et Filtrage en Temps Réel** : Moteur de recherche instantané par mot-clé et filtrage dynamique par catégories.
-- 🔍 **Fenêtre Modale Interactive** : Modal détaillée avec coloration syntaxique des exemples de code et conseils pédagogiques.
+- 🔍 **Fenêtre Modale Interactive & Navigation Ordonnée** : Modale détaillée avec coloration syntaxique des exemples de code et conseils pédagogiques. Boutons de navigation séquentielle (**Précédent / Suivant**) et raccourcis clavier (`←` / `→`) respectant strictement l'ordre d'affichage visuel des éléments sur la page.
+- 🔗 **Ancrage & Partage Direct (Hash Routing)** : Support complet des ancres URL (`#item-...`) permettant de cibler, ouvrir automatiquement et partager une fiche spécifique.
 - 🌓 **Mode Sombre / Mode Clair** : Basculement fluide de thème visuel avec persistance dans le `localStorage`.
-- 📖 **Sommaire Flottant (Offcanvas)** : Sommaire latéral accessible à tout moment pour une navigation rapide.
+- 📖 **Sommaire Flottant (Offcanvas)** : Sommaire latéral interactif accessible à tout moment pour une navigation rapide.
 - 🖨️ **Mode Impression Dédié (`@media print`)** : CSS optimisé pour une impression papier ou une exportation PDF parfaite (masquage automatique de la navbar, des boutons et des barres d'outils).
 - 🎨 **Icônes SVG Vectorielles** : Intégration des logos officiels (`html-5.svg`, `css-3.svg`, `js.svg`, `php.svg`, `database.svg`) dans la navbar, les badges et les cartes.
 
