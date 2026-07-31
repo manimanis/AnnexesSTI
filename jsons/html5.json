@@ -13,7 +13,7 @@
       }
     ],
     "code": "<!DOCTYPE html>\n<html lang=\"fr\">\n  <!-- Contenu -->\n</html>",
-    "note": "Toujours inclure l'attribut lang=\"fr\" pour l'accessibilité.",
+    "note": "Toujours inclure l'attribut <code>lang=\"fr\"</code> pour la langue et l'accessibilité.",
     "noteType": "remember",
     "relatedTags": [
       {
@@ -34,7 +34,7 @@
     "simple": "Stocke les informations invisibles : encodage, titre, styles et scripts.",
     "attrsDetail": [],
     "code": "<head>\n  <meta charset=\"UTF-8\">\n  <title>Titre</title>\n</head>",
-    "note": "Le contenu de <head> ne s'affiche pas dans le corps de la page.",
+    "note": "Le contenu de <code>&lt;head&gt;</code> réunit les métadonnées et reste <strong>invisible</strong> sur le rendu de la page.",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -63,7 +63,7 @@
     "simple": "Contient tout le contenu visible par l'utilisateur.",
     "attrsDetail": [],
     "code": "<body>\n  <h1>Titre</h1>\n</body>",
-    "note": "Une seule balise <body> par document HTML !",
+    "note": "Une seule balise <code>&lt;body&gt;</code> autorisée par document HTML !",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -96,7 +96,7 @@
     "simple": "En-tête de page ou de section (logo, titre principal, sous-titre).",
     "attrsDetail": [],
     "code": "<header>\n  <h1>Mon Site Educatif</h1>\n  <p>Bienvenue</p>\n</header>",
-    "note": "Ne pas confondre &lt;header&gt; (en-tête visuel) avec &lt;head&gt; (métadonnées invisibles) !",
+    "note": "Ne pas confondre <code>&lt;header&gt;</code> (en-tête visuel) avec <code>&lt;head&gt;</code> (métadonnées invisibles) !",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -121,7 +121,7 @@
     "simple": "Conteneur dédié au menu principal de navigation du site web.",
     "attrsDetail": [],
     "code": "<nav>\n  <a href=\"index.html\">Accueil</a>\n  <a href=\"cours.html\">Cours</a>\n</nav>",
-    "note": "Indispensable pour la sémantique de navigation et les lecteurs d'écran.",
+    "note": "Réservé uniquement aux blocs majeurs de navigation du site (menus principaux), ne pas l'utiliser pour de simples liens individuels.",
     "noteType": "remember",
     "relatedTags": [
       {
@@ -142,7 +142,7 @@
     "simple": "Englobe le contenu central unique de la page, à l'exclusion des menus et pieds de page.",
     "attrsDetail": [],
     "code": "<main>\n  <h2>Chapitre 1 : HTML5</h2>\n  <p>Contenu principal de la leçon...</p>\n</main>",
-    "note": "Il ne doit y avoir qu'un seul élément &lt;main&gt; visible par page !",
+    "note": "Un document doit posséder un seul balisage <main> pour englober le contenu central de la page.",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -171,8 +171,8 @@
     "simple": "Regroupe du contenu thématique homogène (ex: une section de cours avec son propre titre).",
     "attrsDetail": [],
     "code": "<section>\n  <h3>1. Les balises de texte</h3>\n  <p>Les balises p et h1-h6...</p>\n</section>",
-    "note": "Une &lt;section&gt; contient généralement un titre (h1-h6) d'introduction.",
-    "noteType": "remember",
+    "note": "Représente une section thématique du document, contenant idéalement un titre (<h2> - <h6>).",
+    "noteType": "tip",
     "relatedTags": [
       {
         "id": "article",
@@ -196,7 +196,7 @@
     "simple": "Bloc de contenu pouvant être publié de manière autonome (ex: un article de blog, une actualité).",
     "attrsDetail": [],
     "code": "<article>\n  <h3>Session de Révision Bac</h3>\n  <p>Publication du 15 mai 2025...</p>\n</article>",
-    "note": "Un &lt;article&gt; peut contenir ses propres éléments &lt;header&gt; et &lt;footer&gt;.",
+    "note": "Utiliser <article> pour du contenu autonome et réutilisable (ex: actualité, article de blog, fiche produit).",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -221,7 +221,7 @@
     "simple": "Barre latérale (sidebar) contenant des informations complémentaires, des liens ou des publicités.",
     "attrsDetail": [],
     "code": "<aside>\n  <h4>Liens Utiles</h4>\n  <ul><li>Site Ministère</li></ul>\n</aside>",
-    "note": "Idéal pour les menus secondaires et encadrés d'informations annexes.",
+    "note": "Contenu complémentaire lié indirectement au sujet principal (ex: barre latérale, encadré d'information).",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -242,7 +242,7 @@
     "simple": "Pied de page contenant les informations de copyright, liens de contact et mentions légales.",
     "attrsDetail": [],
     "code": "<footer>\n  <p>&copy; 2025 Ministère de l'Éducation - Tunisie</p>\n</footer>",
-    "note": "Placé généralement à la fin de la page ou d'une section.",
+    "note": "Placé en bas de document ou de section pour regrouper droits d'auteur, mentions légales et liens de contact.",
     "noteType": "remember",
     "relatedTags": [
       {
@@ -275,7 +275,7 @@
     ],
     "code": "<link\n  rel=\"stylesheet\"\n  href=\"style.css\">",
     "note": "Se place obligatoirement dans l'élément <head>.",
-    "noteType": "remember",
+    "noteType": "warning",
     "relatedTags": []
   },
   {
@@ -953,7 +953,7 @@
       }
     ],
     "code": "<ol\n  type=\"A\"\n  start=\"3\">\n  <li>Étape C</li>\n</ol>",
-    "note": "start=\"3\" avec type=\"A\" commencera la numérotation à C !",
+    "note": "Start=\"3\" avec type=\"A\" commencera la numérotation à C !",
     "noteType": "tip",
     "relatedTags": [
       {
@@ -975,7 +975,7 @@
     "attrsDetail": [],
     "code": "<li>Élément de liste</li>",
     "note": "Doit obligatoirement être placé à l'intérieur d'une liste &lt;ul&gt; ou &lt;ol&gt;.",
-    "noteType": "remember",
+    "noteType": "warning",
     "relatedTags": [
       {
         "id": "ul",
@@ -1262,7 +1262,7 @@
       }
     ],
     "code": "<form\n  action=\"calcul.php\"\n  method=\"post\"\n  target=\"_self\">\n  <!-- champs de saisie -->\n</form>",
-    "note": "method=\"post\" est requis pour la confidentialité des formulaires !",
+    "note": "Vérifier obligatoirement les deux attributs : <code>action</code> (script PHP) et <code>method</code> (<code>\"get\"</code> ou <code>\"post\"</code>).",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -1539,7 +1539,7 @@
       }
     ],
     "code": "<input\n  type=\"password\"\n  name=\"pwd\"\n  placeholder=\"Saisir mot de passe\"\n  required>",
-    "note": "Les caractères sont masqués à l'écran mais sont envoyés en clair si la méthode du formulaire est GET (préférez POST !).",
+    "note": "Masque les caractères saisis (puces/astérisques). Transmettre OBLIGATOIREMENT en méthode <code>POST</code> pour la sécurité.",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -1675,7 +1675,7 @@
       }
     ],
     "code": "<input\n  type=\"number\"\n  name=\"note\"\n  min=\"0\"\n  max=\"20\"\n  step=\"0.5\"\n  value=\"10\"\n  required>",
-    "note": "Par défaut, step vaut 1. Pour autoriser la saisie de décimales (ex: 12.5), spécifiez impérativement step='0.5' ou step='any' !",
+    "note": "<ul class=\"mb-0 ps-3 mt-1\"><li>Par défaut, step vaut</li><li>Pour autoriser la saisie de décimales (ex: 12.5), spécifiez impérativement step='0.5' ou step='any' !</li></ul>",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -2194,7 +2194,7 @@
       }
     ],
     "code": "<form\n  action=\"ajout.php\"\n  method=\"post\"\n  onsubmit=\"return verif();\">\n  <!-- inputs -->\n</form>",
-    "note": "L'expression 'return verif();' avec le mot-clé 'return' est obligatoire pour bloquer l'envoi du formulaire en cas d'erreur de saisie !",
+    "note": "L'expression 'return <code>verif()</code>;' avec le mot-clé 'return' est obligatoire pour bloquer l'envoi du formulaire en cas d'erreur de saisie !",
     "noteType": "warning",
     "relatedTags": [
       {
@@ -2279,7 +2279,7 @@
     ],
     "code": "<input\n  type=\"text\"\n  name=\"cin\"\n  onblur=\"validerCin(this)\">",
     "note": "Idéal pour vérifier la validité de chaque champ immédiatement lorsque l'élève passe au champ suivant.",
-    "noteType": "remember",
+    "noteType": "tip",
     "relatedTags": [
       {
         "id": "event-onfocus",

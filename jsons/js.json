@@ -18,7 +18,7 @@
     "official": "Égalité (==), Différence (!=), Égalité stricte / Identique (===), Non identique (!==), Supérieur (>), Supérieur ou égal (>=), Inférieur (<), Inférieur ou égal (<=).",
     "simple": "Comparent deux valeurs et retournent un booléen (true ou false). L'égalité simple == et la différence != comparent la valeur (avec conversion de type auto). Les opérateurs stricts === et !== comparent la valeur ET le type !",
     "code": "// 1. Égalité simple et différence\nif (age == \"18\") { /* true */ }\nif (note != 10) { /* true si note différente de 10 */ }\n\n// 2. Égalité et différence strictes (Valeur ET Type)\nif (moyenne === 10) { /* true uniquement si nombre 10 */ }\nif (val !== \"10\") { /* true si valeur ou type différent */ }",
-    "note": "Attention : 1) Ne pas confondre l'affectation = avec l'égalité == ! 2) === et !== comparent le type en plus de la valeur.",
+    "note": "Règles des opérateurs :<ul class='mb-0 ps-3 mt-1'><li><code>==</code> : compare uniquement la <strong>valeur</strong> (avec conversion auto).</li><li><code>===</code> : compare la <strong>valeur ET le type</strong> de donnée.</li></ul>",
     "noteType": "warning"
   },
   {
@@ -29,7 +29,7 @@
     "official": "Addition (+), Soustraction (-), Multiplication (*), Division (/), Reste de la division euclidienne (%).",
     "simple": "Calculs mathématiques de base. % donne le reste d'une division.",
     "code": "let reste = 15 % 4; // Reste = 3",
-    "note": "L'opérateur + sert aussi à la concaténation de chaînes de caractères !",
+    "note": "L'opérateur <code>+</code> effectue l'addition numérique <strong>OU</strong> la concaténation de texte si l'un des opérandes est une chaîne !",
     "noteType": "warning"
   },
   {
@@ -40,8 +40,15 @@
     "official": "Affiche un message dans une boîte de dialogue.",
     "simple": "Boîte d'alerte pop-up avec un bouton OK.",
     "code": "alert(\"Veuillez remplir tous les champs !\");",
-    "note": "Bloque l'exécution du script tant que l'élève n'a pas cliqué sur OK.",
-    "noteType": "tip"
+    "note": "La fonction <code>alert()</code> interrompt l'exécution du script tant que l'utilisateur n'a pas appuyé sur OK.",
+    "noteType": "tip",
+    "syntax": "alert(message)",
+    "params": [
+      {
+        "name": "message",
+        "desc": "Message à afficher dans la boîte d'alerte."
+      }
+    ]
   },
   {
     "id": "js-doc-write",
@@ -52,7 +59,14 @@
     "simple": "Écrit du texte ou des balises HTML à l'emplacement du script.",
     "code": "document.write(\"<h2>Résultat : \" + score + \"</h2>\");",
     "note": "Évite d'écraser la page si utilisé après le chargement.",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "document.write(texte)",
+    "params": [
+      {
+        "name": "texte",
+        "desc": "Texte ou balises HTML à injecter dans la page."
+      }
+    ]
   },
   {
     "id": "js-prompt",
@@ -62,63 +76,113 @@
     "official": "Affiche une boîte de dialogue avec une zone de saisie.",
     "simple": "Boîte pop-up demandant à l'utilisateur de saisir une donnée.",
     "code": "let nom = prompt(\"Entrez votre nom :\");",
-    "note": "prompt() retourne TOUJOURS une chaîne de caractères (string) !",
-    "noteType": "warning"
+    "note": "<code>prompt()</code> renvoie <strong>TOUJOURS une chaîne de caractères (string)</strong> ! Utiliser <code>Number()</code> ou <code>parseFloat()</code> avant d'effectuer un calcul mathématique.",
+    "noteType": "warning",
+    "syntax": "prompt(message, [valeurParDefaut])",
+    "params": [
+      {
+        "name": "message",
+        "desc": "Question affichée dans la boîte de dialogue."
+      },
+      {
+        "name": "valeurParDefaut",
+        "desc": "(Optionnel) Valeur pré-remplie dans la zone de saisie."
+      }
+    ]
   },
   {
     "id": "js-isnan",
-    "name": "isNaN(ch)",
+    "name": "isNaN()",
     "category": "Conversions & Types",
     "subcategory": "Validation & Test",
     "official": "Retourne true si l'argument ch n'est pas convertible en nombre, sinon false.",
     "simple": "Teste si une saisie N'EST PAS un nombre valide.",
     "code": "if (isNaN(document.getElementById(\"age\").value)) {\n  alert(\"Saisie non numérique !\");\n}",
-    "note": "is Not a Number : retourne true si la valeur N'EST PAS un nombre.",
-    "noteType": "warning"
+    "note": "IsNaN(v) renvoie true si la valeur N'EST PAS un nombre. Idéal pour valider la saisie d'un formulaire avant calcul.",
+    "noteType": "tip",
+    "syntax": "isNaN(ch)",
+    "params": [
+      {
+        "name": "ch",
+        "desc": "Valeur à tester (retourne true si ce n'est pas un nombre)."
+      }
+    ]
   },
   {
     "id": "js-number",
-    "name": "Number(ch)",
+    "name": "Number()",
     "category": "Conversions & Types",
     "subcategory": "Conversion Numérique",
     "official": "Convertit une chaîne ch en un nombre.",
     "simple": "Transforme un texte numérique en type nombre.",
     "code": "let n = Number(\"125\"); // n = 125",
-    "note": "Retourne NaN si la chaîne contient des lettres.",
-    "noteType": "remember"
+    "note": "Convertit du texte en nombre. Renvoie <strong>NaN</strong> (Not a Number) si la chaîne contient des caractères non numériques.",
+    "noteType": "remember",
+    "syntax": "Number(ch)",
+    "params": [
+      {
+        "name": "ch",
+        "desc": "Texte numérique à convertir en nombre."
+      }
+    ]
   },
   {
     "id": "js-parsefloat",
-    "name": "parseFloat(ch)",
+    "name": "parseFloat()",
     "category": "Conversions & Types",
     "subcategory": "Conversion Numérique",
     "official": "Convertit une chaîne ch en un réel.",
     "simple": "Extrait un nombre à virgule d'un texte.",
     "code": "let moy = parseFloat(\"14.75\");",
-    "note": "Utilise le point (.) comme séparateur décimal.",
-    "noteType": "remember"
+    "note": "Convertit une chaîne en nombre réel. Attention : utilise impérativement le point (.) comme séparateur décimal.",
+    "noteType": "remember",
+    "syntax": "parseFloat(ch)",
+    "params": [
+      {
+        "name": "ch",
+        "desc": "Texte à convertir en nombre réel (décimal)."
+      }
+    ]
   },
   {
     "id": "js-parseint",
-    "name": "parseInt(ch[, b])",
+    "name": "parseInt()",
     "category": "Conversions & Types",
     "subcategory": "Conversion Numérique",
     "official": "Convertit une chaîne ch en un entier exprimé dans la base b.",
     "simple": "Extrait la partie entière d'un nombre ou convertit entre bases (ex: base 2, 10, 16).",
     "code": "let val = parseInt(\"1011\", 2); // val = 11 (binaire vers décimal)",
-    "note": "Le paramètre b représente la base de numération (ex: 2, 8, 10, 16).",
-    "noteType": "tip"
+    "note": "Extrait l'entier. Le 2ème paramètre <code>b</code> facultatif précise la base de numération (ex: <code>parseInt(\"1010\", 2)</code> pour du binaire).",
+    "noteType": "tip",
+    "syntax": "parseInt(ch, [b])",
+    "params": [
+      {
+        "name": "ch",
+        "desc": "Texte à convertir en nombre entier."
+      },
+      {
+        "name": "b",
+        "desc": "(Optionnel) Base de numération (2 pour binaire, 10 pour décimal, 16 pour hexadécimal)."
+      }
+    ]
   },
   {
     "id": "js-string-conv",
-    "name": "String(a)",
+    "name": "String()",
     "category": "Conversions & Types",
     "subcategory": "Conversion Texte",
     "official": "Convertit la valeur a en une chaîne de caractères.",
     "simple": "Transforme une variable de n'importe quel type en texte.",
     "code": "let txt = String(2025); // \"2025\"",
     "note": "Permet de manipuler un nombre comme un texte.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "String(a)",
+    "params": [
+      {
+        "name": "a",
+        "desc": "Valeur à convertir en texte."
+      }
+    ]
   },
   {
     "id": "js-getelementbyid",
@@ -128,8 +192,15 @@
     "official": "Permet de sélectionner un élément unique en fonction de son identifiant.",
     "simple": "Accède directement à un élément HTML par son attribut id.",
     "code": "let el = document.getElementById(\"zone\");\nel.innerHTML = \"Bonjour\";",
-    "note": "Attention à la majuscule sur 'Id' : getElementById !",
-    "noteType": "warning"
+    "note": "À la majuscule sur 'Id' : getElementById !",
+    "noteType": "warning",
+    "syntax": "document.getElementById(id)",
+    "params": [
+      {
+        "name": "id",
+        "desc": "Identifiant (attribut id) de l'élément HTML à cibler."
+      }
+    ]
   },
   {
     "id": "js-getelementsbyname",
@@ -140,51 +211,86 @@
     "simple": "Retourne un tableau d'éléments partageant le même attribut name (ex: boutons radio).",
     "code": "let radios = document.getElementsByName(\"genre\");\nif (radios[0].checked) { alert(\"Masculin\"); }",
     "note": "Retourne un tableau d'éléments (utilisez des crochets [0], [1]).",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "document.getElementsByName(nom)",
+    "params": [
+      {
+        "name": "nom",
+        "desc": "Nom (attribut name) des éléments HTML à sélectionner."
+      }
+    ]
   },
   {
     "id": "math-abs",
-    "name": "Math.abs(x)",
+    "name": "Math.abs()",
     "category": "Objet Math",
     "subcategory": "Fonctions Mathématiques",
     "official": "Retourne la valeur absolue.",
     "simple": "Transforme un nombre négatif en nombre positif.",
     "code": "let diff = Math.abs(-5); // 5",
     "note": "Supprime le signe moins.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "Math.abs(x)",
+    "params": [
+      {
+        "name": "x",
+        "desc": "Nombre dont on extrait la valeur absolue (positive)."
+      }
+    ]
   },
   {
     "id": "math-sqrt",
-    "name": "Math.sqrt(x)",
+    "name": "Math.sqrt()",
     "category": "Objet Math",
     "subcategory": "Fonctions Mathématiques",
     "official": "Retourne la racine carrée.",
     "simple": "Calcule la racine carrée d'un nombre.",
     "code": "let r = Math.sqrt(16); // 4",
-    "note": "x doit être supérieur ou égal à zéro.",
-    "noteType": "remember"
+    "note": "X doit être supérieur ou égal à zéro.",
+    "noteType": "remember",
+    "syntax": "Math.sqrt(x)",
+    "params": [
+      {
+        "name": "x",
+        "desc": "Nombre dont on calcule la racine carrée."
+      }
+    ]
   },
   {
     "id": "math-round",
-    "name": "Math.round(x)",
+    "name": "Math.round()",
     "category": "Objet Math",
     "subcategory": "Arrondis & Troncatures",
     "official": "Retourne l'entier le plus proche.",
     "simple": "Arrondit à l'entier supérieur ou inférieur selon la décimale.",
     "code": "let a = Math.round(4.6); // 5\nlet b = Math.round(4.2); // 4",
     "note": "Arrondi arithmétique standard.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "Math.round(x)",
+    "params": [
+      {
+        "name": "x",
+        "desc": "Nombre réel à arrondir à l'entier le plus proche."
+      }
+    ]
   },
   {
     "id": "math-trunc",
-    "name": "Math.trunc(x)",
+    "name": "Math.trunc()",
     "category": "Objet Math",
     "subcategory": "Arrondis & Troncatures",
     "official": "Retourne la troncature entière d'un nombre.",
     "simple": "Supprime la partie décimale sans arrondir.",
     "code": "let t = Math.trunc(14.89); // 14",
     "note": "Retire simplement les chiffres après la virgule.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "Math.trunc(x)",
+    "params": [
+      {
+        "name": "x",
+        "desc": "Nombre réel dont on conserve uniquement la partie entière."
+      }
+    ]
   },
   {
     "id": "math-random",
@@ -194,8 +300,10 @@
     "official": "Retourne un réel aléatoire dans [0, 1[.",
     "simple": "Génère un nombre au hasard entre 0 (inclus) et 1 (exclus).",
     "code": "// Générer un entier entre Min et Max\nlet n = Math.floor(Math.random() * (max - min + 1)) + min;",
-    "note": "Formule clé pour le Bac : Math.floor(Math.random() * (Max - Min + 1)) + Min.",
-    "noteType": "warning"
+    "note": "Formule clé pour le Bac : Math.floor(Math.<code>random()</code> * (Max - Min + 1)) + Min.",
+    "noteType": "warning",
+    "syntax": "Math.random()",
+    "params": []
   },
   {
     "id": "str-concat",
@@ -206,7 +314,18 @@
     "simple": "Assemble deux chaînes de texte bout à bout.",
     "code": "let nomComplet = \"Ali \" + \"Ben Salah\";",
     "note": "Si l'un des deux opérandes est du texte, + transforme tout en texte !",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "ch1 + ch2",
+    "params": [
+      {
+        "name": "ch1",
+        "desc": "Premier texte à assembler."
+      },
+      {
+        "name": "ch2",
+        "desc": "Second texte à rajouter."
+      }
+    ]
   },
   {
     "id": "str-length",
@@ -216,52 +335,98 @@
     "official": "Propriété qui retourne la longueur de ch.",
     "simple": "Donne le nombre total de caractères de la chaîne.",
     "code": "let m = \"Baccalaureat\";\nconsole.log(m.length); // 12",
-    "note": "Propriété sans parenthèses (pas m.length()).",
-    "noteType": "remember"
+    "note": "Propriété sans parenthèses (pas m.<code>length()</code>).",
+    "noteType": "remember",
+    "syntax": "ch.length",
+    "params": []
   },
   {
     "id": "str-indexof",
-    "name": "ch.indexOf(ch1[, p])",
+    "name": "ch.indexOf()",
     "category": "Chaînes de Caractères",
     "subcategory": "Recherche de Sous-chaîne",
     "official": "Retourne la position de la 1ère occurrence de ch1 dans ch à partir de la position p.",
     "simple": "Cherche la position du texte ch1 dans ch (ou -1 si introuvable).",
     "code": "let pos = \"informatique\".indexOf(\"ma\"); // pos = 5",
-    "note": "La 1ère lettre commence à l'indice 0 ! Retourne -1 si absent.",
-    "noteType": "warning"
+    "note": "Les indices commencent à <strong>0</strong>. Si la sous-chaîne est introuvable, <code>indexOf()</code> renvoie <strong>-1</strong>.",
+    "noteType": "warning",
+    "syntax": "ch.indexOf(ch1, [p])",
+    "params": [
+      {
+        "name": "ch1",
+        "desc": "Texte ou caractère à rechercher (renvoie l'indice ou -1)."
+      },
+      {
+        "name": "p",
+        "desc": "(Optionnel) Indice de départ pour la recherche."
+      }
+    ]
   },
   {
     "id": "str-lastindexof",
-    "name": "ch.lastIndexOf(ch1[, p])",
+    "name": "ch.lastIndexOf()",
     "category": "Chaînes de Caractères",
     "subcategory": "Recherche de Sous-chaîne",
     "official": "Retourne la position de la dernière occurrence de ch1 dans ch.",
     "simple": "Cherche la dernière apparition d'un mot ou d'un caractère.",
     "code": "let pos = \"bienvenue\".lastIndexOf(\"e\"); // pos = 8",
     "note": "Recherche en partant de la fin.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "ch.lastIndexOf(ch1, [p])",
+    "params": [
+      {
+        "name": "ch1",
+        "desc": "Texte dont on cherche la dernière position dans la chaîne."
+      },
+      {
+        "name": "p",
+        "desc": "(Optionnel) Position de départ pour chercher vers l'arrière."
+      }
+    ]
   },
   {
     "id": "str-substring",
-    "name": "ch.substring(d, f)",
+    "name": "ch.substring()",
     "category": "Chaînes de Caractères",
     "subcategory": "Extraction & Remplacement",
     "official": "Retourne une sous-chaîne de ch de la position d à la position f (non incluse).",
     "simple": "Extrait un morceau de texte entre l'indice début (inclut) et fin (exclu).",
     "code": "let txt = \"Sciences\";\nlet s = txt.substring(0, 3); // \"Sci\"",
-    "note": "L'indice de fin f n'est PAS inclus dans le résultat extrait !",
-    "noteType": "warning"
+    "note": "<code>ch.substring(d, f)</code> extrait du texte de l'indice <code>d</code> (inclus) jusqu'à l'indice <code>f</code> (<strong>EXCLU</strong>) !",
+    "noteType": "warning",
+    "syntax": "ch.substring(d, f)",
+    "params": [
+      {
+        "name": "d",
+        "desc": "Indice de début d'extraction (inclus)."
+      },
+      {
+        "name": "f",
+        "desc": "Indice de fin d'extraction (exclu)."
+      }
+    ]
   },
   {
     "id": "str-replace",
-    "name": "ch.replace(ch1, ch2)",
+    "name": "ch.replace()",
     "category": "Chaînes de Caractères",
     "subcategory": "Extraction & Remplacement",
     "official": "Retourne une chaîne où la 1ère occurrence de ch1 est remplacée par ch2.",
     "simple": "Remplace un mot par un autre.",
     "code": "let res = \"HTML4\".replace(\"4\", \"5\"); // \"HTML5\"",
     "note": "Ne remplace que la première occurrence trouvée.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "ch.replace(ch1, ch2)",
+    "params": [
+      {
+        "name": "ch1",
+        "desc": "Texte à rechercher."
+      },
+      {
+        "name": "ch2",
+        "desc": "Nouveau texte de remplacement."
+      }
+    ]
   },
   {
     "id": "str-tolowercase",
@@ -272,7 +437,9 @@
     "simple": "Transforme tout le texte en minuscules.",
     "code": "let min = \"TUNISIE\".toLowerCase(); // \"tunisie\"",
     "note": "Très utile pour comparer des adresses mail sans tenir compte de la casse.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "ch.toLowerCase()",
+    "params": []
   },
   {
     "id": "str-touppercase",
@@ -283,7 +450,9 @@
     "simple": "Transforme tout le texte en majuscules.",
     "code": "let maj = \"bac\".toUpperCase(); // \"BAC\"",
     "note": "Convertit en majuscules.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "ch.toUpperCase()",
+    "params": []
   },
   {
     "id": "str-trim",
@@ -294,7 +463,9 @@
     "simple": "Nettoie les espaces inutiles avant et après le texte.",
     "code": "let s = \"   test   \".trim(); // \"test\"",
     "note": "N'enlève pas les espaces situés au milieu du texte.",
-    "noteType": "remember"
+    "noteType": "tip",
+    "syntax": "ch.trim()",
+    "params": []
   },
   {
     "id": "str-fromcharcode",
@@ -305,18 +476,32 @@
     "simple": "Convertit un ou plusieurs codes ASCII numériques en caractères.",
     "code": "let lettre = String.fromCharCode(65); // \"A\"",
     "note": "65 est le code ASCII de la lettre 'A' majuscule.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "String.fromCharCode(code1, ...)",
+    "params": [
+      {
+        "name": "code1, ...",
+        "desc": "Code(s) ASCII numérique(s) à convertir en caractère(s)."
+      }
+    ]
   },
   {
     "id": "date-new",
-    "name": "new Date() / new Date(ch)",
+    "name": "new Date()",
     "category": "Objet Date",
     "subcategory": "Instanciation & Création",
     "official": "Retourne la date courante ou un objet Date à partir d'une chaîne.",
     "simple": "Crée une variable représentant la date et l'heure.",
     "code": "let d1 = new Date(); // Date d'aujourd'hui\nlet d2 = new Date(\"2025-06-15\");",
     "note": "Instanciation obligatoire avec le mot-clé 'new'.",
-    "noteType": "remember"
+    "noteType": "warning",
+    "syntax": "new Date([dateString])",
+    "params": [
+      {
+        "name": "dateString",
+        "desc": "(Optionnel) Date sous forme de texte (ex: '2025-06-15'). Si omis, instancie la date actuelle."
+      }
+    ]
   },
   {
     "id": "date-getdate",
@@ -327,7 +512,9 @@
     "simple": "Récupère le numéro du jour.",
     "code": "let jour = d.getDate();",
     "note": "Retourne une valeur de 1 à 31.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "d.getDate()",
+    "params": []
   },
   {
     "id": "date-getmonth",
@@ -337,8 +524,10 @@
     "official": "Retourne le numéro du mois (entre 0 et 11).",
     "simple": "Récupère le mois actuel.",
     "code": "let mois = d.getMonth() + 1; // Ajouter 1 pour avoir 1 à 12",
-    "note": "Attention piège du Bac : Janvier vaut 0 et Décembre vaut 11 ! Ajoutez toujours +1.",
-    "noteType": "warning"
+    "note": "<code>d.getMonth()</code> renvoie un entier de <strong>0</strong> (Janvier) à <strong>11</strong> (Décembre). Toujours ajouter <strong>+1</strong> pour obtenir le vrai numéro de mois (1 à 12) !",
+    "noteType": "warning",
+    "syntax": "d.getMonth()",
+    "params": []
   },
   {
     "id": "date-getfullyear",
@@ -348,8 +537,10 @@
     "official": "Retourne la valeur de l'année sur 4 chiffres.",
     "simple": "Récupère l'année à 4 chiffres (ex: 2025).",
     "code": "let annee = d.getFullYear(); // 2025",
-    "note": "Utiliser getFullYear() et non getYear() déprécié.",
-    "noteType": "remember"
+    "note": "Utiliser <code>getFullYear()</code> et non <code>getYear()</code> déprécié.",
+    "noteType": "remember",
+    "syntax": "d.getFullYear()",
+    "params": []
   },
   {
     "id": "date-tostring",
@@ -360,29 +551,53 @@
     "simple": "Convertit la date complète en texte lisible.",
     "code": "let txtDate = d.toString();",
     "note": "Format texte standard de la date.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "d.toString()",
+    "params": []
   },
   {
     "id": "dom-attr",
-    "name": "element.attribut = valeur",
+    "name": "element.attribut",
     "category": "Modification du DOM",
     "subcategory": "Attributs & Styles",
     "official": "Change la valeur de l'attribut d'un élément HTML.",
     "simple": "Modifie dynamiquement les attributs (value, checked, disabled, readonly, src, muted).",
     "code": "document.getElementById(\"btn\").disabled = true;\ndocument.getElementById(\"photo\").src = \"2.jpg\";",
     "note": "Attributs au programme : value, checked, disabled, readonly, src, muted.",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "element.attribut = valeur",
+    "params": [
+      {
+        "name": "attribut",
+        "desc": "Nom de l'attribut HTML (value, checked, disabled, src...)."
+      },
+      {
+        "name": "valeur",
+        "desc": "Nouvelle valeur à appliquer à l'attribut."
+      }
+    ]
   },
   {
     "id": "dom-style",
-    "name": "element.style.propriété",
+    "name": "element.style",
     "category": "Modification du DOM",
     "subcategory": "Attributs & Styles",
     "official": "Change le style d'un élément HTML en ligne.",
     "simple": "Modifie dynamiquement les styles CSS (color, background, border, font, width, height).",
     "code": "let obj = document.getElementById(\"zone\");\nobj.style.color = \"red\";\nobj.style.background = \"#ffff00\";",
     "note": "Propriétés au programme : color, background, border, font, width, height.",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "element.style.propriété = valeur",
+    "params": [
+      {
+        "name": "propriété",
+        "desc": "Propriété CSS (color, background, border...)."
+      },
+      {
+        "name": "valeur",
+        "desc": "Nouvelle valeur CSS à appliquer."
+      }
+    ]
   },
   {
     "id": "dom-methods",
@@ -393,7 +608,9 @@
     "simple": "Lance ou met en pause la lecture d'un média audio/vidéo.",
     "code": "let v = document.getElementById(\"monAudio\");\nv.play(); // Lancer la lecture",
     "note": "Applique une méthode native JS sur l'élément multimédia.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "element.play() / element.pause()",
+    "params": []
   },
   {
     "id": "dom-selectedindex",
@@ -404,6 +621,8 @@
     "simple": "Récupère l'indice (0, 1, 2...) de l'option actuellement choisie.",
     "code": "let idx = document.getElementById(\"ville\").selectedIndex;\nif (idx == 0) { alert(\"Veuillez choisir une ville !\"); }",
     "note": "Si selectedIndex vaut 0, cela correspond souvent à la première option d'invite !",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "selectObj.selectedIndex",
+    "params": []
   }
 ]

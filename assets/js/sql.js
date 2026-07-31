@@ -86,10 +86,12 @@ createApp({
         if (this.searchQuery.trim() !== '') {
           const q = this.searchQuery.toLowerCase();
           const nameMatch = item.name.toLowerCase().includes(q);
+          const synMatch = item.syntax && item.syntax.toLowerCase().includes(q);
           const offMatch = item.official.toLowerCase().includes(q);
           const simMatch = item.simple.toLowerCase().includes(q);
           const noteMatch = item.note && item.note.toLowerCase().includes(q);
-          return nameMatch || offMatch || simMatch || noteMatch;
+          const paramMatch = item.params && item.params.some(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+          return nameMatch || synMatch || offMatch || simMatch || noteMatch || paramMatch;
         }
         return true;
       });

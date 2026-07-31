@@ -52,7 +52,7 @@
     "values": [],
     "code": "input[required] {\n  border: 2px solid red;\n}",
     "note": "Pratique pour styliser les champs obligatoires.",
-    "noteType": "tip"
+    "noteType": "warning"
   },
   {
     "id": "sel-attr-val",
@@ -96,7 +96,7 @@
     "values": [],
     "code": "a:visited {\n  color: purple;\n}",
     "note": "Permet de différencier les liens consultés.",
-    "noteType": "remember"
+    "noteType": "tip"
   },
   {
     "id": "sel-a-hover",
@@ -169,7 +169,7 @@
       "lighter"
     ],
     "code": "p {\n  font-weight: bold;\n}",
-    "note": "bold = gras.",
+    "note": "Bold = gras.",
     "noteType": "remember"
   },
   {
@@ -183,7 +183,7 @@
       "italic"
     ],
     "code": "p {\n  font-style: italic;\n}",
-    "note": "italic = texte en italique.",
+    "note": "Italic = texte en italique.",
     "noteType": "remember"
   },
   {
@@ -216,7 +216,7 @@
     ],
     "code": "p {\n  font: italic bold 16px Arial, sans-serif;\n}",
     "note": "Ordre obligatoire : font-style font-weight font-size font-family.",
-    "noteType": "remember"
+    "noteType": "warning"
   },
   {
     "id": "css-text-align",
@@ -231,7 +231,7 @@
       "justify"
     ],
     "code": "h1 {\n  text-align: center;\n}",
-    "note": "left (gauche), center (centré), right (droite), justify (justifié).",
+    "note": "Left (gauche), center (centré), right (droite), justify (justifié).",
     "noteType": "remember"
   },
   {
@@ -262,7 +262,7 @@
       "capitalize"
     ],
     "code": "h2 {\n  text-transform: uppercase;\n}",
-    "note": "uppercase = TOUT EN MAJUSCULES.",
+    "note": "Uppercase = TOUT EN MAJUSCULES.",
     "noteType": "tip"
   },
   {
@@ -323,7 +323,7 @@
       "%"
     ],
     "code": "div {\n  height: 150px;\n}",
-    "note": "Attention au débordement si la hauteur est fixe.",
+    "note": "Au débordement si la hauteur est fixe.",
     "noteType": "warning"
   },
   {
@@ -340,7 +340,7 @@
       "sticky"
     ],
     "code": "div {\n  position: absolute;\n  top: 20px;\n}",
-    "note": "position: absolute nécessite un parent positionné en relative !",
+    "note": "Position: absolute nécessite un parent positionné en relative !",
     "noteType": "warning"
   },
   {
@@ -422,7 +422,7 @@
       "inline-block"
     ],
     "code": "span {\n  display: inline-block;\n}",
-    "note": "display: none masque également l'élément.",
+    "note": "Display: none masque également l'élément.",
     "noteType": "warning"
   },
   {
@@ -495,7 +495,7 @@
       "auto"
     ],
     "code": "div {\n  overflow: auto;\n}",
-    "note": "overflow: scroll ajoute toujours des barres de défilement.",
+    "note": "Overflow: scroll ajoute toujours des barres de défilement.",
     "noteType": "tip"
   },
   {
@@ -589,7 +589,7 @@
     ],
     "code": "div {\n  border: 2px solid #1e40af;\n}",
     "note": "Ordre usuel recommandé : border-width border-style border-color (ex: 2px solid red).",
-    "noteType": "warning"
+    "noteType": "tip"
   },
   {
     "id": "css-bg-color",
@@ -632,7 +632,7 @@
       "no-repeat"
     ],
     "code": "div {\n  background-repeat: no-repeat;\n}",
-    "note": "no-repeat évite la mosaïque d'images.",
+    "note": "No-repeat évite la mosaïque d'images.",
     "noteType": "tip"
   },
   {
@@ -649,7 +649,7 @@
       "%"
     ],
     "code": "div {\n  background-size: cover;\n}",
-    "note": "cover étire l'image pour recouvrir tout l'espace.",
+    "note": "Cover étire l'image pour recouvrir tout l'espace.",
     "noteType": "tip"
   },
   {
@@ -668,7 +668,7 @@
     ],
     "code": "body {\n  background: #ffffff url(\"bg.jpg\") no-repeat center / cover;\n}",
     "note": "Ordre recommandé : background-color -> background-image -> background-repeat -> background-position / background-size.",
-    "noteType": "remember"
+    "noteType": "tip"
   },
   {
     "id": "css-table-layout",
@@ -681,7 +681,7 @@
       "fixed"
     ],
     "code": "table {\n  table-layout: fixed;\n}",
-    "note": "table-layout: fixed accélère l'affichage des grands tableaux.",
+    "note": "Table-layout: fixed accélère l'affichage des grands tableaux.",
     "noteType": "tip"
   },
   {
@@ -695,7 +695,7 @@
       "separate"
     ],
     "code": "table {\n  border-collapse: collapse;\n}",
-    "note": "border-collapse: collapse est indispensable pour des tableaux propres !",
+    "note": "Border-collapse: collapse est indispensable pour des tableaux propres !",
     "noteType": "warning"
   },
   {
@@ -711,8 +711,8 @@
       "lower-alpha"
     ],
     "code": "ul {\n  list-style-type: square;\n}",
-    "note": "none permet de supprimer les puces d'un menu de navigation.",
-    "noteType": "warning"
+    "note": "None permet de supprimer les puces d'un menu de navigation.",
+    "noteType": "tip"
   },
   {
     "id": "css-list-pos",
@@ -725,7 +725,7 @@
       "inside"
     ],
     "code": "ul {\n  list-style-position: inside;\n}",
-    "note": "inside place la puce dans l'alignement du texte.",
+    "note": "Inside place la puce dans l'alignement du texte.",
     "noteType": "tip"
   },
   {
@@ -900,7 +900,7 @@
       "alternate-reverse"
     ],
     "code": "div {\n  animation-direction: alternate;\n}",
-    "note": "alternate fait faire des aller-retours.",
+    "note": "Alternate fait faire des aller-retours.",
     "noteType": "tip"
   },
   {
@@ -935,7 +935,7 @@
       "translate()"
     ],
     "code": "img:hover {\n  transform: scale(1.1) rotate(5deg);\n}",
-    "note": "scale(1.1) grossit de 10%. rotate(45deg) pivote de 45 degrés.",
+    "note": "Scale(1.1) grossit de 10%. rotate(45deg) pivote de 45 degrés.",
     "noteType": "tip"
   },
   {
@@ -950,7 +950,7 @@
       "invert()"
     ],
     "code": "img {\n  filter: grayscale(100%);\n}",
-    "note": "grayscale(100%) rend l'image complètement en noir et blanc.",
+    "note": "Grayscale(100%) rend l'image complètement en noir et blanc.",
     "noteType": "tip"
   }
 ]

@@ -135,7 +135,7 @@
                     <!-- COLONNE GAUCHE (COLONNE 1) -->
                     <div class="col-lg-6">
                       <div v-for="(subGroups, categoryName) in groupedItemsColumns.col1" :key="'col1-'+categoryName"
-                        class="revision-card p-3 p-md-4 mb-4">
+                        class="revision-card p-1 p-md-4 mb-4">
                         <!-- Category Header -->
                         <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
                           <div class="d-flex align-items-center gap-2">
@@ -169,7 +169,8 @@
                                 <tr v-for="item in groupItems" :key="'tbl1-'+item.id" @click="openModal(item)"
                                   title="Cliquer pour afficher la fiche complète">
                                   <td>
-                                    <span class="tag-code-badge" v-html="formatCssName(item.name)"></span>
+                                    <code class="fw-bold font-monospace fs-6 text-primary"
+                                      v-html="formatCssName(item.name)"></code>
                                     <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
                                       style="font-size: 0.65rem;" title="Super-propriété">
                                       <i class="bi bi-layers-fill"></i>
@@ -197,7 +198,7 @@
                     <!-- COLONNE DROITE (COLONNE 2) -->
                     <div class="col-lg-6">
                       <div v-for="(subGroups, categoryName) in groupedItemsColumns.col2" :key="'col2-'+categoryName"
-                        class="revision-card p-3 p-md-4 mb-4">
+                        class="revision-card p-1 p-md-4 mb-4">
                         <!-- Category Header -->
                         <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
                           <div class="d-flex align-items-center gap-2">
@@ -231,7 +232,8 @@
                                 <tr v-for="item in groupItems" :key="'tbl2-'+item.id" @click="openModal(item)"
                                   title="Cliquer pour afficher la fiche complète">
                                   <td>
-                                    <span class="tag-code-badge" v-html="formatCssName(item.name)"></span>
+                                    <code class="fw-bold font-monospace fs-6 text-primary"
+                                      v-html="formatCssName(item.name)"></code>
                                     <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
                                       style="font-size: 0.65rem;" title="Super-propriété">
                                       <i class="bi bi-layers-fill"></i>

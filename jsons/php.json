@@ -30,7 +30,7 @@
     "simple": "Texte entouré de guillemets simples (') ou doubles (\").",
     "code": "$nom = \"Ali\"; // type string",
     "note": "La concaténation se fait avec le point (.).",
-    "noteType": "warning"
+    "noteType": "remember"
   },
   {
     "id": "php-bool",
@@ -51,7 +51,7 @@
     "official": "Structure de données permettant de regrouper plusieurs éléments. PHP distingue deux types principaux au programme du Bac : les tableaux à indices numériques et les tableaux associatifs.",
     "simple": "Permet de stocker plusieurs données dans une seule variable. 1) Tableau numérique : accès par indice de 0 à n-1 ($t[0]). 2) Tableau associatif : accès par des clés textuelles ($t['nom']).",
     "code": "// --- 1. TABLEAU À INDICES NUMÉRIQUES ---\n// Les indices sont attribués automatiquement de 0 à (taille - 1)\n$notes = array(12, 15, 18);\necho $notes[0]; // Affiche 12 (1er élément)\necho $notes[1]; // Affiche 15 (2ème élément)\n\n// --- 2. TABLEAU ASSOCIATIF ---\n// Chaque valeur est associée à une clé textuelle via l'opérateur '=>'\n$eleve = array(\"nom\" => \"Ben Ali\", \"prenom\" => \"Sami\", \"moyenne\" => 15.5);\necho $eleve['nom'];     // Affiche \"Ben Ali\"\necho $eleve['moyenne']; // Affiche 15.5",
-    "note": "Différence essentielle pour l'examen Bac : 1) Tableau Numérique : Clés = entiers de 0 à N-1 -> Accès via $t[0]. Exemple : mysqli_fetch_row(). 2) Tableau Associatif : Clés = chaînes textuelles ('cle' => valeur) -> Accès via $t['cle']. Exemples : $_POST['nom'], $_GET['id'], mysqli_fetch_array().",
+    "note": "Différence essentielle pour l'examen :<ul class='mb-0 ps-3 mt-1'><li><strong>Tableau Numérique :</strong> Clés = entiers consécutifs de 0 à N-1 (ex: <code>$t[0]</code>).</li><li><strong>Tableau Associatif :</strong> Clés = chaînes textuelles nominatives (ex: <code>$t['nom']</code>).</li></ul>",
     "noteType": "warning",
     "attrsDetail": [
       {
@@ -64,6 +64,13 @@
         "desc": "Clés nominatives uniques (chaînes de texte) associées à des valeurs via '=>'. Accès via $eleve['nom']. Indispensable pour traiter les tuples de BDD et les données de formulaires ($_POST, $_GET).",
         "values": "$tab = array('cle1' => val1, 'cle2' => val2); // Accès: $tab['cle1']"
       }
+    ],
+    "syntax": "array(val1, val2, ...)",
+    "params": [
+      {
+        "name": "val1, val2, ...",
+        "desc": "Valeurs ou paires 'clé' => valeur à stocker dans le tableau."
+      }
     ]
   },
   {
@@ -75,7 +82,14 @@
     "simple": "Force le changement de type en entier.",
     "code": "$n = (int)\"125\"; // 125",
     "note": "Transtypage explicite (casting).",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "(int) $var",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Valeur à convertir en entier."
+      }
+    ]
   },
   {
     "id": "cast-float",
@@ -86,7 +100,14 @@
     "simple": "Force le changement de type en réel (décimal).",
     "code": "$r = (float)\"14.5\"; // 14.5",
     "note": "Convertit en nombre réel.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "(float) $var",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Valeur à convertir en nombre réel (décimal)."
+      }
+    ]
   },
   {
     "id": "cast-string",
@@ -97,7 +118,14 @@
     "simple": "Force la conversion en texte.",
     "code": "$t = (string)100; // \"100\"",
     "note": "Convertit n'importe quelle valeur en texte.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "(string) $var",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Valeur à convertir en texte."
+      }
+    ]
   },
   {
     "id": "cast-bool",
@@ -108,7 +136,14 @@
     "simple": "Convertit en true ou false (0 donne false, le reste true).",
     "code": "$b = (bool)1; // true",
     "note": "Utile pour la logique conditionnelle.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "(bool) $var",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Valeur à convertir en booléen (true / false)."
+      }
+    ]
   },
   {
     "id": "cast-array",
@@ -119,7 +154,14 @@
     "simple": "Transforme une valeur simple en un tableau à un élément.",
     "code": "$arr = (array)\"Ali\";",
     "note": "Transtypage en tableau.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "(array) $var",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Valeur simple à convertir en tableau."
+      }
+    ]
   },
   {
     "id": "php-op-logical",
@@ -130,7 +172,7 @@
     "simple": "Combinent des conditions dans les structures de contrôle if / while.",
     "code": "if ($age >= 18 && $note >= 10) {\n  echo \"Admis\";\n}",
     "note": "Attention : && est prioritaire sur ||.",
-    "noteType": "remember"
+    "noteType": "warning"
   },
   {
     "id": "php-op-compare",
@@ -140,7 +182,7 @@
     "official": "Opérateurs de comparaison de valeur et de type : Égalité (==), Différence (!= ou <>), Identique (===), Non identique (!==), Supérieur (>), Supérieur ou égal (>=), Inférieur (<), Inférieur ou égal (<=).",
     "simple": "Comparent deux valeurs et renvoient un booléen (true ou false). Remarquez que la différence s'écrit != ou <> en PHP. Les opérateurs stricts === et !== vérifient aussi le type de donnée !",
     "code": "// 1. Égalité simple et différence (avec conversion de type auto)\nif ($age == \"18\") { /* Vrai (valeurs égales) */ }\nif ($val != 5) { /* Vrai si $val différent de 5 (s'écrit aussi $val <> 5) */ }\n\n// 2. Égalité stricte === et différence stricte !== (valeur ET type)\nif ($note === 10) { /* Vrai uniquement si $note est un entier valant 10 */ }\nif ($a !== $b) { /* Vrai si la valeur OU le type est différent */ }",
-    "note": "Règle essentielle Bac : 1) == et != (ou <>) ne comparent QUE les valeurs. 2) === et !== comparent la valeur ET le type (ex: 10 === '10' est faux car int != string).",
+    "note": "Règles de comparaison :<ul class='mb-0 ps-3 mt-1'><li><code>==</code> et <code>!=</code> (ou <code>&lt;&gt;</code>) : comparent uniquement les <strong>valeurs</strong>.</li><li><code>===</code> et <code>!==</code> : comparent la <strong>valeur ET le type</strong> de donnée.</li></ul>",
     "noteType": "warning",
     "attrsDetail": [
       {
@@ -184,7 +226,7 @@
     "official": "Affectation (=), Concaténation (.).",
     "simple": "= attribue une valeur. Le point (.) assemble deux chaînes de texte !",
     "code": "$nom = \"Ali\";\n$message = \"Bonjour \" . $nom; // \"Bonjour Ali\"",
-    "note": "Attention piège : en PHP, la concaténation de texte s'effectue avec un POINT (.) et PAS un + !",
+    "note": "Attention piège : en PHP, la concaténation de chaînes s'effectue avec le <strong>POINT (<code>.</code>)</strong> et non pas un <code>+</code> !",
     "noteType": "warning"
   },
   {
@@ -196,7 +238,14 @@
     "simple": "Transforme un code ASCII en lettre.",
     "code": "$lettre = chr(65); // \"A\"",
     "note": "65 est le code ASCII du 'A' majuscule.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "chr($ascii)",
+    "params": [
+      {
+        "name": "$ascii",
+        "desc": "Code ASCII numérique (ex: 65 donne 'A')."
+      }
+    ]
   },
   {
     "id": "php-ord",
@@ -206,8 +255,15 @@
     "official": "Retourne le code ASCII du 1er caractère de l'argument.",
     "simple": "Donne le code ASCII numérique d'une lettre.",
     "code": "$code = ord(\"A\"); // 65",
-    "note": "Fonction inverse de chr().",
-    "noteType": "remember"
+    "note": "Fonction inverse de <code>chr()</code>.",
+    "noteType": "remember",
+    "syntax": "ord($car)",
+    "params": [
+      {
+        "name": "$car",
+        "desc": "Caractère dont on extrait le code ASCII (ex: 'A' donne 65)."
+      }
+    ]
   },
   {
     "id": "php-strlen",
@@ -218,7 +274,14 @@
     "simple": "Calcule le nombre de caractères d'une chaîne.",
     "code": "$len = strlen(\"Tunisie\"); // 7",
     "note": "Très utilisé pour valider la longueur d'un mot de passe.",
-    "noteType": "warning"
+    "noteType": "tip",
+    "syntax": "strlen($ch)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte dont on compte le nombre de caractères."
+      }
+    ]
   },
   {
     "id": "php-substr",
@@ -228,7 +291,7 @@
     "official": "Retourne une partie d'une chaîne de caractères définie par un indice de départ et une longueur (nombre de caractères).",
     "simple": "Extrait une sous-chaîne. Syntaxe : substr($chaine, $depart, $longueur). Attention : le 3ème paramètre est la LONGUEUR (nombre de caractères) et PAS l'indice de fin !",
     "code": "// 1. Extrait 4 caractères à partir de l'indice 0\n$sub1 = substr(\"Informatique\", 0, 4); // \"Info\"\n\n// 2. Extrait 3 caractères à partir de l'indice 4\n$sub2 = substr(\"Informatique\", 4, 3); // \"orm\"\n\n// 3. Omission de la longueur : extrait jusqu'à la FIN du texte\n$domain = substr(\"user@education.tn\", 5); // \"education.tn\"\n\n// 4. PIÈGE DE CONFUSION BAC (PHP vs JS / Python / Algo) :\n// Algo/JS/Python : substring(4, 7) ou ch[4:7] va de l'indice 4 à 7 (3 caractères).\n// En PHP : substr(\"Informatique\", 4, 7) extrait 7 CARACTÈRES à partir de l'indice 4 ! -> \"ormatiq\"",
-    "note": "PIÈGE DE CONFUSION MAJEUR AU BAC : Ne confondez pas PHP avec JavaScript (ch.substring(d, f)), Python (ch[d:f]) ou l'Algorithmique (sous_chaine(ch, d, f)) ! En PHP, le 3ème paramètre de substr($ch, $d, $n) est la LONGUEUR (nombre de caractères à prendre), et NON PAS l'indice de fin !",
+    "note": "En PHP, <code>substr($ch, $d, $long)</code> prend la <strong>LONGUEUR</strong> (nombre de caractères) en 3ème paramètre et <strong>NON PAS</strong> l'indice de fin !",
     "noteType": "warning",
     "attrsDetail": [
       {
@@ -251,6 +314,21 @@
         "desc": "Si le 3ème paramètre $longueur est omis, substr() extrait tout le reste de la chaîne jusqu'à la fin.",
         "values": "substr(\"user@site.tn\", 5) -> \"site.tn\""
       }
+    ],
+    "syntax": "substr($ch, $d, $long)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte source."
+      },
+      {
+        "name": "$d",
+        "desc": "Indice de départ (0 = premier caractère)."
+      },
+      {
+        "name": "$long",
+        "desc": "Nombre de caractères à extraire."
+      }
     ]
   },
   {
@@ -261,7 +339,7 @@
     "official": "Cherche la position numérique de la première occurrence d'une sous-chaîne dans une chaîne de caractères.",
     "simple": "Cherche un mot ou un caractère dans un texte et renvoie son indice (de 0 à n-1). Si la chaîne est INTROUVABLE, elle renvoie la valeur booléenne FALSE !",
     "code": "// 1. Test de présence d'un caractère (ex: validation e-mail)\n$email = \"eleve@education.tn\";\nif (strpos($email, \"@\") === false) {\n  echo \"Erreur : le symbole @ est introuvable !\";\n} else {\n  echo \"Arobase trouvé à l'indice : \" . strpos($email, \"@\"); // Indice 5\n}\n\n// 2. ATTENTION AU PIÈGE DU BAC : Indice 0 vs FALSE\n$txt = \"admin@site.tn\";\n// strpos($txt, \"a\") renvoie 0 (trouvé tout au début !)\n// Ne JAMAIS écrire : if (strpos(...) == false) car 0 == false est VRAI !\n// Utiliser OBLIGATOIREMENT l'égalité stricte : (=== false) ou (!== false)",
-    "note": "PIÈGE CRUCIAL DU BAC : Si la recherche échoue, strpos() renvoie la valeur booléenne FALSE (et NON PAS -1). Comme l'indice du premier caractère est 0, une comparaison simple (== false) confond l'indice 0 et false ! Vous DEVEZ OBLIGATOIREMENT tester avec l'opérateur strict (=== false) ou (!== false).",
+    "note": "<code>strpos()</code> renvoie <strong>FALSE</strong> si le texte n'est pas trouvé. Si le texte est au début (indice 0), un test simple <code>== false</code> échoue. Tester <strong>OBLIGATOIREMENT</strong> avec l'égalité stricte <code>=== false</code> ou <code>!== false</code> !",
     "noteType": "warning",
     "attrsDetail": [
       {
@@ -279,6 +357,17 @@
         "desc": "Ne JAMAIS faire (strpos() == false) car en PHP 0 == false vaut TRUE ! Utiliser OBLIGATOIREMENT === false (introuvable) ou !== false (trouvé).",
         "values": "if (strpos($email, '@') === false)"
       }
+    ],
+    "syntax": "strpos($ch, $sub)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte dans lequel rechercher."
+      },
+      {
+        "name": "$sub",
+        "desc": "Mot ou caractère à trouver (renvoie l'indice ou false)."
+      }
     ]
   },
   {
@@ -289,7 +378,7 @@
     "official": "Effectue une comparaison binaire sensible à la casse (case-sensitive) de deux chaînes de caractères basée sur leurs codes ASCII.",
     "simple": "Compare deux textes caractère par caractère selon leur valeur ASCII (sensible à la casse). Renvoie 0 si les deux chaînes sont exactement identiques !",
     "code": "// 1. Tester l'égalité exacte de deux chaînes (ex: mot de passe)\nif (strcmp($pass1, $pass2) == 0) {\n  echo \"Mots de passe identiquement identiques (casse respectée)\";\n}\n\n// 2. Comparaison ASCII (sensible à la casse)\n$res1 = strcmp(\"abc\", \"abc\"); // 0  (identiques)\n$res2 = strcmp(\"A\", \"a\");     // < 0 (négatif car 'A'=65 < 'a'=97)\n$res3 = strcmp(\"b\", \"a\");     // > 0 (positif car 'b'=98 > 'a'=97)",
-    "note": "Attention piège du Bac : strcmp() ne fait PAS une simple comparaison alphabétique, mais une comparaison ASCII sensible à la casse ! Les majuscules ('A' = 65) précèdent les minuscules ('a' = 97). strcmp() renvoie 0 lorsque les deux chaînes sont strictement identiques.",
+    "note": "Compare deux chaînes selon leurs codes ASCII (sensible à la casse). Renvoie <strong>0</strong> lorsque les deux chaînes sont <strong>strictement identiques</strong>.",
     "noteType": "warning",
     "attrsDetail": [
       {
@@ -307,6 +396,17 @@
         "desc": "La 1ère chaîne est supérieure à la 2ème selon l'ordre des codes ASCII (ex: 'b' (98) > 'a' (97)).",
         "values": "strcmp(\"b\", \"a\") > 0"
       }
+    ],
+    "syntax": "strcmp($ch1, $ch2)",
+    "params": [
+      {
+        "name": "$ch1",
+        "desc": "Premier texte à comparer."
+      },
+      {
+        "name": "$ch2",
+        "desc": "Second texte à comparer."
+      }
     ]
   },
   {
@@ -318,7 +418,22 @@
     "simple": "Remplace un mot par un autre dans un texte.",
     "code": "$res = str_replace(\"2024\", \"2025\", \"Session 2024\"); // \"Session 2025\"",
     "note": "Remplace TOUTES les apparitions du mot.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "str_replace($search, $replace, $ch)",
+    "params": [
+      {
+        "name": "$search",
+        "desc": "Texte ou motif à rechercher."
+      },
+      {
+        "name": "$replace",
+        "desc": "Nouveau texte de remplacement."
+      },
+      {
+        "name": "$ch",
+        "desc": "Texte d'origine."
+      }
+    ]
   },
   {
     "id": "php-strtolower",
@@ -329,7 +444,14 @@
     "simple": "Met tout le texte en minuscules.",
     "code": "$min = strtolower(\"TUNIS\"); // \"tunis\"",
     "note": "Pratique avant la sauvegarde d'un e-mail.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "strtolower($ch)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte à convertir en minuscules."
+      }
+    ]
   },
   {
     "id": "php-strtoupper",
@@ -340,7 +462,14 @@
     "simple": "Met tout le texte en majuscules.",
     "code": "$maj = strtoupper(\"bac\"); // \"BAC\"",
     "note": "Convertit en majuscules.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "strtoupper($ch)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte à convertir en majuscules."
+      }
+    ]
   },
   {
     "id": "php-trim",
@@ -351,7 +480,14 @@
     "simple": "Nettoie les espaces superflus avant et après un texte.",
     "code": "$clean = trim(\"  Ali  \"); // \"Ali\"",
     "note": "Enlève les espaces au début et à la fin.",
-    "noteType": "remember"
+    "noteType": "tip",
+    "syntax": "trim($ch)",
+    "params": [
+      {
+        "name": "$ch",
+        "desc": "Texte à nettoyer (enlève les espaces au début et à la fin)."
+      }
+    ]
   },
   {
     "id": "php-checkdate",
@@ -361,8 +497,23 @@
     "official": "Vérifie la validité d'une date (mois, jour, année).",
     "simple": "Teste si une date existe dans le calendrier (ex: 29 Février).",
     "code": "if (checkdate(2, 29, 2025)) {\n  echo \"Valide\";\n} else {\n  echo \"Date invalide !\";\n}",
-    "note": "Attention à l'ordre des paramètres : checkdate(mois, jour, année) !",
-    "noteType": "warning"
+    "note": "Attention à l'ordre impératif des paramètres : <code>checkdate(mois, jour, année)</code>.",
+    "noteType": "remember",
+    "syntax": "checkdate($m, $d, $y)",
+    "params": [
+      {
+        "name": "$m",
+        "desc": "Mois (1 à 12)."
+      },
+      {
+        "name": "$d",
+        "desc": "Jour (1 à 31)."
+      },
+      {
+        "name": "$y",
+        "desc": "Année sur 4 chiffres (ex: 2025)."
+      }
+    ]
   },
   {
     "id": "php-date",
@@ -372,8 +523,8 @@
     "official": "Formate une date locale et/ou une heure sous forme de chaîne de caractères selon le format spécifié.",
     "simple": "Formate et affiche une date ou une heure selon les caractères de format (ex: 'd/m/Y' donne '15/06/2025'). Accepte un 2ème argument optionnel (timestamp).",
     "code": "// 1. Date courante au format francophone (JJ/MM/AAAA)\n$today = date(\"d/m/Y\"); // Ex: \"15/06/2025\"\n\n// 2. Format MySQL DATETIME (AAAA-MM-JJ HH:MM:SS)\n$sqlDate = date(\"Y-m-d H:i:s\"); // Ex: \"2025-06-15 14:30:00\"\n\n// 3. Formater un timestamp spécifique (ex: date de retour d'emprunt)\n$ts_futur = time() + (7 * 24 * 3600); // +7 jours\n$date_retour = date(\"d/m/Y\", $ts_futur);",
-    "note": "Attention au Bac : Distinguez majuscules et minuscules ! 'Y' = année 4 chiffres (2025) mais 'y' = 2 chiffres (25). 'd' = jour sur 2 chiffres (01-31). 'm' = mois sur 2 chiffres (01-12). 'H' = heure 24h (00-23), 'i' = minutes (00-59), 's' = secondes (00-59).",
-    "noteType": "warning",
+    "note": "Distinguer majuscules et minuscules :<ul class='mb-0 ps-3 mt-1'><li><code>Y</code> : année sur 4 chiffres (2025) / <code>y</code> : sur 2 chiffres (25).</li><li><code>d</code> : jour (01-31) / <code>m</code> : mois (01-12).</li><li><code>H</code> : heure (00-23) / <code>i</code> : minutes (00-59) / <code>s</code> : secondes.</li></ul>",
+    "noteType": "remember",
     "attrsDetail": [
       {
         "name": "d / m / Y (Format de Date)",
@@ -390,6 +541,17 @@
         "desc": "Horodatage Unix en secondes. Si omis, la fonction date() utilise l'instant présent time(). Permet d'afficher la date correspondant à n'importe quel timestamp.",
         "values": "date(\"Y-m-d\", $timestamp)"
       }
+    ],
+    "syntax": "date($format, [$timestamp])",
+    "params": [
+      {
+        "name": "$format",
+        "desc": "Format d'affichage de la date (ex: 'd/m/Y' pour JJ/MM/AAAA)."
+      },
+      {
+        "name": "$timestamp",
+        "desc": "(Optionnel) Horodatage Unix en secondes. Si omis, utilise la date actuelle."
+      }
     ]
   },
   {
@@ -401,7 +563,9 @@
     "simple": "Donne la valeur numérique courante en secondes. Utilisé pour calculer l'âge, l'ancienneté ou ajouter du temps (ex: +7 jours = +7*86400).",
     "code": "$maintenant = time(); // Ex: 1750000000\n$dans_un_jour = time() + (24 * 3600); // Aujourd'hui + 86400 secondes",
     "note": "1 jour = 24 heures * 60 minutes * 60 secondes = 86 400 secondes.",
-    "noteType": "tip"
+    "noteType": "remember",
+    "syntax": "time()",
+    "params": []
   },
   {
     "id": "php-strtotime",
@@ -411,8 +575,8 @@
     "official": "Convertit une chaîne de texte contenant une date/heure au format ISO ou anglais en horodatage Unix (Timestamp en secondes).",
     "simple": "Transforme un texte de date (ex: '2025-06-15') en nombre de secondes timestamp. Indispensable pour calculer l'écart en jours ou l'âge !",
     "code": "// 1. Convertir une date ISO de formulaire en Timestamp\n$ts_naiss = strtotime($_POST['date_naissance']);\n$ts_now = time();\n\n// 2. Calculer l'âge en années (Bac SI)\n$age = floor(($ts_now - $ts_naiss) / (365 * 24 * 3600));\n\n// 3. Calculer la différence en jours entre deux dates\n$ts1 = strtotime(\"2025-06-01\");\n$ts2 = strtotime(\"2025-06-15\");\n$nb_jours = ($ts2 - $ts1) / (24 * 3600); // 14 jours\n\n// 4. Calcul de date d'échéance (ex: emprunt livre +7 jours)\n$date_retour = date(\"Y-m-d\", strtotime(\"+7 days\"));",
-    "note": "Règle clé Bac : Pour calculer l'écart entre 2 dates : 1) Convertir les 2 dates avec strtotime(). 2) Soustraire les timestamps ($ts2 - $ts1). 3) Diviser par 86400 (24*3600) pour obtenir le nombre de jours.",
-    "noteType": "warning",
+    "note": "Méthode de calcul d'écart entre 2 dates :<ol class='mb-0 ps-3 mt-1'><li>Convertir les 2 dates avec <code>strtotime()</code>.</li><li>Soustraire les timestamps (<code>$ts2 - $ts1</code>).</li><li>Diviser par <strong>86400</strong> (24 * 3600) pour obtenir le nombre de jours.</li></ol>",
+    "noteType": "tip",
     "attrsDetail": [
       {
         "name": "Conversion de date ISO en Timestamp",
@@ -429,6 +593,13 @@
         "desc": "Accepte des expressions anglaises relatives : '+1 day', '+7 days', '+1 month', '+1 year', 'next Monday'. Très pratique pour les dates de retour ou d'expiration.",
         "values": "strtotime(\"+7 days\")"
       }
+    ],
+    "syntax": "strtotime($str)",
+    "params": [
+      {
+        "name": "$str",
+        "desc": "Date sous forme de texte (ex: '2025-06-15' ou '+7 days') à convertir en timestamp."
+      }
     ]
   },
   {
@@ -439,8 +610,27 @@
     "official": "Établit une connexion à une base de données MySQL.",
     "simple": "Connecte le script PHP au serveur MySQL.",
     "code": "$conn = mysqli_connect(\"localhost\", \"root\", \"\", \"ecole\");\nif (!$conn) { die(\"Erreur connexion : \" . mysqli_connect_error()); }",
-    "note": "Ordre strict : host, user, password, dbname.",
-    "noteType": "warning"
+    "note": "Ordre strict des 4 arguments de connexion :<ol class='mb-0 ps-3 mt-1'><li><code>$host</code> : Nom du serveur (<code>\"localhost\"</code>)</li><li><code>$user</code> : Utilisateur MySQL (<code>\"root\"</code>)</li><li><code>$pass</code> : Mot de passe (<code>\"\"</code> sous XAMPP)</li><li><code>$base</code> : Nom de la base de données</li></ol>",
+    "noteType": "remember",
+    "syntax": "mysqli_connect($host, $user, $pass, $base)",
+    "params": [
+      {
+        "name": "$host",
+        "desc": "Nom du serveur de base de données (ex: 'localhost')."
+      },
+      {
+        "name": "$user",
+        "desc": "Identifiant utilisateur MySQL (ex: 'root')."
+      },
+      {
+        "name": "$pass",
+        "desc": "Mot de passe MySQL (ex: '' sous XAMPP)."
+      },
+      {
+        "name": "$base",
+        "desc": "Nom de la base de données."
+      }
+    ]
   },
   {
     "id": "php-mysqli-query",
@@ -450,8 +640,19 @@
     "official": "Envoie une requête SQL à la base de données.",
     "simple": "Exécute une requête SQL (SELECT, INSERT, UPDATE, DELETE).",
     "code": "$req = \"SELECT * FROM eleve\";\n$res = mysqli_query($conn, $req);",
-    "note": "Deux arguments : l'objet de connexion $conn ET la chaîne de requête SQL.",
-    "noteType": "warning"
+    "note": "Exécute une requête SQL. Reçoit <strong>deux arguments impératifs</strong> : l'objet de connexion <code>$conn</code> <strong>ET</strong> la chaîne SQL <code>$req</code>.",
+    "noteType": "remember",
+    "syntax": "mysqli_query($conn, $req)",
+    "params": [
+      {
+        "name": "$conn",
+        "desc": "Objet de connexion MySQLi active."
+      },
+      {
+        "name": "$req",
+        "desc": "Requête SQL à exécuter (ex: 'SELECT * FROM eleve')."
+      }
+    ]
   },
   {
     "id": "php-mysqli-close",
@@ -462,7 +663,14 @@
     "simple": "Libère la connexion avec le serveur MySQL.",
     "code": "mysqli_close($conn);",
     "note": "Placé à la fin du script PHP.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "mysqli_close($conn)",
+    "params": [
+      {
+        "name": "$conn",
+        "desc": "Objet de connexion MySQLi à fermer."
+      }
+    ]
   },
   {
     "id": "php-mysqli-fetch-array",
@@ -472,8 +680,15 @@
     "official": "Retourne une ligne de résultat sous forme de tableau associatif et numérique.",
     "simple": "Extrait un enregistrement du résultat sous forme de tableau.",
     "code": "while ($lg = mysqli_fetch_array($res)) {\n  echo $lg['nom'] . \"<br>\";\n}",
-    "note": "Permet d'accéder aux colonnes par leur nom $lg['nom'].",
-    "noteType": "warning"
+    "note": "Extrait une ligne sous forme de tableau associatif. Accès aux valeurs via le nom de colonne : <code>$ligne['nom']</code>.",
+    "noteType": "remember",
+    "syntax": "mysqli_fetch_array($res)",
+    "params": [
+      {
+        "name": "$res",
+        "desc": "Résultat d'une requête SELECT (accès par clés textuelles $lg['nom'])."
+      }
+    ]
   },
   {
     "id": "php-mysqli-fetch-row",
@@ -483,8 +698,15 @@
     "official": "Retourne une ligne de résultat sous forme de tableau numérique.",
     "simple": "Extrait une ligne avec des indices numériques ($lg[0], $lg[1]).",
     "code": "$lg = mysqli_fetch_row($res);\necho $lg[0]; // Première colonne",
-    "note": "Accès par indice numérique 0, 1, 2...",
-    "noteType": "tip"
+    "note": "Extrait une ligne sous forme de tableau numérique. Accès aux valeurs via l'indice numérique : <code>$ligne[0]</code>.",
+    "noteType": "remember",
+    "syntax": "mysqli_fetch_row($res)",
+    "params": [
+      {
+        "name": "$res",
+        "desc": "Résultat d'une requête SELECT (accès par indices numériques $lg[0])."
+      }
+    ]
   },
   {
     "id": "php-mysqli-num-rows",
@@ -494,8 +716,15 @@
     "official": "Retourne le nombre de lignes dans un résultat de requête SELECT.",
     "simple": "Compte le nombre de lignes retournées par un SELECT.",
     "code": "if (mysqli_num_rows($res) == 0) {\n  echo \"Aucun élève trouvé !\";\n}",
-    "note": "Indispensable pour vérifier si un utilisateur ou une donnée existe !",
-    "noteType": "warning"
+    "note": "Indispensable pour vérifier l'existence d'un enregistrement après une requête <code>SELECT</code> (ex: <code>if (mysqli_num_rows($res) == 0)</code>).",
+    "noteType": "remember",
+    "syntax": "mysqli_num_rows($res)",
+    "params": [
+      {
+        "name": "$res",
+        "desc": "Résultat d'une requête SELECT dont on compte les lignes."
+      }
+    ]
   },
   {
     "id": "php-mysqli-affected-rows",
@@ -505,8 +734,15 @@
     "official": "Retourne le nombre de lignes affectées par la dernière requête (INSERT/UPDATE/DELETE).",
     "simple": "Compte combien de lignes ont été insérées, modifiées ou supprimées.",
     "code": "if (mysqli_affected_rows($conn) > 0) {\n  echo \"Mise à jour réussie !\";\n}",
-    "note": "S'applique aux requêtes d'écriture (INSERT, UPDATE, DELETE).",
-    "noteType": "tip"
+    "note": "S'applique aux requêtes d'écriture (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).",
+    "noteType": "tip",
+    "syntax": "mysqli_affected_rows($conn)",
+    "params": [
+      {
+        "name": "$conn",
+        "desc": "Objet de connexion (compte les lignes modifiées par INSERT, UPDATE ou DELETE)."
+      }
+    ]
   },
   {
     "id": "php-mysqli-error",
@@ -517,7 +753,14 @@
     "simple": "Affiche le texte exact de l'erreur SQL renvoyé par le serveur.",
     "code": "echo \"Erreur SQL : \" . mysqli_error($conn);",
     "note": "Très utile pour le débogage lors des épreuves pratiques !",
-    "noteType": "tip"
+    "noteType": "tip",
+    "syntax": "mysqli_error($conn)",
+    "params": [
+      {
+        "name": "$conn",
+        "desc": "Objet de connexion pour récupérer le message d'erreur SQL."
+      }
+    ]
   },
   {
     "id": "php-get",
@@ -528,7 +771,14 @@
     "simple": "Récupère les données envoyées par l'URL ou un formulaire en method=\"get\".",
     "code": "$id = $_GET['id'];",
     "note": "Données visibles dans la barre d'adresse du navigateur.",
-    "noteType": "remember"
+    "noteType": "remember",
+    "syntax": "$_GET['clé']",
+    "params": [
+      {
+        "name": "'clé'",
+        "desc": "Nom du paramètre transmis dans l'URL ou le formulaire GET."
+      }
+    ]
   },
   {
     "id": "php-post",
@@ -539,7 +789,14 @@
     "simple": "Récupère les données d'un formulaire expédié en method=\"post\".",
     "code": "$pass = $_POST['pwd'];",
     "note": "$_POST s'écrit en majuscules avec un souligné _ !",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "$_POST['clé']",
+    "params": [
+      {
+        "name": "'clé'",
+        "desc": "Nom (attribut name) du champ de formulaire transmis en méthode POST."
+      }
+    ]
   },
   {
     "id": "php-die",
@@ -550,7 +807,14 @@
     "simple": "Arrête immédiatement l'exécution du script PHP en affichant un message.",
     "code": "die(\"Accès refusé !\");",
     "note": "Interrompt définitivement la suite du script.",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "die($msg)",
+    "params": [
+      {
+        "name": "$msg",
+        "desc": "Message d'erreur à afficher avant d'arrêter le script."
+      }
+    ]
   },
   {
     "id": "php-isset",
@@ -561,7 +825,14 @@
     "simple": "Vérifie si un champ ou une variable a bien été transmis.",
     "code": "if (isset($_POST['envoyer'])) {\n  // traitement\n}",
     "note": "Indispensable avant d'accéder à $_POST['champ'] !",
-    "noteType": "warning"
+    "noteType": "warning",
+    "syntax": "isset($var)",
+    "params": [
+      {
+        "name": "$var",
+        "desc": "Variable ou champ (ex: $_POST['champ']) dont on vérifie l'existence."
+      }
+    ]
   },
   {
     "id": "php-require",
@@ -571,7 +842,14 @@
     "official": "Inclut et exécute le fichier spécifié en argument.",
     "simple": "Importe le code d'un fichier PHP externe (ex: connexion.php).",
     "code": "require(\"connexion.php\");",
-    "note": "En cas d'erreur de fichier, require() produit une erreur fatale et arrête le script.",
-    "noteType": "remember"
+    "note": "En cas d'erreur de fichier, <code>require()</code> produit une erreur fatale et arrête le script.",
+    "noteType": "warning",
+    "syntax": "require($filename)",
+    "params": [
+      {
+        "name": "$filename",
+        "desc": "Nom du fichier PHP à inclure (ex: 'connexion.php')."
+      }
+    ]
   }
 ]
