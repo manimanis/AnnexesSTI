@@ -63,6 +63,240 @@ body {
 }
 
 /* =============================================
+   Styles d'Impression (@media print)
+   ============================================= */
+@media print {
+  @page {
+    margin: 0.4cm !important;
+  }
+
+  body,
+  html {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-page-layout {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .print-page-header {
+    display: table-header-group !important;
+  }
+
+  .print-page-layout>tbody {
+    display: table-row-group !important;
+  }
+
+  .print-page-layout>thead>tr,
+  .print-page-layout>tbody>tr {
+    display: table-row !important;
+  }
+
+  .print-page-layout>thead>tr>td,
+  .print-page-layout>tbody>tr>td {
+    display: table-cell !important;
+    padding: 0 !important;
+  }
+
+  .floating-toc-btn,
+  .offcanvas,
+  .modal,
+  .navbar,
+  .d-print-none,
+  .revision-table thead,
+  .revision-table th:last-child,
+  .revision-table td:last-child {
+    display: none !important;
+  }
+
+  /* Entête de page optimisé en mode impression */
+  .bg-success,
+  .bg-danger,
+  .bg-primary,
+  .bg-warning,
+  .bg-info,
+  .header-banner-php,
+  .hero-banner {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: 2px solid #0f172a !important;
+    border-radius: 0.35rem !important;
+    padding: 0.4rem 0.6rem !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .bg-success h1,
+  .bg-danger h1,
+  .bg-primary h1,
+  .bg-warning h1,
+  .bg-info h1,
+  .header-banner-php h1,
+  .hero-banner h1 {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin-bottom: 0 !important;
+    display: inline-block !important;
+  }
+
+  .bg-success .badge,
+  .bg-danger .badge,
+  .bg-primary .badge,
+  .bg-warning .badge,
+  .bg-info .badge,
+  .header-banner-php .badge,
+  .hero-banner .badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0.35rem 0 0 !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
+  }
+
+  .bg-success .badge img,
+  .bg-danger .badge img,
+  .bg-primary .badge img,
+  .bg-warning .badge img,
+  .bg-info .badge img,
+  .header-banner-php .badge img,
+  .hero-banner .badge img {
+    display: inline-block !important;
+    width: 22px !important;
+    height: 22px !important;
+    margin-right: 0.25rem !important;
+  }
+
+  .bg-success p.lead,
+  .bg-danger p.lead,
+  .bg-primary p.lead,
+  .bg-warning p.lead,
+  .bg-info p.lead,
+  .header-banner-php p.lead,
+  .hero-banner p.lead {
+    font-size: 0.72rem !important;
+    color: #475569 !important;
+    margin: 0 !important;
+  }
+
+  .row.g-4 {
+    --bs-gutter-x: 0.4rem !important;
+    --bs-gutter-y: 0.4rem !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+
+  .col-lg-6 {
+    flex: 0 0 50% !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  /* Protection stricte anti-coupure des cartes sur plusieurs pages */
+  .revision-card,
+  .notion-card,
+  .module-card,
+  .card,
+  .pedago-box,
+  .code-box,
+  .category-header {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 0.35rem !important;
+    padding: 0.35rem 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    overflow: visible !important;
+  }
+
+  .revision-card .border-bottom {
+    padding-bottom: 0.25rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .revision-card h5 {
+    font-size: 0.95rem !important;
+    color: #0f172a !important;
+  }
+
+  .revision-card .mb-3 {
+    margin-bottom: 0.25rem !important;
+  }
+
+  .revision-card .small {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  .revision-table-wrapper {
+    overflow: visible !important;
+    border: none !important;
+  }
+
+  .revision-table {
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+
+  .revision-table tbody tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  .revision-table th:first-child,
+  .revision-table td:first-child {
+    width: 32% !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .revision-table th:nth-child(2),
+  .revision-table td:nth-child(2) {
+    width: 68% !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .revision-table th {
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .revision-table td {
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+
+/* =============================================
    Optimisation Mobile (< 768px) : Marges & Paddings au Strict Minimum
    ============================================= */
 @media (max-width: 768px) {

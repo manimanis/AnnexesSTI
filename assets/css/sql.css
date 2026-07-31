@@ -460,6 +460,8 @@ code u {
     padding: 0 !important;
     margin: 0 !important;
     font-size: 11px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .container-fluid {
@@ -503,24 +505,81 @@ code u {
     display: none !important;
   }
 
-  .bg-success {
-    padding: 0.25rem 0.5rem !important;
-    margin-bottom: 0.3rem !important;
-    border-radius: 0.2rem !important;
+  /* Entête de page optimisé en mode impression */
+  .bg-success,
+  .bg-danger,
+  .bg-primary,
+  .bg-warning,
+  .bg-info,
+  .header-banner-php,
+  .hero-banner {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: 2px solid #0f172a !important;
+    border-radius: 0.35rem !important;
+    padding: 0.4rem 0.6rem !important;
+    margin-bottom: 0.5rem !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .bg-success h1,
+  .bg-danger h1,
+  .bg-primary h1,
+  .bg-warning h1,
+  .bg-info h1,
+  .header-banner-php h1,
+  .hero-banner h1 {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin-bottom: 0 !important;
+    display: inline-block !important;
+  }
+
+  .bg-success .badge,
+  .bg-danger .badge,
+  .bg-primary .badge,
+  .bg-warning .badge,
+  .bg-info .badge,
+  .header-banner-php .badge,
+  .hero-banner .badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0.35rem 0 0 !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
     box-shadow: none !important;
   }
 
-  .bg-success h1 {
-    font-size: 1.15rem !important;
-    margin-bottom: 0 !important;
+  .bg-success .badge img,
+  .bg-danger .badge img,
+  .bg-primary .badge img,
+  .bg-warning .badge img,
+  .bg-info .badge img,
+  .header-banner-php .badge img,
+  .hero-banner .badge img {
+    display: inline-block !important;
+    width: 22px !important;
+    height: 22px !important;
+    margin-right: 0.25rem !important;
   }
 
-  .bg-success .badge {
-    display: none !important;
-  }
-
-  .bg-success p.lead {
+  .bg-success p.lead,
+  .bg-danger p.lead,
+  .bg-primary p.lead,
+  .bg-warning p.lead,
+  .bg-info p.lead,
+  .header-banner-php p.lead,
+  .hero-banner p.lead {
     font-size: 0.72rem !important;
+    color: #475569 !important;
     margin: 0 !important;
   }
 
@@ -537,14 +596,22 @@ code u {
     max-width: 50% !important;
   }
 
-  .revision-card {
+  /* Protection stricte anti-coupure des cartes sur plusieurs pages */
+  .revision-card,
+  .notion-card,
+  .module-card,
+  .card,
+  .pedago-box,
+  .code-box,
+  .category-header {
     box-shadow: none !important;
     border: 1px solid #cbd5e1 !important;
     border-radius: 0.35rem !important;
     padding: 0.35rem 0.5rem !important;
     margin-bottom: 0.5rem !important;
-    break-inside: auto !important;
-    page-break-inside: auto !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
     overflow: visible !important;
   }
 
@@ -555,6 +622,7 @@ code u {
 
   .revision-card h5 {
     font-size: 0.95rem !important;
+    color: #0f172a !important;
   }
 
   .revision-card .mb-3 {
@@ -579,6 +647,7 @@ code u {
   .revision-table tbody tr {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
   }
 
   .revision-table th:first-child,
@@ -607,9 +676,8 @@ code u {
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
   }
-
-  
 }
+
 
 /* =============================================
    Optimisation Mobile (< 768px) : Marges & Paddings au Strict Minimum
