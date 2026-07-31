@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Annexe Officielle CSS3 - Fiches de Révision - Section SI (Tunisie)</title>
+  <title>Langage CSS3 - Fiches de Révision - Section SI</title>
   <meta name="description"
     content="Fiches de Révision CSS3 avec tableaux condensés sur deux colonnes, sommaire flottant et fenêtres flottantes de détails.">
 
@@ -174,6 +174,10 @@
                                   <td>
                                     <code class="fw-bold font-monospace fs-6 text-primary"
                                       v-html="formatCssName(item.name)"></code>
+                                     <span v-if="item.illustrations || item.illustration" class="badge bg-info-subtle text-info border ms-1 d-print-none"
+                                       style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
+                                       <i class="bi bi-image-fill me-1"></i>Schéma
+                                     </span>
                                     <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
                                       style="font-size: 0.65rem;" title="Super-propriété">
                                       <i class="bi bi-layers-fill"></i>
@@ -237,6 +241,10 @@
                                   <td>
                                     <code class="fw-bold font-monospace fs-6 text-primary"
                                       v-html="formatCssName(item.name)"></code>
+                                     <span v-if="item.illustrations || item.illustration" class="badge bg-info-subtle text-info border ms-1 d-print-none"
+                                       style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
+                                       <i class="bi bi-image-fill me-1"></i>Schéma
+                                     </span>
                                     <span v-if="isShorthand(item)" class="badge bg-warning text-dark ms-1 d-print-none"
                                       style="font-size: 0.65rem;" title="Super-propriété">
                                       <i class="bi bi-layers-fill"></i>
@@ -410,7 +418,16 @@
               </div>
             </div>
 
-            <!-- 4. Note Pédagogique -->
+                        <!-- Illustration & Schéma Graphique -->
+            <div v-if="activeModalItem.illustrations || activeModalItem.illustration" class="mb-4 d-print-block">
+              <h6 class="fw-bold text-primary text-uppercase small mb-2 d-flex align-items-center gap-1">
+                <i class="bi bi-image me-1"></i> Schéma & Illustration Graphique
+              </h6>
+              <div class="p-3 rounded-3 bg-white border shadow-sm text-center illustration-container"
+                v-html="activeModalItem.illustrations || activeModalItem.illustration"></div>
+            </div>
+
+<!-- 4. Note Pédagogique -->
             <div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
               <div class="fw-bold small d-flex align-items-center gap-2 mb-1">
                 <i :class="getPedagoIcon(activeModalItem.noteType)" class="fs-5"></i>

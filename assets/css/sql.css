@@ -773,3 +773,10 @@ code u {
     display: none !important;
   }
 }
+/* Illustration & Schéma Container */
+.illustration-container svg {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}

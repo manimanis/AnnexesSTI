@@ -373,7 +373,8 @@
     ],
     "code": "/* 1 valeur (4 côtés) */\ndiv { padding: 15px; }\n/* 2 valeurs [Haut/Bas] [Gauche/Droite] */\ndiv { padding: 10px 20px; }\n/* 4 valeurs : Haut Droite Bas Gauche */\ndiv { padding: 10px 15px 20px 5px; }",
     "note": "Combine padding-top -> padding-right -> padding-bottom -> padding-left (sens des aiguilles d'une montre : Haut -> Droite -> Bas -> Gauche).",
-    "noteType": "remember"
+    "noteType": "remember",
+    "illustrations": "<svg viewBox=\"0 0 400 220\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:420px; font-family:sans-serif;\">\n  <!-- Outer Box -->\n  <rect x=\"20\" y=\"20\" width=\"360\" height=\"180\" rx=\"8\" fill=\"#f8fafc\" stroke=\"#334155\" stroke-width=\"3\"/>\n  <text x=\"200\" y=\"42\" text-anchor=\"middle\" fill=\"#334155\" font-weight=\"bold\" font-size=\"13\">Bordure de la Boîte (Border)</text>\n\n  <!-- Padding Area -->\n  <rect x=\"50\" y=\"55\" width=\"300\" height=\"125\" rx=\"6\" fill=\"#fef08a\" stroke=\"#ca8a04\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/>\n  <text x=\"200\" y=\"75\" text-anchor=\"middle\" fill=\"#854d0e\" font-weight=\"bold\" font-size=\"13\">PADDING (Remplissage Interne)</text>\n\n  <!-- Content Box -->\n  <rect x=\"90\" y=\"90\" width=\"220\" height=\"70\" rx=\"4\" fill=\"#22c55e\"/>\n  <text x=\"200\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">Contenu Texte / Image</text>\n</svg>"
   },
   {
     "id": "css-margin",
@@ -390,7 +391,8 @@
     ],
     "code": "/* 1 valeur : 4 côtés */\ndiv { margin: 20px; }\n/* 2 valeurs : [Haut/Bas] [Gauche/Droite] (centrage automatique) */\ndiv { margin: 0 auto; }\n/* 4 valeurs : Haut Droite Bas Gauche */\ndiv { margin: 10px 15px 20px 5px; }",
     "note": "Combine margin-top -> margin-right -> margin-bottom -> margin-left (sens horaire : Haut -> Droite -> Bas -> Gauche).",
-    "noteType": "warning"
+    "noteType": "warning",
+    "illustrations": "<svg viewBox=\"0 0 400 220\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:420px; font-family:sans-serif;\">\n  <!-- Background Container -->\n  <rect x=\"10\" y=\"10\" width=\"380\" height=\"200\" rx=\"8\" fill=\"#e0f2fe\" stroke=\"#0284c7\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/>\n  <text x=\"200\" y=\"32\" text-anchor=\"middle\" fill=\"#0369a1\" font-weight=\"bold\" font-size=\"14\">MARGIN (Espace Externe)</text>\n  \n  <!-- Outer Element Border -->\n  <rect x=\"60\" y=\"50\" width=\"280\" height=\"135\" rx=\"6\" fill=\"#ffffff\" stroke=\"#0f172a\" stroke-width=\"2.5\"/>\n  <text x=\"200\" y=\"72\" text-anchor=\"middle\" fill=\"#0f172a\" font-weight=\"bold\" font-size=\"13\">Bordure de l'Élément</text>\n\n  <!-- Content Box -->\n  <rect x=\"90\" y=\"88\" width=\"220\" height=\"75\" rx=\"4\" fill=\"#3b82f6\"/>\n  <text x=\"200\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">Contenu HTML</text>\n\n  <!-- Margin Arrows -->\n  <line x1=\"30\" y1=\"117\" x2=\"52\" y2=\"117\" stroke=\"#0284c7\" stroke-width=\"2\" marker-end=\"url(#arrow)\"/>\n  <text x=\"35\" y=\"110\" font-size=\"11\" fill=\"#0369a1\" font-weight=\"bold\">Margin</text>\n</svg>"
   },
   {
     "id": "css-box-shadow",
@@ -408,7 +410,8 @@
     ],
     "code": "div {\n  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);\n}",
     "note": "Ordre des valeurs : décalage-X -> décalage-Y -> flou -> étalement -> couleur.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "illustrations": "<svg viewBox=\"0 0 400 180\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:420px; font-family:sans-serif;\">\n  <!-- Shadow shape -->\n  <rect x=\"115\" y=\"45\" width=\"200\" height=\"110\" rx=\"12\" fill=\"#94a3b8\" opacity=\"0.5\"/>\n  <rect x=\"120\" y=\"50\" width=\"200\" height=\"110\" rx=\"12\" fill=\"#64748b\" opacity=\"0.3\"/>\n\n  <!-- Actual Box -->\n  <rect x=\"90\" y=\"25\" width=\"200\" height=\"110\" rx=\"12\" fill=\"#ffffff\" stroke=\"#cbd5e1\" stroke-width=\"2\"/>\n  <text x=\"190\" y=\"75\" text-anchor=\"middle\" fill=\"#1e293b\" font-weight=\"bold\" font-size=\"14\">Bloc avec Ombre</text>\n  <text x=\"190\" y=\"100\" text-anchor=\"middle\" fill=\"#64748b\" font-size=\"12\">box-shadow: 10px 10px 15px rgba(...)</text>\n</svg>"
   },
   {
     "id": "css-display",
@@ -423,7 +426,8 @@
     ],
     "code": "span {\n  display: inline-block;\n}",
     "note": "Display: none masque également l'élément.",
-    "noteType": "warning"
+    "noteType": "warning",
+    "illustrations": "<svg viewBox=\"0 0 420 200\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:440px; font-family:sans-serif;\">\n  <!-- Block section -->\n  <rect x=\"10\" y=\"15\" width=\"190\" height=\"170\" rx=\"6\" fill=\"#f8fafc\" stroke=\"#cbd5e1\"/>\n  <text x=\"105\" y=\"38\" text-anchor=\"middle\" fill=\"#1e293b\" font-weight=\"bold\" font-size=\"13\">display: block</text>\n  <rect x=\"25\" y=\"55\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#3b82f6\"/>\n  <text x=\"105\" y=\"76\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"11\">Bloc 1 (100% largeur)</text>\n  <rect x=\"25\" y=\"95\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#2563eb\"/>\n  <text x=\"105\" y=\"116\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"11\">Bloc 2 (saut de ligne)</text>\n\n  <!-- Inline section -->\n  <rect x=\"220\" y=\"15\" width=\"190\" height=\"170\" rx=\"6\" fill=\"#f8fafc\" stroke=\"#cbd5e1\"/>\n  <text x=\"315\" y=\"38\" text-anchor=\"middle\" fill=\"#1e293b\" font-weight=\"bold\" font-size=\"13\">display: inline</text>\n  <rect x=\"230\" y=\"75\" width=\"75\" height=\"32\" rx=\"4\" fill=\"#10b981\"/>\n  <text x=\"267\" y=\"96\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"11\">En ligne 1</text>\n  <rect x=\"312\" y=\"75\" width=\"85\" height=\"32\" rx=\"4\" fill=\"#059669\"/>\n  <text x=\"354\" y=\"96\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"11\">En ligne 2</text>\n</svg>"
   },
   {
     "id": "css-top",
@@ -557,7 +561,8 @@
     ],
     "code": "/* 1 valeur : les 4 coins identiques */\nbutton { border-radius: 8px; }\n/* 4 valeurs : HG HD BD BG */\nbutton { border-radius: 10px 5px 10px 5px; }\n/* Cercle parfait */\nimg { border-radius: 50%; }",
     "note": "Combine les 4 coins : Haut-Gauche -> Haut-Droite -> Bas-Droite -> Bas-Gauche.",
-    "noteType": "tip"
+    "noteType": "tip",
+    "illustrations": "<svg viewBox=\"0 0 400 180\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:420px; font-family:sans-serif;\">\n  <!-- Sharp Box -->\n  <rect x=\"30\" y=\"30\" width=\"140\" height=\"120\" rx=\"0\" fill=\"#3b82f6\"/>\n  <text x=\"100\" y=\"95\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"13\">border-radius: 0</text>\n  <text x=\"100\" y=\"115\" text-anchor=\"middle\" fill=\"#dbeafe\" font-size=\"11\">(Coins carrés)</text>\n\n  <!-- Rounded Box -->\n  <rect x=\"230\" y=\"30\" width=\"140\" height=\"120\" rx=\"24\" fill=\"#06b6d4\"/>\n  <text x=\"300\" y=\"95\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"13\">border-radius: 24px</text>\n  <text x=\"300\" y=\"115\" text-anchor=\"middle\" fill=\"#cff4fc\" font-size=\"11\">(Coins arrondis)</text>\n\n  <!-- Arc indicator -->\n  <circle cx=\"254\" cy=\"54\" r=\"24\" fill=\"none\" stroke=\"#facc15\" stroke-width=\"3\" stroke-dasharray=\"4,2\"/>\n</svg>"
   },
   {
     "id": "css-border-width",
@@ -589,7 +594,8 @@
     ],
     "code": "div {\n  border: 2px solid #1e40af;\n}",
     "note": "Ordre usuel recommandé : border-width border-style border-color (ex: 2px solid red).",
-    "noteType": "tip"
+    "noteType": "tip",
+    "illustrations": "<svg viewBox=\"0 0 400 200\" width=\"100%\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:420px; font-family:sans-serif;\">\n  <!-- Layers representing Box Model -->\n  <rect x=\"20\" y=\"15\" width=\"360\" height=\"170\" rx=\"8\" fill=\"#f1f5f9\" stroke=\"#94a3b8\" stroke-dasharray=\"4,4\"/>\n  <text x=\"40\" y=\"35\" fill=\"#64748b\" font-weight=\"bold\" font-size=\"12\">1. Margin</text>\n\n  <rect x=\"70\" y=\"45\" width=\"260\" height=\"120\" rx=\"6\" fill=\"#ffffff\" stroke=\"#ef4444\" stroke-width=\"5\"/>\n  <text x=\"200\" y=\"65\" text-anchor=\"middle\" fill=\"#dc2626\" font-weight=\"bold\" font-size=\"13\">2. BORDER (Épaisseur, Style, Couleur)</text>\n\n  <rect x=\"100\" y=\"80\" width=\"200\" height=\"70\" rx=\"4\" fill=\"#dcfce7\" stroke=\"#16a34a\"/>\n  <text x=\"200\" y=\"105\" text-anchor=\"middle\" fill=\"#15803d\" font-weight=\"bold\" font-size=\"12\">3. Padding</text>\n  <text x=\"200\" y=\"130\" text-anchor=\"middle\" fill=\"#0f172a\" font-weight=\"bold\" font-size=\"13\">4. Contenu</text>\n</svg>"
   },
   {
     "id": "css-bg-color",
@@ -696,7 +702,8 @@
     ],
     "code": "table {\n  border-collapse: collapse;\n}",
     "note": "Border-collapse: collapse est indispensable pour des tableaux propres !",
-    "noteType": "warning"
+    "noteType": "warning",
+    "illustrations": "<svg viewBox=\"0 0 420 180\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:440px; font-family:sans-serif;\">\n  <!-- Separate -->\n  <rect x=\"15\" y=\"15\" width=\"185\" height=\"150\" rx=\"6\" fill=\"#f8fafc\" stroke=\"#e2e8f0\"/>\n  <text x=\"107\" y=\"38\" text-anchor=\"middle\" fill=\"#0f172a\" font-weight=\"bold\" font-size=\"12\">separate (par défaut)</text>\n  <rect x=\"30\" y=\"55\" width=\"70\" height=\"40\" fill=\"#bae6fd\" stroke=\"#0284c7\" stroke-width=\"2\"/>\n  <rect x=\"110\" y=\"55\" width=\"70\" height=\"40\" fill=\"#bae6fd\" stroke=\"#0284c7\" stroke-width=\"2\"/>\n  <rect x=\"30\" y=\"105\" width=\"70\" height=\"40\" fill=\"#bae6fd\" stroke=\"#0284c7\" stroke-width=\"2\"/>\n  <rect x=\"110\" y=\"105\" width=\"70\" height=\"40\" fill=\"#bae6fd\" stroke=\"#0284c7\" stroke-width=\"2\"/>\n  <text x=\"107\" y=\"162\" text-anchor=\"middle\" fill=\"#0369a1\" font-size=\"10\">Double trait d'écartement</text>\n\n  <!-- Collapse -->\n  <rect x=\"220\" y=\"15\" width=\"185\" height=\"150\" rx=\"6\" fill=\"#f8fafc\" stroke=\"#e2e8f0\"/>\n  <text x=\"312\" y=\"38\" text-anchor=\"middle\" fill=\"#0f172a\" font-weight=\"bold\" font-size=\"12\">collapse (fusionné)</text>\n  <rect x=\"240\" y=\"55\" width=\"70\" height=\"40\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <rect x=\"310\" y=\"55\" width=\"70\" height=\"40\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <rect x=\"240\" y=\"95\" width=\"70\" height=\"40\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <rect x=\"310\" y=\"95\" width=\"70\" height=\"40\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <text x=\"312\" y=\"162\" text-anchor=\"middle\" fill=\"#15803d\" font-size=\"10\">Bordure unique fusionnée</text>\n</svg>"
   },
   {
     "id": "css-list-type",
