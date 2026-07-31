@@ -5,7 +5,7 @@
     "category": "Opérateurs Logiques",
     "subcategory": "Logique & Conditions",
     "official": "Opérateurs logiques ET (&&), OU (||), NON (!).",
-    "simple": "Permettent de combiner plusieurs conditions dans une instruction if.",
+    "simple": "Combinent plusieurs conditions logiques dans une structure conditionnelle (if) ou une boucle.",
     "code": "if (age >= 18 && score >= 10) {\n  alert(\"Admis\");\n}",
     "note": "&& nécessite que TOUTES les conditions soient vraies.",
     "noteType": "remember"

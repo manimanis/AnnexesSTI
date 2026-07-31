@@ -169,7 +169,7 @@
     "category": "Opérateurs PHP",
     "subcategory": "Logique & Comparaison",
     "official": "Opérateurs logiques ET (&&), OU (||), NON (!).",
-    "simple": "Combinent des conditions dans les structures de contrôle if / while.",
+    "simple": "Combinent plusieurs conditions logiques dans les structures de contrôle (if, while).",
     "code": "if ($age >= 18 && $note >= 10) {\n  echo \"Admis\";\n}",
     "note": "Attention : && est prioritaire sur ||.",
     "noteType": "warning"
@@ -477,7 +477,7 @@
     "category": "Fonctions sur les Chaînes",
     "subcategory": "Formatage & Nettoyage",
     "official": "Supprime tous les espaces existants au début et à la fin de la chaîne.",
-    "simple": "Nettoie les espaces superflus avant et après un texte.",
+    "simple": "Supprime les espaces inutiles en début et en fin de chaîne de caractères.",
     "code": "$clean = trim(\"  Ali  \"); // \"Ali\"",
     "note": "Enlève les espaces au début et à la fin.",
     "noteType": "tip",

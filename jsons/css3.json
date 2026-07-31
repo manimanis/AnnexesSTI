@@ -530,7 +530,7 @@
     "name": "border-style",
     "category": "Propriétés des Bordures",
     "official": "Définit le style des bordures d'un élément.",
-    "simple": "Forme de la bordure (continue, pointillée, etc.).",
+    "simple": "Définit l'apparence visuelle du trait de bordure (ex: continue, pointillée, doublée).",
     "values": [
       "solid",
       "dashed",

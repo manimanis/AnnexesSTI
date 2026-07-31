@@ -462,7 +462,7 @@
     "category": "Texte",
     "subcategory": "Mise en forme du Texte",
     "official": "<b> met en gras un texte à des fins visuelles. <strong> indique une importance sémantique forte ou une urgence.",
-    "simple": "Toutes deux affichent le texte en gras. Utilisez <b> pour du simple style et <strong> pour insister sur la valeur du mot.",
+    "simple": "Affichent le texte en gras. <b> s'utilise pour un simple style visuel, tandis que <strong> apporte une importance sémantique.",
     "attrsDetail": [],
     "code": "<p>Style visuel : <b>texte en gras</b></p>\n<p>Importance forte : <strong>texte important</strong></p>",
     "note": "Privilégiez &lt;strong&gt; pour les mots-clés importants (meilleur pour le SEO et l'accessibilité).",
@@ -480,7 +480,7 @@
     "category": "Texte",
     "subcategory": "Mise en forme du Texte",
     "official": "<i> met en italique une portion de texte (terme technique, mot étranger). <em> marque l'emphase ou l'accentuation sémantique.",
-    "simple": "Toutes deux affichent le texte en italique. Utilisez <i> pour le style graphique et <em> pour donner de l'emphase au sens.",
+    "simple": "Affichent le texte en italique. <i> s'utilise pour le style visuel, tandis que <em> apporte une emphase sémantique.",
     "attrsDetail": [],
     "code": "<p>Terme étranger : <i>HTML</i></p>\n<p>Emphase : <em>absolument</em> réviser ce chapitre</p>",
     "note": "La synthèse vocale adapte le ton de la voix sur les mots entourés par la balise &lt;em&gt;.",
@@ -498,7 +498,7 @@
     "category": "Texte",
     "subcategory": "Mise en forme du Texte",
     "official": "<u> souligne une portion de texte à des fins visuelles. <ins> définit un texte inséré ou ajouté au document.",
-    "simple": "Toutes deux affichent le texte souligné. Utilisez &lt;u&gt; pour le style et &lt;ins&gt; pour indiquer un ajout de contenu.",
+    "simple": "Affichent le texte souligné. <u> s'utilise pour le style visuel, tandis que <ins> indique un ajout de contenu.",
     "attrsDetail": [
       {
         "name": "cite",
@@ -527,7 +527,7 @@
     "category": "Texte",
     "subcategory": "Mise en forme du Texte",
     "official": "<s> affiche un texte barré qui n'est plus exact ou pertinent. <del> définit du texte supprimé d'un document.",
-    "simple": "Toutes deux affichent le texte barré d'un trait horizontal. &lt;s&gt; s'utilise pour les informations obsolètes et &lt;del&gt; pour marquer la suppression.",
+    "simple": "Affichent le texte barré. <s> s'utilise pour une information obsolète, tandis que <del> indique une suppression de texte.",
     "attrsDetail": [
       {
         "name": "cite",
