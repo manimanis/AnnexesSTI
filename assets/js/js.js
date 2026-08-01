@@ -13,63 +13,75 @@ const categoryOrder = [
   'Gestion du DOM'
 ];
 
-const { createApp } = Vue;
+const { createApp, ref, computed, onMounted, nextTick, watch } = Vue;
+
 createApp({
-  data() {
-    return {
-      isDarkMode: false,
-      searchQuery: '',
-      selectedCategory: 'ALL',
-      selectedTocItemId: localStorage.getItem('js_last_selected_item') || null,
-      items: [],
-      activeModalItem: null
+  setup() {
+    const isDarkMode = ref(false);
+    const searchQuery = ref('');
+    const selectedCategory = ref('ALL');
+    const selectedTocItemId = ref(localStorage.getItem('js_last_selected_item') || null);
+    const items = ref([]);
+    const activeModalItem = ref(null);
+    const fuse = ref(null);
+
+    const getHashItemId = () => {
+      const hash = window.location.hash;
+      if (!hash) return null;
+      return hash.replace(/^#(item-)?/, '') || null;
     };
-  },
-  async created() {
-    try {
-      const response = await fetch('jsons/js.json');
-      this.items = await response.json();
-      const hashId = this.getHashItemId();
-      const initialId = (hashId && this.items.some(i => i.id === hashId)) ? hashId : null;
-      if (initialId) {
-        this.$nextTick(() => {
-          this.selectTocItem(initialId, false);
+
+    onMounted(async () => {
+      try {
+        const response = await fetch('jsons/js.json');
+        items.value = await response.json();
+
+        fuse.value = new Fuse(items.value, {
+          keys: ['name', 'syntax', 'official', 'simple', 'note', 'params.name', 'params.desc'],
+          threshold: 0.3,
+          ignoreLocation: true
         });
-      }
-    } catch (e) {
-      console.error('Erreur lors du chargement de jsons/js.json:', e);
-    }
-  },
-  mounted() {
-    window.addEventListener('hashchange', () => {
-      const hashId = this.getHashItemId();
-      if (hashId && this.items.some(i => i.id === hashId)) {
-        this.selectTocItem(hashId, false);
-      }
-    });
-    window.addEventListener('keydown', (e) => {
-      const modalEl = document.getElementById('itemDetailModal');
-      if (modalEl && modalEl.classList.contains('show')) {
-        if (e.key === 'ArrowLeft') {
-          this.prevModalItem();
-        } else if (e.key === 'ArrowRight') {
-          this.nextModalItem();
+
+        const hashId = getHashItemId();
+        const initialId = (hashId && items.value.some(i => i.id === hashId)) ? hashId : null;
+        if (initialId) {
+          nextTick(() => {
+            selectTocItem(initialId, false);
+          });
         }
+      } catch (e) {
+        console.error('Erreur lors du chargement de jsons/js.json:', e);
       }
+
+      window.addEventListener('hashchange', () => {
+        const hashId = getHashItemId();
+        if (hashId && items.value.some(i => i.id === hashId)) {
+          selectTocItem(hashId, false);
+        }
+      });
+
+      window.addEventListener('keydown', (e) => {
+        const modalEl = document.getElementById('itemDetailModal');
+        if (modalEl && modalEl.classList.contains('show')) {
+          if (e.key === 'ArrowLeft') {
+            prevModalItem();
+          } else if (e.key === 'ArrowRight') {
+            nextModalItem();
+          }
+        }
+      });
     });
-  },
-  watch: {
-    selectedTocItemId(newId) {
+
+    watch(selectedTocItemId, (newId) => {
       if (newId) {
         localStorage.setItem('js_last_selected_item', newId);
       } else {
         localStorage.removeItem('js_last_selected_item');
       }
-    }
-  },
-  computed: {
-    categories() {
-      const uniqueCats = Array.from(new Set(this.items.map(i => i.category)));
+    });
+
+    const categories = computed(() => {
+      const uniqueCats = Array.from(new Set(items.value.map(i => i.category)));
       uniqueCats.sort((a, b) => {
         const idxA = categoryOrder.indexOf(a);
         const idxB = categoryOrder.indexOf(b);
@@ -79,26 +91,22 @@ createApp({
         return a.localeCompare(b, 'fr', { sensitivity: 'base' });
       });
       return uniqueCats;
-    },
-    filteredItems() {
-      return this.items.filter(item => {
-        if (this.selectedCategory !== 'ALL' && item.category !== this.selectedCategory) return false;
-        if (this.searchQuery.trim() !== '') {
-          const q = this.searchQuery.toLowerCase();
-          const nameMatch = item.name.toLowerCase().includes(q);
-          const synMatch = item.syntax && item.syntax.toLowerCase().includes(q);
-          const offMatch = item.official.toLowerCase().includes(q);
-          const simMatch = item.simple.toLowerCase().includes(q);
-          const noteMatch = item.note && item.note.toLowerCase().includes(q);
-          const paramMatch = item.params && item.params.some(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
-          return nameMatch || synMatch || offMatch || simMatch || noteMatch || paramMatch;
-        }
-        return true;
-      });
-    },
-    groupedItems() {
+    });
+
+    const filteredItems = computed(() => {
+      let result = items.value;
+      if (searchQuery.value.trim() !== '' && fuse.value) {
+        result = fuse.value.search(searchQuery.value).map(res => res.item);
+      }
+      if (selectedCategory.value !== 'ALL') {
+        result = result.filter(item => item.category === selectedCategory.value);
+      }
+      return result;
+    });
+
+    const groupedItems = computed(() => {
       const groups = {};
-      this.filteredItems.forEach(item => {
+      filteredItems.value.forEach(item => {
         const cat = item.category;
         const subcat = item.subcategory || '';
         if (!groups[cat]) groups[cat] = {};
@@ -125,63 +133,59 @@ createApp({
         });
       });
       return sortedGroups;
-    },
-    groupedItemsColumns() {
-      const allCats = Object.keys(this.groupedItems);
+    });
+
+    const groupedItemsColumns = computed(() => {
+      const allCats = Object.keys(groupedItems.value);
       const col1 = {};
       const col2 = {};
       allCats.forEach((cat, idx) => {
         if (idx % 2 === 0) {
-          col1[cat] = this.groupedItems[cat];
+          col1[cat] = groupedItems.value[cat];
         } else {
-          col2[cat] = this.groupedItems[cat];
+          col2[cat] = groupedItems.value[cat];
         }
       });
       return { col1, col2 };
-    },
-    displayOrderedItems() {
-      const items = [];
-      const groups = this.groupedItems;
+    });
+
+    const displayOrderedItems = computed(() => {
+      const allItems = [];
+      const groups = groupedItems.value;
       Object.keys(groups).forEach(cat => {
         Object.keys(groups[cat]).forEach(subcat => {
-          items.push(...groups[cat][subcat]);
+          allItems.push(...groups[cat][subcat]);
         });
       });
-      return items;
-    },
-    currentModalIndex() {
-      if (!this.activeModalItem) return -1;
-      return this.displayOrderedItems.findIndex(i => i.id === this.activeModalItem.id);
-    },
-    hasPrevModalItem() {
-      return this.currentModalIndex > 0;
-    },
-    hasNextModalItem() {
-      return this.currentModalIndex >= 0 && this.currentModalIndex < this.displayOrderedItems.length - 1;
-    }
-  },
-  methods: {
-    getHashItemId() {
-      const hash = window.location.hash;
-      if (!hash) return null;
-      return hash.replace(/^#(item-)?/, '') || null;
-    },
-    prevModalItem() {
-      if (this.hasPrevModalItem) {
-        const item = this.displayOrderedItems[this.currentModalIndex - 1];
-        this.openModal(item);
+      return allItems;
+    });
+
+    const currentModalIndex = computed(() => {
+      if (!activeModalItem.value) return -1;
+      return displayOrderedItems.value.findIndex(i => i.id === activeModalItem.value.id);
+    });
+
+    const hasPrevModalItem = computed(() => currentModalIndex.value > 0);
+    const hasNextModalItem = computed(() => currentModalIndex.value >= 0 && currentModalIndex.value < displayOrderedItems.value.length - 1);
+
+    const prevModalItem = () => {
+      if (hasPrevModalItem.value) {
+        const item = displayOrderedItems.value[currentModalIndex.value - 1];
+        openModal(item);
       }
-    },
-    nextModalItem() {
-      if (this.hasNextModalItem) {
-        const item = this.displayOrderedItems[this.currentModalIndex + 1];
-        this.openModal(item);
+    };
+
+    const nextModalItem = () => {
+      if (hasNextModalItem.value) {
+        const item = displayOrderedItems.value[currentModalIndex.value + 1];
+        openModal(item);
       }
-    },
-    openModal(item) {
+    };
+
+    const openModal = (item) => {
       if (!item) return;
-      this.activeModalItem = item;
-      this.selectedTocItemId = item.id;
+      activeModalItem.value = item;
+      selectedTocItemId.value = item.id;
       if (window.history && window.history.pushState) {
         history.pushState(null, null, '#item-' + item.id);
       } else {
@@ -192,53 +196,61 @@ createApp({
         const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
         if (bsOffcanvas) bsOffcanvas.hide();
       }
-      this.$nextTick(() => {
+      nextTick(() => {
         const modalEl = document.getElementById('itemDetailModal');
         if (modalEl) {
           const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
           bsModal.show();
         }
       });
-    },
-    closeModal() {
+    };
+
+    const closeModal = () => {
       const modalEl = document.getElementById('itemDetailModal');
       if (modalEl) {
         const bsModal = bootstrap.Modal.getInstance(modalEl);
         if (bsModal) bsModal.hide();
       }
-    },
-    selectTocItem(itemId, updateHash = true) {
-      this.selectedTocItemId = itemId;
-      const itemObj = this.items.find(i => i.id === itemId);
+    };
+
+    const selectTocItem = (itemId, updateHash = true) => {
+      selectedTocItemId.value = itemId;
+      const itemObj = items.value.find(i => i.id === itemId);
       if (itemObj) {
-        this.openModal(itemObj);
+        openModal(itemObj);
       }
-    },
-    getCategoryCount(subGroups) {
+    };
+
+    const getCategoryCount = (subGroups) => {
       if (!subGroups) return 0;
       return Object.values(subGroups).reduce((acc, arr) => acc + arr.length, 0);
-    },
-    toggleTheme() {
-      this.isDarkMode = !this.isDarkMode;
-      document.documentElement.setAttribute('data-bs-theme', this.isDarkMode ? 'dark' : 'light');
-    },
-    copy(text) {
+    };
+
+    const toggleTheme = () => {
+      isDarkMode.value = !isDarkMode.value;
+      document.documentElement.setAttribute('data-bs-theme', isDarkMode.value ? 'dark' : 'light');
+    };
+
+    const copy = (text) => {
       navigator.clipboard.writeText(text).then(() => alert('Code JavaScript copié !'));
-    },
-    highlight(text) {
-      if (!this.searchQuery || !text) return text;
-      const q = this.searchQuery.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    };
+
+    const highlight = (text) => {
+      if (!searchQuery.value || !text) return text;
+      const q = searchQuery.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
       return text.replace(new RegExp(`(${q})`, 'gi'), '<mark class="highlight-search">$1</mark>');
-    },
-    formatJsName(name) {
+    };
+
+    const formatJsName = (name) => {
       if (!name) return '';
-      let text = this.highlight(name);
+      let text = highlight(name);
       if (name.includes('(') || name.includes('.')) {
         return `<span class="syn-obj">${text}</span>`;
       }
       return `<span class="syn-kw">${text}</span>`;
-    },
-    formatCodeSnippet(code) {
+    };
+
+    const formatCodeSnippet = (code) => {
       if (!code) return '';
       let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       
@@ -252,21 +264,56 @@ createApp({
         if (num) return `<span class="syn-num">${num}</span>`;
         return match;
       });
-    },
-    getPedagoClass(type) {
+    };
+
+    const getPedagoClass = (type) => {
       if (type === 'remember') return 'pedago-remember';
       if (type === 'warning') return 'pedago-warning';
       return 'pedago-tip';
-    },
-    getPedagoIcon(type) {
+    };
+
+    const getPedagoIcon = (type) => {
       if (type === 'remember') return 'bi-bookmark-check-fill text-info';
       if (type === 'warning') return 'bi-exclamation-triangle-fill text-warning';
       return 'bi-lightbulb-fill text-success';
-    },
-    getPedagoTitle(type) {
+    };
+
+    const getPedagoTitle = (type) => {
       if (type === 'remember') return 'À retenir pour le Bac';
       if (type === 'warning') return 'Attention aux Pièges';
       return 'Conseil pratique';
-    }
+    };
+
+    return {
+      isDarkMode,
+      searchQuery,
+      selectedCategory,
+      selectedTocItemId,
+      items,
+      activeModalItem,
+      categories,
+      filteredItems,
+      groupedItems,
+      groupedItemsColumns,
+      displayOrderedItems,
+      currentModalIndex,
+      hasPrevModalItem,
+      hasNextModalItem,
+      getHashItemId,
+      prevModalItem,
+      nextModalItem,
+      openModal,
+      closeModal,
+      selectTocItem,
+      getCategoryCount,
+      toggleTheme,
+      copy,
+      highlight,
+      formatJsName,
+      formatCodeSnippet,
+      getPedagoClass,
+      getPedagoIcon,
+      getPedagoTitle
+    };
   }
 }).mount('#app');

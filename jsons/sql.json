@@ -7,30 +7,30 @@
     "official": "Une Base de Données (BD) est un ensemble structuré de données conservées de manière permanente. Un SGBD (ex: MySQL) permet de gérer, sécuriser et manipuler ces données.",
     "simple": "La BD stocke les informations organisées en tables. Le SGBD est le logiciel (MySQL) qui exécute nos requêtes pour lire et modifier ces données.",
     "code": "-- Structure d'une Base de Données (BDR)\n-- Une BDR contient des Tables (Relations)\n-- Une Table contient des Lignes (Enregistrements/n-uplets) et Colonnes (Champs/Attributs)",
-    "note": "Au Bac : Une table est composée de colonnes (champs/attributs) et de lignes (enregistrements/n-uplets).",
+    "note": "Une table est composée de colonnes (champs/attributs) et de lignes (enregistrements/n-uplets).",
     "noteType": "remember"
   },
   {
     "id": "bdr-representation",
-    "name": "Représentation Relationale (Textuelle & Graphique)",
+    "name": "Représentation Textuelle & Graphique",
     "category": "Concepts & Structure BDR",
     "subcategory": "Modélisation",
     "official": "Représentation d'une BDR sous forme textuelle et graphique. Conventions : clé primaire soulignée, clé étrangère suivie du symbole #. Relations : 1:1, 1:∞, ∞:∞.",
     "simple": "Permet de décrire les tables et leurs liaisons. Une clé primaire identifie la ligne, une clé étrangère (#) fait référence à la clé primaire d'une autre table.",
     "code": "-- Représentation textuelle :\nELEVE (<u>id_eleve</u>, nom, prenom, moyenne, #id_classe)\nCLASSE (<u>id_classe</u>, nom_classe)\n\n-- Cardinalités des relations :\n-- 1:1 (un à un), 1:∞ (un à plusieurs), ∞:∞ (plusieurs à plusieurs)",
-    "note": "Au Bac : Dans la représentation textuelle, la clé primaire est <strong>TOUJOURS</strong> soulignée et la clé étrangère est suivie de #.",
+    "note": "Dans la représentation textuelle, la clé primaire est <strong>TOUJOURS</strong> soulignée et la clé étrangère est suivie de #.",
     "noteType": "warning",
     "illustrations": "<svg viewBox=\"0 0 440 200\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:460px; font-family:sans-serif;\">\n  <!-- Table Parent CLASSE -->\n  <rect x=\"15\" y=\"20\" width=\"180\" height=\"155\" rx=\"6\" fill=\"#ffffff\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <rect x=\"15\" y=\"20\" width=\"180\" height=\"35\" rx=\"6\" fill=\"#22c55e\"/>\n  <text x=\"105\" y=\"43\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">CLASSE (Parente)</text>\n\n  <text x=\"25\" y=\"78\" fill=\"#15803d\" font-weight=\"bold\" font-size=\"12\" text-decoration=\"underline\">id_classe (PK)</text>\n  <text x=\"25\" y=\"105\" fill=\"#334155\" font-size=\"12\">nom_classe</text>\n  <text x=\"25\" y=\"132\" fill=\"#334155\" font-size=\"12\">niveau</text>\n\n  <!-- Table Fille ELEVE -->\n  <rect x=\"245\" y=\"20\" width=\"180\" height=\"155\" rx=\"6\" fill=\"#ffffff\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n  <rect x=\"245\" y=\"20\" width=\"180\" height=\"35\" rx=\"6\" fill=\"#3b82f6\"/>\n  <text x=\"335\" y=\"43\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">ELEVE (Fille)</text>\n\n  <text x=\"255\" y=\"78\" fill=\"#1d4ed8\" font-weight=\"bold\" font-size=\"12\" text-decoration=\"underline\">id_eleve (PK)</text>\n  <text x=\"255\" y=\"105\" fill=\"#334155\" font-size=\"12\">nom</text>\n  <text x=\"255\" y=\"132\" fill=\"#dc2626\" font-weight=\"bold\" font-size=\"12\">#id_classe (FK)</text>\n\n  <!-- Relationship Arrow -->\n  <path d=\"M 255 128 C 210 128, 210 74, 195 74\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2.5\" stroke-dasharray=\"4,2\"/>\n  <circle cx=\"195\" cy=\"74\" r=\"4\" fill=\"#dc2626\"/>\n</svg>"
   },
   {
     "id": "bdr-integrity-table",
-    "name": "1. Contrainte de Table (d'Entité)",
+    "name": "1. Contrainte de Table",
     "category": "Concepts & Structure BDR",
     "subcategory": "Règles d'Intégrité BDR",
     "official": "Garantit l'unicité de chaque n-uplet (ligne) dans une table. Chaque table doit posséder une clé primaire unique non nulle qui identifie chaque enregistrement.",
     "simple": "Empêche d'avoir deux lignes identiques dans la même table. La clé primaire doit être unique et non nulle pour chaque enregistrement.",
     "code": "-- Contrainte de Table (Entité) :\n-- 1. Chaque ligne est identifiée par sa clé primaire unique.\n-- 2. Erreur : Insérer deux élèves avec la même valeur id_eleve.\nELEVE (<u>id_eleve</u>, nom, prenom)",
-    "note": "Au Bac : Deux enregistrements (lignes) d'une même table ne peuvent jamais partager la même valeur de clé primaire.",
+    "note": "Deux enregistrements (lignes) d'une même table ne peuvent jamais partager la même valeur de clé primaire.",
     "noteType": "warning"
   },
   {
@@ -41,7 +41,7 @@
     "official": "Définit l'ensemble des valeurs autorisées pour un attribut (champ/colonne) : type de données, plage de valeurs (intervalle), présence de valeur (NOT NULL) ou valeur par défaut.",
     "simple": "Vérifie que la valeur saisie dans une colonne respecte le type et la plage définie (ex: une moyenne doit être un nombre réel entre 0 et 20).",
     "code": "-- Contrainte de Domaine :\n-- 1. Type de données (ex: INT, DECIMAL, DATE, VARCHAR)\n-- 2. Champ obligatoire (NOT NULL)\n-- 3. Validation de plage : moyenne entre 0 et 20",
-    "note": "Au Bac : Tenter d'insérer du texte dans un champ numérique INT ou une note négative viole la contrainte de domaine.",
+    "note": "Tenter d'insérer du texte dans un champ numérique INT ou une note négative viole la contrainte de domaine.",
     "noteType": "warning"
   },
   {
@@ -52,7 +52,7 @@
     "official": "Assure la cohérence des liens entre les tables. Toute valeur d'une clé étrangère (#) dans une table fille doit exister parmi les valeurs de la clé primaire de la table parente.",
     "simple": "Empêche de créer un lien vers un enregistrement parent inexistant (ex: attribuer à un élève un id_classe qui n'existe pas dans la table CLASSE).",
     "code": "-- Contrainte d'Intégrité Référentielle :\n-- La clé étrangère ELEVE.#id_classe pointe vers CLASSE.<u>id_classe</u>\nELEVE (<u>id_eleve</u>, nom, #id_classe)\nCLASSE (<u>id_classe</u>, nom_classe)",
-    "note": "Au Bac : Une anomalie référentielle se produit lorsqu'une clé étrangère fait référence à une clé primaire absente ou supprimée sans règle de cascade.",
+    "note": "Une anomalie référentielle se produit lorsqu'une clé étrangère fait référence à une clé primaire absente ou supprimée sans règle de cascade.",
     "noteType": "warning",
     "illustrations": "<svg viewBox=\"0 0 440 200\" width=\"100%\" height=\"180\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:460px; font-family:sans-serif;\">\n  <!-- Table Parent CLASSE -->\n  <rect x=\"15\" y=\"20\" width=\"180\" height=\"155\" rx=\"6\" fill=\"#ffffff\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <rect x=\"15\" y=\"20\" width=\"180\" height=\"35\" rx=\"6\" fill=\"#22c55e\"/>\n  <text x=\"105\" y=\"43\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">CLASSE (Parente)</text>\n\n  <text x=\"25\" y=\"78\" fill=\"#15803d\" font-weight=\"bold\" font-size=\"12\" text-decoration=\"underline\">id_classe (PK)</text>\n  <text x=\"25\" y=\"105\" fill=\"#334155\" font-size=\"12\">nom_classe</text>\n  <text x=\"25\" y=\"132\" fill=\"#334155\" font-size=\"12\">niveau</text>\n\n  <!-- Table Fille ELEVE -->\n  <rect x=\"245\" y=\"20\" width=\"180\" height=\"155\" rx=\"6\" fill=\"#ffffff\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n  <rect x=\"245\" y=\"20\" width=\"180\" height=\"35\" rx=\"6\" fill=\"#3b82f6\"/>\n  <text x=\"335\" y=\"43\" text-anchor=\"middle\" fill=\"#ffffff\" font-weight=\"bold\" font-size=\"14\">ELEVE (Fille)</text>\n\n  <text x=\"255\" y=\"78\" fill=\"#1d4ed8\" font-weight=\"bold\" font-size=\"12\" text-decoration=\"underline\">id_eleve (PK)</text>\n  <text x=\"255\" y=\"105\" fill=\"#334155\" font-size=\"12\">nom</text>\n  <text x=\"255\" y=\"132\" fill=\"#dc2626\" font-weight=\"bold\" font-size=\"12\">#id_classe (FK)</text>\n\n  <!-- Relationship Arrow -->\n  <path d=\"M 255 128 C 210 128, 210 74, 195 74\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2.5\" stroke-dasharray=\"4,2\"/>\n  <circle cx=\"195\" cy=\"74\" r=\"4\" fill=\"#dc2626\"/>\n</svg>"
   },
@@ -76,7 +76,7 @@
     "simple": "Stocke un nombre à virgule exacte (ex: 14.75).",
     "code": "moyenne DECIMAL(4, 2)",
     "note": "DECIMAL(4,2) signifie 4 chiffres au total dont 2 après la virgule (ex: 19.75).",
-    "noteType": "warning"
+    "noteType": "remember"
   },
   {
     "id": "sql-char",
@@ -86,7 +86,7 @@
     "official": "Type chaîne de caractères de longueur FIXE n (réservation mémoire constante de n caractères).",
     "simple": "Longueur FIXE : réserve TOUJOURS exactement n caractères en mémoire, même si le texte saisi est plus court (complété par des espaces).",
     "code": "cin CHAR(8), -- CIN tunisien (exactement 8 chiffres)\ncode_postal CHAR(4) -- Code postal (exactement 4 chiffres)",
-    "note": "Différence Bac : CHAR(8) utilise <strong>TOUJOURS</strong> 8 octets en mémoire (ex: '123' prend 8 caractères). Réservé aux codes de longueur stricte et constante (CIN, Code Postal).",
+    "note": "CHAR(8) utilise <strong>TOUJOURS</strong> 8 octets en mémoire (ex: '123' prend 8 caractères). Réservé aux codes de longueur stricte et constante (CIN, Code Postal).",
     "noteType": "warning"
   },
   {
@@ -97,7 +97,7 @@
     "official": "Type chaîne de caractères de longueur VARIABLE (n = longueur maximale autorisée).",
     "simple": "Longueur VARIABLE : n est la taille maximale autorisée, mais l'espace mémoire s'adapte exactement au texte réellement saisi.",
     "code": "nom VARCHAR(30), -- Si on saisit 'Ali' (3 lettres), seuls 4 octets sont stockés\nemail VARCHAR(50)",
-    "note": "Différence Bac : VARCHAR économise la mémoire ! Si on stocke 'Ali' dans VARCHAR(30), il occupe 4 octets, alors que CHAR(30) occuperait 30 octets !",
+    "note": "VARCHAR économise la mémoire ! Si on stocke 'Ali' dans VARCHAR(30), il occupe 4 octets, alors que CHAR(30) occuperait 30 octets !",
     "noteType": "warning"
   },
   {
@@ -116,34 +116,34 @@
     "name": "DATE",
     "category": "Types de Données SQL",
     "subcategory": "Textes & Dates",
-    "official": "Type date au format 'AAAA-MM-JJ'.",
+    "official": "Type date au format 'YYYY-MM-DD'.",
     "simple": "Stocke une date de calendrier (Année-Mois-Jour).",
     "code": "date_naissance DATE",
-    "note": "Piège du Bac : le format SQL standard est 'YYYY-MM-DD' !",
-    "noteType": "warning"
+    "note": "Le format SQL standard est 'YYYY-MM-DD'.",
+    "noteType": "remember"
   },
   {
     "id": "sql-datetime",
     "name": "DATETIME / TIMESTAMP",
     "category": "Types de Données SQL",
     "subcategory": "Textes & Dates",
-    "official": "Type date et heure au format 'AAAA-MM-JJ HH:MM:SS'.",
+    "official": "Type date et heure au format 'YYYY-MM-DD HH:MM:SS'.",
     "simple": "Stocke la date et l'heure précises d'un événement.",
     "code": "date_inscription DATETIME",
-    "note": "Format standard : 'YYYY-MM-DD HH:MM:SS'.",
+    "note": "Le format standard est 'YYYY-MM-DD HH:MM:SS'.",
     "noteType": "remember"
   },
   {
     "id": "sql-create-db",
-    "name": "CREATE DATABASE / USE / DROP DATABASE",
+    "name": "CREATE DATABASE / USE",
     "category": "Définition de Données (DDL)",
     "subcategory": "Gestion des BD",
-    "official": "Création, sélection et suppression d'une base de données SQL.",
-    "simple": "Permet d'initialiser une nouvelle base de données, de la choisir pour travailler, ou de la supprimer.",
-    "code": "CREATE DATABASE ecole;\nUSE ecole;\nDROP DATABASE ecole;",
+    "official": "Création et sélection d'une base de données SQL.",
+    "simple": "Permet d'initialiser une nouvelle base de données et de la choisir pour travailler.",
+    "code": "CREATE DATABASE ecole;\nUSE ecole;",
     "note": "N'oubliez pas d'exécuter USE nom_bd avant de créer vos tables !",
     "noteType": "tip",
-    "syntax": "CREATE DATABASE db | USE db | DROP DATABASE db",
+    "syntax": "CREATE DATABASE db | USE db",
     "params": [
       {
         "name": "db",
@@ -160,7 +160,7 @@
     "simple": "Définit la structure d'une nouvelle table dans la base de données.",
     "code": "CREATE TABLE eleve (\n  id INT AUTO_INCREMENT,\n  nom VARCHAR(30) NOT NULL,\n  moyenne DECIMAL(4,2),\n  id_classe INT,\n  PRIMARY KEY (id),\n  FOREIGN KEY (id_classe) REFERENCES classe(id)\n);",
     "note": "Ordre de création des tables :<ol class='mb-0 ps-3 mt-1'><li>Créer les <strong>tables parentes</strong> (contenant les clés primaires).</li><li>Créer les <strong>tables filles</strong> (contenant les clés étrangères <code>#</code>).</li></ol>",
-    "noteType": "remember",
+    "noteType": "tip",
     "syntax": "CREATE TABLE nom_table (col1 type1, ...)",
     "params": [
       {
@@ -180,10 +180,10 @@
     "subcategory": "Modification de Structure",
     "official": "Ajoute une nouvelle colonne avec son type de données et ses contraintes à une table existante.",
     "simple": "Permet d'insérer un nouveau champ dans la structure d'une table sans supprimer ses données.",
-    "code": "ALTER TABLE eleve ADD email VARCHAR(50);",
-    "note": "Utilisé pour enrichir la structure d'une table existante avec une nouvelle colonne.",
+    "code": "ALTER TABLE eleve \nADD email VARCHAR(50);",
+    "note": "Le mot-clé COLUMN est optionnel : ADD col_name type produit exactement le même résultat qu'ADD COLUMN col_name type.",
     "noteType": "tip",
-    "syntax": "ALTER TABLE nom_table ADD col_name type",
+    "syntax": "ALTER TABLE nom_table \nADD [COLUMN] col_name type",
     "params": [
       {
         "name": "nom_table",
@@ -206,10 +206,10 @@
     "subcategory": "Modification de Structure",
     "official": "Modifie le type de données, la taille ou les contraintes d'une colonne existante dans une table.",
     "simple": "Permet de modifier la définition d'un champ existant (ex: agrandir la taille d'un VARCHAR).",
-    "code": "ALTER TABLE eleve MODIFY email VARCHAR(100) NOT NULL;",
-    "note": "Réduire la taille d'une colonne peut provoquer une perte de données si des valeurs dépassent la nouvelle taille !",
+    "code": "ALTER TABLE eleve \nMODIFY email VARCHAR(100) NOT NULL;",
+    "note": "Le mot-clé COLUMN est optionnel. Attention : réduire la taille d'une colonne peut provoquer une perte de données !",
     "noteType": "warning",
-    "syntax": "ALTER TABLE nom_table MODIFY col_name type",
+    "syntax": "ALTER TABLE nom_table \nMODIFY [COLUMN] col_name type",
     "params": [
       {
         "name": "nom_table",
@@ -232,10 +232,10 @@
     "subcategory": "Modification de Structure",
     "official": "Supprime définitivement une colonne et toutes ses données associées d'une table.",
     "simple": "Efface une colonne devenue inutile de la structure de la table.",
-    "code": "ALTER TABLE eleve DROP COLUMN email;",
-    "note": "Action irréversible ! Supprime la colonne et toutes les valeurs qu'elle contenait.",
+    "code": "ALTER TABLE eleve \nDROP COLUMN email;",
+    "note": "Le mot-clé COLUMN est optionnel (ex: DROP col_name). Action irréversible qui efface la colonne et ses données !",
     "noteType": "warning",
-    "syntax": "ALTER TABLE nom_table DROP COLUMN col_name",
+    "syntax": "ALTER TABLE nom_table \nDROP [COLUMN] col_name",
     "params": [
       {
         "name": "nom_table",
@@ -253,27 +253,23 @@
     "category": "Définition de Données (DDL)",
     "subcategory": "Modification de Structure",
     "official": "Ajoute une contrainte d'intégrité (clé primaire, clé étrangère, CHECK, UNIQUE) à une table déjà créée.",
-    "simple": "Permet d'ajouter une contrainte d'intégrité (clé primaire, clé étrangère ou règle CHECK) à une table déjà existante.",
-    "code": "-- Ajouter une clé étrangère à une table existante :\nALTER TABLE eleve\nADD CONSTRAINT fk_eleve_classe\nFOREIGN KEY (id_classe) REFERENCES classe(id_classe);",
-    "note": "Très utile lorsqu'on crée d'abord les tables, puis qu'on ajoute les clés étrangères dans un second temps.",
+    "simple": "Permet d'ajouter une contrainte d'intégrité (clé primaire, clé étrangère, unicité UNIQUE ou règle CHECK) à une table existante.",
+    "code": "-- 1. Clé étrangère (FK) :\nALTER TABLE eleve\nADD CONSTRAINT fk_eleve_classe\nFOREIGN KEY (id_classe) REFERENCES classe(id);\n\n-- 2. Clé primaire (PK) :\nALTER TABLE eleve\nADD CONSTRAINT pk_eleve PRIMARY KEY (id);\n\n-- 3. Unicité (UNIQUE) :\nALTER TABLE eleve\nADD CONSTRAINT uq_eleve_email UNIQUE (email);\n\n-- 4. Validation (CHECK) :\nALTER TABLE eleve\nADD CONSTRAINT chk_eleve_moyenne CHECK (moyenne BETWEEN 0 AND 20);",
+    "note": "Le mot-clé CONSTRAINT nom_contrainte est optionnel (ex: ADD PRIMARY KEY ... sans nom). Toutefois, nommer explicitement la contrainte (ex: pk_, fk_, uq_, chk_) est fortement recommandé pour pouvoir l'identifier et la supprimer facilement.",
     "noteType": "tip",
-    "syntax": "ALTER TABLE nom_table ADD CONSTRAINT nom_fk FOREIGN KEY (col) REFERENCES table(pk)",
+    "syntax": "ALTER TABLE nom_table\nADD [CONSTRAINT nom_contrainte] type_contrainte ...",
     "params": [
       {
         "name": "nom_table",
-        "desc": "Table cible."
+        "desc": "Table cible à modifier."
       },
       {
-        "name": "nom_fk",
-        "desc": "Nom donné à la contrainte."
+        "name": "nom_contrainte",
+        "desc": "Nom personnalisé attribué à la contrainte (optionnel, ex: pk_..., fk_..., uq_..., chk_...)."
       },
       {
-        "name": "col",
-        "desc": "Champ clé étrangère local."
-      },
-      {
-        "name": "table(pk)",
-        "desc": "Table parente et sa clé primaire reliée."
+        "name": "type_contrainte",
+        "desc": "Type de contrainte : PRIMARY KEY, FOREIGN KEY ... REFERENCES, UNIQUE, ou CHECK."
       }
     ]
   },
@@ -284,10 +280,10 @@
     "subcategory": "Modification de Structure",
     "official": "Supprime une contrainte d'intégrité nommée (clé étrangère, CHECK, UNIQUE ou clé primaire) d'une table.",
     "simple": "Enlève une clé étrangère ou une règle de validation sans supprimer la colonne elle-même.",
-    "code": "-- 1. Supprimer une clé étrangère sous MariaDB / MySQL (OBLIGATOIRE) :\nALTER TABLE eleve DROP FOREIGN KEY fk_eleve_classe;\n\n-- 2. Supprimer la clé primaire :\nALTER TABLE eleve DROP PRIMARY KEY;\n\n-- 3. Supprimer une contrainte CHECK (MariaDB 10.2.1+) :\nALTER TABLE eleve DROP CONSTRAINT chk_moyenne;",
+    "code": "-- 1. Supprimer une clé étrangère sous MariaDB / MySQL (OBLIGATOIRE) :\nALTER TABLE eleve \nDROP FOREIGN KEY fk_eleve_classe;\n\n-- 2. Supprimer la clé primaire :\nALTER TABLE eleve \nDROP PRIMARY KEY;\n\n-- 3. Supprimer une contrainte CHECK (MariaDB 10.2.1+) :\nALTER TABLE eleve \nDROP CONSTRAINT chk_moyenne;",
     "note": "Sous MariaDB / XAMPP, pour supprimer une clé étrangère, utiliser impérativement : <code>ALTER TABLE t DROP FOREIGN KEY nom_fk;</code>.",
     "noteType": "warning",
-    "syntax": "ALTER TABLE nom_table DROP FOREIGN KEY nom_fk",
+    "syntax": "ALTER TABLE nom_table \nDROP FOREIGN KEY nom_fk",
     "params": [
       {
         "name": "nom_table",
@@ -306,10 +302,10 @@
     "subcategory": "Modification de Structure",
     "official": "Définit (SET DEFAULT) ou supprime (DROP DEFAULT) la valeur par défaut d'une colonne sans modifier son type de données.",
     "simple": "Permet d'ajouter une valeur par défaut à un champ existant ou d'annuler une valeur par défaut prédéfinie.",
-    "code": "-- 1. Définir une nouvelle valeur par défaut :\nALTER TABLE eleve ALTER ville SET DEFAULT 'Tunis';\n\n-- 2. Supprimer la valeur par défaut d'une colonne :\nALTER TABLE eleve ALTER ville DROP DEFAULT;",
+    "code": "-- 1. Définir une nouvelle valeur par défaut :\nALTER TABLE eleve \nALTER ville SET DEFAULT 'Tunis';\n\n-- 2. Supprimer la valeur par défaut d'une colonne :\nALTER TABLE eleve \nALTER ville DROP DEFAULT;",
     "note": "COMPATIBILITÉ MARIADB / XAMPP : La syntaxe 'ALTER TABLE table ALTER col SET DEFAULT val;' est 100% supportée par MariaDB et MySQL.",
     "noteType": "tip",
-    "syntax": "ALTER TABLE nom_table ALTER col SET DEFAULT val",
+    "syntax": "ALTER TABLE nom_table \nALTER col SET DEFAULT val",
     "params": [
       {
         "name": "col",
@@ -323,23 +319,53 @@
   },
   {
     "id": "sql-alter-table-rename",
-    "name": "RENAME (Table / Colonne)",
+    "name": "RENAME Table / Colonne",
     "category": "Définition de Données (DDL)",
     "subcategory": "Modification de Structure",
-    "official": "Renomme une table entière (RENAME TO) ou renomme une colonne existante (RENAME COLUMN ... TO ou CHANGE).",
-    "simple": "Permet de changer le nom d'une table ou d'un champ sans altérer son contenu.",
-    "code": "-- 1. Renommer une table entière (Compatible MariaDB) :\nALTER TABLE etudiant RENAME TO eleve;\n\n-- 2. Renommer une colonne sous MariaDB historique (CHANGE) :\nALTER TABLE eleve CHANGE ancienne_moyenne moyenne DECIMAL(4,2);\n\n-- 3. Renommer une colonne (MariaDB 10.5.2+ / Standard SQL) :\nALTER TABLE eleve RENAME COLUMN ancienne_moyenne TO moyenne;",
-    "note": "MARIADB / XAMPP : Sur les versions antérieures à MariaDB 10.5.2 (XAMPP classique), 'RENAME COLUMN' provoque une erreur de syntaxe. Il faut utiliser la clause 'CHANGE ancien_nom nouveau_nom type;'.",
-    "noteType": "warning",
-    "syntax": "ALTER TABLE table RENAME TO n_name | CHANGE o_col n_col type",
+    "official": "Renomme une table entière (RENAME TO) ou une colonne (RENAME COLUMN ... TO).",
+    "simple": "Permet de modifier le nom d'une table ou d'une colonne sans modifier son contenu.",
+    "code": "-- 1. Renommer une table entière :\nALTER TABLE etudiant \nRENAME TO eleve;\n\n-- 2. Renommer une colonne (MariaDB 10.5.2+ / Standard SQL) :\nALTER TABLE eleve \nRENAME COLUMN ancienne_moyenne TO moyenne;",
+    "note": "Sur les versions antérieures à MariaDB 10.5.2 (anciennes versions XAMPP), RENAME COLUMN n'était pas supporté. Il fallait utiliser la clause CHANGE.",
+    "noteType": "tip",
+    "syntax": "ALTER TABLE table \nRENAME TO n_table;\n-- ou\nALTER TABLE table \nRENAME COLUMN o_col TO n_col;",
     "params": [
       {
-        "name": "table / n_name",
-        "desc": "Ancien et nouveau nom de la table."
+        "name": "n_table",
+        "desc": "Nouveau nom de la table."
       },
       {
         "name": "o_col / n_col",
         "desc": "Ancien et nouveau nom de la colonne."
+      }
+    ]
+  },
+  {
+    "id": "sql-alter-table-change",
+    "name": "CHANGE",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Modification de Structure",
+    "official": "Renomme une colonne et/ou modifie son type de données et ses contraintes (Spécifique MySQL / MariaDB).",
+    "simple": "Permet de changer le nom d'un champ tout en redéfinissant son type de données.",
+    "code": "-- Renommer 'ancienne_moyenne' en 'moyenne' tout en redéfinissant son type :\nALTER TABLE eleve \nCHANGE ancienne_moyenne moyenne DECIMAL(4,2);",
+    "note": "Avec la clause CHANGE, la re-déclaration du type de données est obligatoire, même si l'on ne souhaite modifier que le nom du champ !",
+    "noteType": "warning",
+    "syntax": "ALTER TABLE nom_table \nCHANGE o_col n_col type",
+    "params": [
+      {
+        "name": "nom_table",
+        "desc": "Table cible."
+      },
+      {
+        "name": "o_col",
+        "desc": "Ancien nom du champ."
+      },
+      {
+        "name": "n_col",
+        "desc": "Nouveau nom du champ."
+      },
+      {
+        "name": "type",
+        "desc": "Type de données et contraintes du champ (obligatoire)."
       }
     ]
   },
@@ -358,6 +384,24 @@
       {
         "name": "0 | 1",
         "desc": "0 pour désactiver la vérification des clés étrangères, 1 pour la réactiver."
+      }
+    ]
+  },
+  {
+    "id": "sql-drop-db",
+    "name": "DROP DATABASE",
+    "category": "Définition de Données (DDL)",
+    "subcategory": "Suppression",
+    "official": "Suppression d'une base de données SQL.",
+    "simple": "Permet de supprimer définitivement une base de données et tout son contenu.",
+    "code": "DROP DATABASE ecole;",
+    "note": "Attention ! La suppression d'une base de données est irréversible et efface toutes les tables qu'elle contient.",
+    "noteType": "warning",
+    "syntax": "DROP DATABASE db",
+    "params": [
+      {
+        "name": "db",
+        "desc": "Nom de la base de données à supprimer."
       }
     ]
   },
@@ -383,7 +427,7 @@
     "id": "sql-primary-key",
     "name": "PRIMARY KEY",
     "category": "Contraintes d'Intégrité",
-    "subcategory": "1. Contrainte de Table (d'Entité)",
+    "subcategory": "1. Contrainte de Table",
     "official": "Implémentation SQL de la contrainte d'entité : garantit l'unicité et la non-nullité identifiant chaque ligne de la table.",
     "simple": "Identifie de manière unique chaque enregistrement (ligne) d'une table (peut être simple ou composée).",
     "code": "-- Clé primaire simple\nPRIMARY KEY (id_eleve)\n-- Clé primaire composée\nPRIMARY KEY (id_eleve, id_matiere)",
@@ -401,7 +445,7 @@
     "id": "sql-unique",
     "name": "UNIQUE",
     "category": "Contraintes d'Intégrité",
-    "subcategory": "1. Contrainte de Table (d'Entité)",
+    "subcategory": "1. Contrainte de Table",
     "official": "Contrainte d'intégrité de table imposant l'unicité des valeurs d'une colonne non clé primaire.",
     "simple": "Empêche les doublons dans une colonne secondaire (ex: numéro CIN, adresse email).",
     "code": "num_cin CHAR(8) UNIQUE,\nemail VARCHAR(50) UNIQUE",
@@ -609,10 +653,10 @@
     "subcategory": "",
     "official": "Définit la projection des colonnes (SELECT) et les tables sources (FROM) à interroger dans une base de données.",
     "simple": "Sélectionne les champs à afficher (ou * pour tous les champs) à partir d'une ou plusieurs tables. L'option DISTINCT élimine les doublons.",
-    "code": "-- 1. Sélectionner toutes les colonnes d'une table :\nSELECT * FROM eleve;\n\n-- 2. Projection de colonnes spécifiques avec alias (AS) :\nSELECT nom, prenom, moyenne AS note_finale FROM eleve;\n\n-- 3. Élimination des doublons avec DISTINCT :\nSELECT DISTINCT ville FROM eleve;\n\n-- 4. Calculs d'expressions dans SELECT :\nSELECT nom, prix, prix * 1.19 AS prix_ttc FROM produit;",
+    "code": "-- 1. Sélectionner toutes les colonnes d'une table :\nSELECT * \nFROM eleve;\n\n-- 2. Projection de colonnes spécifiques avec alias (AS) :\nSELECT nom, prenom, moyenne AS note_finale \nFROM eleve;\n\n-- 3. Élimination des doublons avec DISTINCT :\nSELECT DISTINCT ville \nFROM eleve;\n\n-- 4. Calculs d'expressions dans SELECT :\nSELECT nom, prix, prix * 1.19 AS prix_ttc \nFROM produit;",
     "note": "<code>SELECT</code> et FROM sont les deux clauses OBLIGATOIRES de toute requête d'interrogation SQL.",
     "noteType": "warning",
-    "syntax": "SELECT col1, col2 FROM table",
+    "syntax": "SELECT col1, col2\nFROM table",
     "params": [
       {
         "name": "col1, col2",
@@ -631,11 +675,19 @@
     "subcategory": "",
     "official": "Filtre les enregistrements (lignes) d'une table AVANT tout regroupement ou tri, en appliquant des conditions logiques.",
     "simple": "Conserve uniquement les lignes qui satisfont les critères de recherche (comparaisons, masques LIKE, intervalles BETWEEN, listes IN, tests IS NULL).",
-    "code": "-- 1. Filtre numérique et comparaison :\nSELECT * FROM eleve WHERE moyenne >= 10;\n\n-- 2. Filtre textuel et masques (LIKE) :\nSELECT * FROM eleve WHERE nom LIKE 'A%';\n\n-- 3. Combinaison logique (AND / OR) et intervalle :\nSELECT * FROM eleve WHERE section = 'SI' AND moyenne BETWEEN 12 AND 18;\n\n-- 4. Test de nullité (IS NULL / IS NOT NULL) :\nSELECT * FROM eleve WHERE email IS NOT NULL;",
+    "code": "-- 1. Filtre numérique et comparaison :\nSELECT * \nFROM eleve \nWHERE moyenne >= 10;\n\n-- 2. Filtre textuel et masques (LIKE) :\nSELECT * \nFROM eleve \nWHERE nom LIKE 'A%';\n\n-- 3. Combinaison logique (AND / OR) et intervalle :\nSELECT * \nFROM eleve \nWHERE section = 'SI' AND moyenne BETWEEN 12 AND 18;\n\n-- 4. Test de nullité (IS NULL / IS NOT NULL) :\nSELECT * \nFROM eleve \nWHERE email IS NOT NULL;",
     "note": "<code>WHERE</code> filtre les lignes <strong>AVANT</strong> l'exécution de <code>GROUP BY</code>. Ne <strong>JAMAIS</strong> utiliser de fonctions d'agrégation (<code>COUNT</code>, <code>AVG</code>...) dans <code>WHERE</code> !",
     "noteType": "warning",
-    "syntax": "WHERE condition",
+    "syntax": "SELECT col1, col2\nFROM table\nWHERE condition",
     "params": [
+      {
+        "name": "col1, col2",
+        "desc": "Colonnes à afficher."
+      },
+      {
+        "name": "table",
+        "desc": "Table ciblée."
+      },
       {
         "name": "condition",
         "desc": "Filtre logique sur les lignes."
@@ -652,11 +704,19 @@
     "code": "-- 1. Nombre d'élèves par section :\nSELECT section, COUNT(*) AS total_eleves\nFROM eleve\nGROUP BY section;\n\n-- 2. Moyenne générale par classe :\nSELECT id_classe, AVG(moyenne) AS moyenne_classe\nFROM eleve\nGROUP BY id_classe;\n\n-- 3. Regroupement sur plusieurs colonnes :\nSELECT section, ville, COUNT(*) AS effectif\nFROM eleve\nGROUP BY section, ville;",
     "note": "Toute colonne présente dans <code>SELECT</code> qui n'est pas enveloppée dans une fonction d'agrégation DOIT figurer dans <code>GROUP BY</code>.",
     "noteType": "warning",
-    "syntax": "GROUP BY col1, col2",
+    "syntax": "SELECT col1, f_agreg(col2)\nFROM table\nGROUP BY col1",
     "params": [
       {
-        "name": "col1, col2",
-        "desc": "Colonnes servant à regrouper les lignes pour les calculs."
+        "name": "col1",
+        "desc": "Colonne(s) de regroupement."
+      },
+      {
+        "name": "f_agreg(col2)",
+        "desc": "Fonction d'agrégation (COUNT, SUM, AVG, MIN, MAX)."
+      },
+      {
+        "name": "table",
+        "desc": "Table ciblée."
       }
     ]
   },
@@ -670,8 +730,16 @@
     "code": "-- 1. Ne garder que les classes ayant une moyenne >= 12 :\nSELECT id_classe, AVG(moyenne) AS moyenne_classe\nFROM eleve\nGROUP BY id_classe\nHAVING AVG(moyenne) >= 12;\n\n-- 2. Ne garder que les sections ayant plus de 15 élèves :\nSELECT section, COUNT(*) AS nb_eleves\nFROM eleve\nGROUP BY section\nHAVING COUNT(*) > 15;\n\n-- 3. Combinaison avec WHERE et HAVING :\nSELECT section, AVG(moyenne)\nFROM eleve\nWHERE ville = 'Tunis'\nGROUP BY section\nHAVING AVG(moyenne) >= 10;",
     "note": "Distinction essentielle SQL :<ul class='mb-0 ps-3 mt-1'><li><code>WHERE</code> : filtre les <strong>lignes individuelles</strong> avant regroupement.</li><li><code>HAVING</code> : filtre les <strong>groupes</strong> après calcul d'agrégation (<code>AVG</code>, <code>SUM</code>, <code>COUNT</code>...).</li></ul>",
     "noteType": "warning",
-    "syntax": "HAVING condition_agrégation",
+    "syntax": "SELECT col1, f_agreg(col2)\nFROM table\nGROUP BY col1\nHAVING condition_agrégation",
     "params": [
+      {
+        "name": "col1",
+        "desc": "Colonne de regroupement."
+      },
+      {
+        "name": "f_agreg(col2)",
+        "desc": "Fonction d'agrégation."
+      },
       {
         "name": "condition_agrégation",
         "desc": "Filtre appliqué sur les groupes calculés (ex: COUNT(*) > 5)."
@@ -685,18 +753,22 @@
     "subcategory": "",
     "official": "Trie le résultat final de la requête selon une ou plusieurs colonnes, en ordre croissant (ASC par défaut) ou décroissant (DESC).",
     "simple": "Ordonne l'affichage des résultats par ordre alphabétique, numérique ou chronologique.",
-    "code": "-- 1. Tri croissant simple (par défaut ASC) :\nSELECT * FROM eleve ORDER BY nom ASC;\n\n-- 2. Tri décroissant par moyenne :\nSELECT nom, moyenne FROM eleve ORDER BY moyenne DESC;\n\n-- 3. Tri multicritères (par section croissant, puis par moyenne décroissant) :\nSELECT nom, section, moyenne\nFROM eleve\nORDER BY section ASC, moyenne DESC;",
+    "code": "-- 1. Tri croissant simple (par défaut ASC) :\nSELECT * \nFROM eleve \nORDER BY nom ASC;\n\n-- 2. Tri décroissant par moyenne :\nSELECT nom, moyenne \nFROM eleve \nORDER BY moyenne DESC;\n\n-- 3. Tri multicritères (par section croissant, puis par moyenne décroissant) :\nSELECT nom, section, moyenne\nFROM eleve\nORDER BY section ASC, moyenne DESC;",
     "note": "<code>ORDER BY</code> est toujours la DERNIÈRE clause d'une requête SQL.",
     "noteType": "remember",
-    "syntax": "ORDER BY col [ASC|DESC]",
+    "syntax": "SELECT col1, col2\nFROM table\nORDER BY col1 [ASC|DESC]",
     "params": [
       {
-        "name": "col",
-        "desc": "Colonne de tri."
+        "name": "col1, col2",
+        "desc": "Colonnes à afficher."
       },
       {
-        "name": "ASC | DESC",
-        "desc": "ASC: ordre croissant, DESC: ordre décroissant."
+        "name": "table",
+        "desc": "Table ciblée."
+      },
+      {
+        "name": "col1 [ASC|DESC]",
+        "desc": "Colonne de tri (ASC = croissant, DESC = décroissant)."
       }
     ]
   },
@@ -707,7 +779,7 @@
     "subcategory": "Calculs & Comparaison",
     "official": "Opérateurs arithmétiques d'addition, soustraction, multiplication et division.",
     "simple": "Permettent d'effectuer des calculs directement dans la clause SELECT ou WHERE.",
-    "code": "SELECT nom, prix * 1.19 AS prix_ttc FROM produit;",
+    "code": "SELECT nom, prix * 1.19 AS prix_ttc \nFROM produit;",
     "note": "Permet de calculer dynamiquement des valeurs sans modifier la table.",
     "noteType": "tip",
     "syntax": "val1 + val2"
@@ -719,7 +791,7 @@
     "subcategory": "Calculs & Comparaison",
     "official": "Opérateurs de comparaison (égal, différent, inférieur, supérieur).",
     "simple": "Comparent deux valeurs dans la clause WHERE.",
-    "code": "SELECT * FROM eleve WHERE moyenne >= 10 AND section <> 'Lettres';",
+    "code": "SELECT * \nFROM eleve \nWHERE moyenne >= 10 AND section <> 'Lettres';",
     "note": "En SQL, la différence s'écrit <> ou !=.",
     "noteType": "warning",
     "syntax": "col = val | col <> val"
@@ -731,7 +803,7 @@
     "subcategory": "Masques & Logique",
     "official": "Opérateurs logiques ET (AND), OU (OR), NON (NOT).",
     "simple": "Combinent plusieurs conditions dans un filtre WHERE.",
-    "code": "SELECT * FROM eleve WHERE (moyenne >= 10 AND section = 'SI') OR NOT (ville = 'Tunis');",
+    "code": "SELECT * \nFROM eleve \nWHERE (moyenne >= 10 AND section = 'SI') OR NOT (ville = 'Tunis');",
     "note": "Utilisez des parenthèses quand vous combinez AND et OR pour éviter toute ambiguïté !",
     "noteType": "warning",
     "syntax": "cond1 AND cond2 | cond1 OR cond2"
@@ -743,7 +815,7 @@
     "subcategory": "Masques & Logique",
     "official": "Filtre les valeurs comprises dans un intervalle (bornes incluses).",
     "simple": "Vérifie qu'une valeur se situe entre un minimum et un maximum.",
-    "code": "SELECT * FROM eleve WHERE moyenne BETWEEN 10 AND 15;",
+    "code": "SELECT * \nFROM eleve \nWHERE moyenne BETWEEN 10 AND 15;",
     "note": "Les bornes min et max sont INCLUSES dans le résultat !",
     "noteType": "warning",
     "syntax": "col BETWEEN min AND max",
@@ -761,7 +833,7 @@
     "subcategory": "Masques & Logique",
     "official": "Teste si une valeur appartient à une liste spécifiée.",
     "simple": "Vérifie si une valeur appartient à une liste spécifiée (évite de multiplier les conditions OR).",
-    "code": "SELECT * FROM eleve WHERE ville IN ('Tunis', 'Sousse', 'Sfax');",
+    "code": "SELECT * \nFROM eleve \nWHERE ville IN ('Tunis', 'Sousse', 'Sfax');",
     "note": "Évite d'écrire 'ville = Tunis OR ville = Sousse OR...'.",
     "noteType": "tip",
     "syntax": "col IN (val1, val2, ...)",
@@ -779,7 +851,7 @@
     "subcategory": "Masques & Logique",
     "official": "Permet d'effectuer des recherches par motif (pattern matching) sur des chaînes de caractères au moyen de deux caractères génériques (jokers) : % (qui remplace une suite de 0, 1 ou plusieurs caractères) et _ (qui remplace exactement un seul caractère).",
     "simple": "Sert à filtrer des textes en utilisant des masques (jokers) : % pour remplacer n'importe quelle suite de lettres et _ pour remplacer exactement une seule lettre.",
-    "code": "-- 1. Texte commençant par une lettre (ex: commence par 'A') :\nSELECT * FROM eleve WHERE nom LIKE 'A%';\n\n-- 2. Texte se terminant par un suffixe (ex: se termine par 'ne') :\nSELECT * FROM eleve WHERE nom LIKE '%ne';\n\n-- 3. Texte contenant un mot ou sous-chaîne (ex: contient 'ben') :\nSELECT * FROM eleve WHERE nom LIKE '%ben%';\n\n-- 4. Position exacte avec le joker _ (ex: 2ème lettre est 'a') :\nSELECT * FROM eleve WHERE nom LIKE '_a%';\n\n-- 5. Longueur exacte de 4 caractères (ex: 4 tirets bas _ _ _ _) :\nSELECT * FROM classe WHERE code_classe LIKE '____';\n\n-- 6. Exclusion de motif avec NOT LIKE (ex: ne commence pas par 'T') :\nSELECT * FROM eleve WHERE ville NOT LIKE 'T%';",
+    "code": "-- 1. Texte commençant par une lettre (ex: commence par 'A') :\nSELECT * \nFROM eleve \nWHERE nom LIKE 'A%';\n\n-- 2. Texte se terminant par un suffixe (ex: se termine par 'ne') :\nSELECT * \nFROM eleve \nWHERE nom LIKE '%ne';\n\n-- 3. Texte contenant un mot ou sous-chaîne (ex: contient 'ben') :\nSELECT * \nFROM eleve \nWHERE nom LIKE '%ben%';\n\n-- 4. Position exacte avec le joker _ (ex: 2ème lettre est 'a') :\nSELECT * \nFROM eleve \nWHERE nom LIKE '_a%';\n\n-- 5. Longueur exacte de 4 caractères (ex: 4 tirets bas _ _ _ _) :\nSELECT * \nFROM classe \nWHERE code_classe LIKE '____';\n\n-- 6. Exclusion de motif avec NOT LIKE (ex: ne commence pas par 'T') :\nSELECT * \nFROM eleve \nWHERE ville NOT LIKE 'T%';",
     "note": "Caractères génériques (jokers) SQL :<ul class='mb-0 ps-3 mt-1'><li><code>%</code> : remplace <strong>0, 1 ou plusieurs</strong> caractères quelconques.</li><li><code>_</code> : remplace <strong>un seul</strong> caractère à cette position.</li></ul>",
     "noteType": "warning",
     "syntax": "col LIKE 'motif%'",
@@ -797,7 +869,7 @@
     "subcategory": "Masques & Logique",
     "official": "Teste si la valeur d'une colonne est absente (NULL) ou renseignée.",
     "simple": "Vérifie si un champ est vide / non renseigné.",
-    "code": "SELECT * FROM eleve WHERE email IS NULL;",
+    "code": "SELECT * \nFROM eleve \nWHERE email IS NULL;",
     "note": "Ne <strong>JAMAIS</strong> écrire <code>= NULL</code>. Il faut obligatoirement écrire <code>IS NULL</code> ou <code>IS NOT NULL</code> !",
     "noteType": "warning",
     "syntax": "col IS NULL | col IS NOT NULL",
@@ -818,7 +890,7 @@
     "code": "-- 1. Jointure entre 2 tables (Élève et Classe) :\nSELECT E.nom, E.prenom, C.nom_classe\nFROM eleve E, classe C\nWHERE E.id_classe = C.id_classe;\n\n-- 2. Jointure entre 3 tables (Élève, Note, Matière) :\nSELECT E.nom, M.nom_matiere, N.note\nFROM eleve E, note N, matiere M\nWHERE E.id_eleve = N.id_eleve AND N.id_matiere = M.id_matiere;\n\n-- 3. Jointure entre 4 tables avec filtre additionnel :\nSELECT E.nom, C.nom_classe, M.nom_matiere, N.note\nFROM eleve E, classe C, note N, matiere M\nWHERE E.id_classe = C.id_classe \n  AND E.id_eleve = N.id_eleve \n  AND N.id_matiere = M.id_matiere\n  AND N.note >= 15;",
     "note": "Règle d'or du Bac : Pour lier N tables dans FROM, il faut écrire au moins (N-1) égalités de clés dans <code>WHERE</code> ! Sans cette égalité, les tables se croisent au hasard (produit cartésien erroné).",
     "noteType": "warning",
-    "syntax": "SELECT ... FROM t1, t2 WHERE t1.fk = t2.pk",
+    "syntax": "SELECT ... \nFROM t1, t2 \nWHERE t1.fk = t2.pk",
     "illustrations": "<svg viewBox=\"0 0 420 180\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width:440px; font-family:sans-serif;\">\n  <!-- Venn diagram for INNER JOIN -->\n  <circle cx=\"150\" cy=\"90\" r=\"65\" fill=\"#3b82f6\" fill-opacity=\"0.3\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n  <circle cx=\"270\" cy=\"90\" r=\"65\" fill=\"#22c55e\" fill-opacity=\"0.3\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n\n  <!-- Intersection area highlight -->\n  <path d=\"M 210 39 A 65 65 0 0 1 210 141 A 65 65 0 0 1 210 39\" fill=\"#eab308\" fill-opacity=\"0.7\" stroke=\"#ca8a04\" stroke-width=\"2\"/>\n\n  <text x=\"110\" y=\"95\" text-anchor=\"middle\" fill=\"#1e3a8a\" font-weight=\"bold\" font-size=\"13\">ELEVE</text>\n  <text x=\"310\" y=\"95\" text-anchor=\"middle\" fill=\"#14532d\" font-weight=\"bold\" font-size=\"13\">CLASSE</text>\n  <text x=\"210\" y=\"95\" text-anchor=\"middle\" fill=\"#854d0e\" font-weight=\"bold\" font-size=\"11\">Jointure</text>\n  <text x=\"210\" y=\"165\" text-anchor=\"middle\" fill=\"#0f172a\" font-weight=\"bold\" font-size=\"12\">ON ELEVE.#id_classe = CLASSE.id_classe</text>\n</svg>"
   },
   {
@@ -828,8 +900,8 @@
     "subcategory": "Sous-requêtes",
     "official": "Imbrication de requêtes SELECT non corrélées dans la clause WHERE d'une requête principale.",
     "simple": "Utilise le résultat d'une première requête comme filtre pour une seconde requête.",
-    "code": "-- Élèves ayant une moyenne supérieure à la moyenne générale :\nSELECT nom, moyenne FROM eleve\nWHERE moyenne > (SELECT AVG(moyenne) FROM eleve);\n\n-- Élèves appartenant à certaines classes :\nSELECT nom FROM eleve\nWHERE id_classe IN (SELECT id_classe FROM classe WHERE niveau = '4ème');",
-    "note": "Au Bac : Se limiter aux sous-requêtes non corrélées (indépendantes) placées dans la clause <code>WHERE</code>.",
+    "code": "-- Élèves ayant une moyenne supérieure à la moyenne générale :\nSELECT nom, moyenne \nFROM eleve\nWHERE moyenne > (SELECT AVG(moyenne) FROM eleve);\n\n-- Élèves appartenant à certaines classes :\nSELECT nom \nFROM eleve\nWHERE id_classe IN (SELECT id_classe FROM classe WHERE niveau = '4ème');",
+    "note": "Se limiter aux sous-requêtes non corrélées (indépendantes) placées dans la clause <code>WHERE</code>.",
     "noteType": "warning",
     "syntax": "WHERE col IN (SELECT col FROM table)"
   },
@@ -840,7 +912,7 @@
     "subcategory": "Agrégations",
     "official": "Fonction d'agrégation qui compte le nombre total de lignes (COUNT(*)) ou le nombre de valeurs non nulles d'une colonne (COUNT(colonne) et COUNT(DISTINCT colonne)).",
     "simple": "Compte soit le total de toutes les lignes (COUNT(*)), soit uniquement les lignes où une colonne est renseignée (exclut les NULL).",
-    "code": "-- Compter le nombre total d'élèves de la section SI :\nSELECT COUNT(*) FROM eleve WHERE section = 'SI';\n\n-- Compter uniquement les élèves ayant renseigné un email (exclut les NULL) :\nSELECT COUNT(email) FROM eleve;\n\n-- Compter le nombre de villes différentes (uniques) :\nSELECT COUNT(DISTINCT ville) FROM eleve;",
+    "code": "-- Compter le nombre total d'élèves de la section SI :\nSELECT COUNT(*) \nFROM eleve \nWHERE section = 'SI';\n\n-- Compter uniquement les élèves ayant renseigné un email (exclut les NULL) :\nSELECT COUNT(email) \nFROM eleve;\n\n-- Compter le nombre de villes différentes (uniques) :\nSELECT COUNT(DISTINCT ville) \nFROM eleve;",
     "note": "Distinction importante :<ul class='mb-0 ps-3 mt-1'><li><code>COUNT(*)</code> : compte <strong>TOUTES</strong> les lignes (y compris avec <code>NULL</code>).</li><li><code>COUNT(colonne)</code> : ignore les lignes où la colonne vaut <code>NULL</code>.</li></ul>",
     "noteType": "warning",
     "syntax": "COUNT(*) | COUNT(colonne)",
@@ -858,7 +930,7 @@
     "subcategory": "Agrégations",
     "official": "Calcule la somme (SUM) ou la moyenne (AVG) d'une colonne numérique.",
     "simple": "Additionne ou calcule la moyenne des valeurs de la colonne.",
-    "code": "SELECT AVG(moyenne) AS moyenne_generale FROM eleve;",
+    "code": "SELECT AVG(moyenne) AS moyenne_generale \nFROM eleve;",
     "note": "Fonctionne uniquement sur des colonnes numériques.",
     "noteType": "remember",
     "syntax": "SUM(col) | AVG(col)",
@@ -876,7 +948,7 @@
     "subcategory": "Agrégations",
     "official": "Retourne la valeur minimale (MIN) ou maximale (MAX).",
     "simple": "Trouve la plus petite ou la plus grande valeur d'une colonne.",
-    "code": "SELECT MAX(moyenne), MIN(moyenne) FROM eleve;",
+    "code": "SELECT MAX(moyenne), MIN(moyenne) \nFROM eleve;",
     "note": "Permet de déterminer la note la plus haute ou la plus basse.",
     "noteType": "tip",
     "syntax": "MIN(col) | MAX(col)",
@@ -894,7 +966,7 @@
     "subcategory": "Dates & Heures",
     "official": "Retourne la date/heure système (NOW), la date courante (CURDATE) ou extrait l'année (YEAR), le mois (MONTH) ou le jour (DAY) d'un champ DATE.",
     "simple": "Obtient la date du jour ou isole une composante (année, mois, jour) d'une date.",
-    "code": "-- 1. Insérer la date actuelle :\nINSERT INTO commande VALUES (101, CURDATE());\n\n-- 2. Filtrer les élèves nés en 2007 :\nSELECT nom, prenom FROM eleve WHERE YEAR(date_naissance) = 2007;",
+    "code": "-- 1. Insérer la date actuelle :\nINSERT INTO commande \nVALUES (101, CURDATE());\n\n-- 2. Filtrer les élèves nés en 2007 :\nSELECT nom, prenom \nFROM eleve \nWHERE YEAR(date_naissance) = 2007;",
     "note": "YEAR(date) extrait uniquement l'année sous forme d'un nombre entier à 4 chiffres.",
     "noteType": "tip",
     "syntax": "NOW() | CURDATE() | YEAR(date) | MONTH(date) | DAY(date)",
@@ -912,7 +984,7 @@
     "subcategory": "Dates & Heures",
     "official": "Ajoute un nombre entier n de jours (ou un intervalle) à une date spécifiée.",
     "simple": "Permet de calculer une date future à partir d'une date initiale (ex: calculer la date limite de retour d'un livre = date d'emprunt + 15 jours).",
-    "code": "-- 1. Calculer la date de retour d'un prêt (+15 jours) :\nSELECT id_emprunt, date_emprunt, ADDDATE(date_emprunt, 15) AS date_limite\nFROM emprunt;\n\n-- 2. Ajouter un intervalle d'un mois à la date courante :\nSELECT ADDDATE(CURDATE(), INTERVAL 1 MONTH);\n\n-- 3. Mettre à jour une date d'échéance (+30 jours) :\nUPDATE facture SET date_echeance = ADDDATE(date_facture, 30);",
+    "code": "-- 1. Calculer la date de retour d'un prêt (+15 jours) :\nSELECT id_emprunt, date_emprunt, ADDDATE(date_emprunt, 15) AS date_limite\nFROM emprunt;\n\n-- 2. Ajouter un intervalle d'un mois à la date courante :\nSELECT ADDDATE(CURDATE(), INTERVAL 1 MONTH);\n\n-- 3. Mettre à jour une date d'échéance (+30 jours) :\nUPDATE facture \nSET date_echeance = ADDDATE(date_facture, 30);",
     "note": "ADDDATE(date, 15) ajoute 15 jours à la date. On peut aussi passer un nombre négatif pour soustraire des jours (ex: ADDDATE(date, -7)).",
     "noteType": "tip",
     "syntax": "ADDDATE(date, n)",
@@ -934,7 +1006,7 @@
     "subcategory": "Dates & Heures",
     "official": "Calcule le nombre de jours d'écart entre deux dates en effectuant la soustraction (date1 - date2).",
     "simple": "Mesure l'intervalle en jours écoulés entre deux dates (ex: calculer la durée réelle d'un emprunt ou le retard d'un paiement).",
-    "code": "-- 1. Calculer le nombre de jours d'un emprunt (date_retour - date_emprunt) :\nSELECT id_emprunt, DATEDIFF(date_retour, date_emprunt) AS nb_jours_emprunt\nFROM emprunt;\n\n-- 2. Trouver les emprunts en cours depuis plus de 30 jours :\nSELECT * FROM emprunt WHERE DATEDIFF(CURDATE(), date_emprunt) > 30;\n\n-- 3. Calculer l'âge d'un élève en jours par rapport à aujourd'hui :\nSELECT nom, DATEDIFF(CURDATE(), date_naissance) AS age_en_jours FROM eleve;",
+    "code": "-- 1. Calculer le nombre de jours d'un emprunt (date_retour - date_emprunt) :\nSELECT id_emprunt, DATEDIFF(date_retour, date_emprunt) AS nb_jours_emprunt\nFROM emprunt;\n\n-- 2. Trouver les emprunts en cours depuis plus de 30 jours :\nSELECT * \nFROM emprunt \nWHERE DATEDIFF(CURDATE(), date_emprunt) > 30;\n\n-- 3. Calculer l'âge d'un élève en jours par rapport à aujourd'hui :\nSELECT nom, DATEDIFF(CURDATE(), date_naissance) AS age_en_jours \nFROM eleve;",
     "note": "<code>DATEDIFF(d1, d2)</code> effectue toujours la soustraction <code>d1 - d2</code> en jours. Si <code>d1</code> est plus récente que <code>d2</code>, le résultat est <strong>positif</strong>.",
     "noteType": "remember",
     "syntax": "DATEDIFF(date1, date2)",
@@ -946,28 +1018,6 @@
       {
         "name": "date2",
         "desc": "Date ancienne (date1 - date2 en jours)."
-      }
-    ]
-  },
-  {
-    "id": "sql-string-functions",
-    "name": "CONCAT() / UPPER() / LOWER()",
-    "category": "Fonctions SQL & Agrégats",
-    "subcategory": "Manipulation de Texte",
-    "official": "Fonctions SQL de manipulation de texte : concaténation (CONCAT), conversion de casse (UPPER/LOWER), longueur (LENGTH) et sous-chaîne (SUBSTRING).",
-    "simple": "Assemble des textes (CONCAT), met en majuscules (UPPER), minuscules (LOWER), calcule la longueur (LENGTH) ou extrait des lettres (SUBSTRING).",
-    "code": "-- 1. Concaténer nom et prénom :\nSELECT CONCAT(nom, ' ', prenom) AS nom_complet FROM eleve;\n\n-- 2. Mettre en majuscules :\nSELECT UPPER(nom) FROM eleve;\n\n-- 3. Extraire la 1ère lettre du prénom (initiale) :\nSELECT SUBSTRING(prenom, 1, 1) AS initiale FROM eleve;",
-    "note": "SUBSTRING(chaine, pos, len) commence à la position 1 en SQL (et pas 0) !",
-    "noteType": "warning",
-    "syntax": "CONCAT(s1, s2) | UPPER(s) | LOWER(s) | LENGTH(s) | SUBSTRING(s, pos, len)",
-    "params": [
-      {
-        "name": "s / s1, s2",
-        "desc": "Textes à traiter."
-      },
-      {
-        "name": "pos / len",
-        "desc": "Position de départ (commence à 1) et longueur."
       }
     ]
   }

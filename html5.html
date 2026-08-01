@@ -108,7 +108,7 @@
                 <div class="col-md-7">
                   <div class="position-relative">
                     <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                    <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill shadow-sm"
+                    <input type="search" v-model="searchQuery" class="form-control ps-5 rounded-pill shadow-sm"
                       placeholder="Rechercher une balise (ex: table, tr, th, td, section, input)...">
                   </div>
                 </div>
@@ -173,10 +173,11 @@
                                   <td>
                                     <code class="fw-bold font-monospace fs-6 text-danger"
                                       v-html="formatTableTagName(item.name)"></code>
-                                     <span v-if="item.illustrations || item.illustration" class="badge bg-info-subtle text-info border ms-1 d-print-none"
-                                       style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
-                                       <i class="bi bi-image-fill me-1"></i>Schéma
-                                     </span>
+                                    <span v-if="item.illustrations || item.illustration"
+                                      class="badge bg-info-subtle text-info border ms-1 d-print-none"
+                                      style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
+                                      <i class="bi bi-image-fill me-1"></i>Schéma
+                                    </span>
                                   </td>
                                   <td>
                                     <div class="fw-semibold text-body small mb-1"
@@ -236,10 +237,11 @@
                                   <td>
                                     <code class="fw-bold font-monospace fs-6 text-danger"
                                       v-html="formatTableTagName(item.name)"></code>
-                                     <span v-if="item.illustrations || item.illustration" class="badge bg-info-subtle text-info border ms-1 d-print-none"
-                                       style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
-                                       <i class="bi bi-image-fill me-1"></i>Schéma
-                                     </span>
+                                    <span v-if="item.illustrations || item.illustration"
+                                      class="badge bg-info-subtle text-info border ms-1 d-print-none"
+                                      style="font-size: 0.65rem;" title="Schéma / Illustration graphique disponible">
+                                      <i class="bi bi-image-fill me-1"></i>Schéma
+                                    </span>
                                   </td>
                                   <td>
                                     <div class="fw-semibold text-body small mb-1"
@@ -292,7 +294,7 @@
       <div class="offcanvas-body p-3">
         <div class="position-relative mb-3">
           <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-          <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill form-control-sm"
+          <input type="search" v-model="searchQuery" class="form-control ps-5 rounded-pill form-control-sm"
             placeholder="Filtrer les balises...">
         </div>
         <div class="accordion accordion-flush small" id="tocOffcanvasAccordion">
@@ -439,7 +441,7 @@
             </div>
 
             <!-- 5. Note Pédagogique -->
-                        <!-- Illustration & Schéma Graphique -->
+            <!-- Illustration & Schéma Graphique -->
             <div v-if="activeModalItem.illustrations || activeModalItem.illustration" class="mb-4 d-print-block">
               <h6 class="fw-bold text-primary text-uppercase small mb-2 d-flex align-items-center gap-1">
                 <i class="bi bi-image me-1"></i> Schéma & Illustration Graphique
@@ -448,7 +450,7 @@
                 v-html="activeModalItem.illustrations || activeModalItem.illustration"></div>
             </div>
 
-<div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
+            <div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
               <div class="fw-bold small d-flex align-items-center gap-2 mb-1">
                 <i :class="getPedagoIcon(activeModalItem.noteType)" class="fs-5"></i>
                 <span>{{ getPedagoTitle(activeModalItem.noteType) }}</span>
@@ -484,9 +486,10 @@
 
   <!-- Scripts locaux -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
 
   <!-- Script Vue.js externe -->
+  <script src="assets/js/fuse.min.js"></script>
   <script src="assets/js/html5.js"></script>
 </body>
 

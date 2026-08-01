@@ -112,7 +112,7 @@
                 <div class="col-md-7">
                   <div class="position-relative">
                     <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                    <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill shadow-sm"
+                    <input type="search" v-model="searchQuery" class="form-control ps-5 rounded-pill shadow-sm"
                       placeholder="Rechercher une fonction (ex: mysqli_connect, $_POST, strlen)...">
                   </div>
                 </div>
@@ -293,7 +293,7 @@
       <div class="offcanvas-body p-3">
         <div class="position-relative mb-3">
           <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-          <input type="text" v-model="searchQuery" class="form-control ps-5 rounded-pill form-control-sm"
+          <input type="search" v-model="searchQuery" class="form-control ps-5 rounded-pill form-control-sm"
             placeholder="Filtrer les fonctions PHP...">
         </div>
         <div class="accordion accordion-flush small" id="tocOffcanvasAccordion">
@@ -468,7 +468,7 @@
             </div>
 
             <!-- 3. Note Pédagogique -->
-                        <!-- Illustration & Schéma Graphique -->
+            <!-- Illustration & Schéma Graphique -->
             <div v-if="activeModalItem.illustrations || activeModalItem.illustration" class="mb-4 d-print-block">
               <h6 class="fw-bold text-primary text-uppercase small mb-2 d-flex align-items-center gap-1">
                 <i class="bi bi-image me-1"></i> Schéma & Illustration Graphique
@@ -477,7 +477,7 @@
                 v-html="activeModalItem.illustrations || activeModalItem.illustration"></div>
             </div>
 
-<div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
+            <div v-if="activeModalItem.note" class="pedago-box" :class="getPedagoClass(activeModalItem.noteType)">
               <div class="fw-bold small d-flex align-items-center gap-2 mb-1">
                 <i :class="getPedagoIcon(activeModalItem.noteType)" class="fs-5"></i>
                 <span>{{ getPedagoTitle(activeModalItem.noteType) }}</span>
@@ -513,9 +513,10 @@
 
   <!-- Scripts locaux -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/vue.global.js"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
 
   <!-- Script Vue.js externe -->
+  <script src="assets/js/fuse.min.js"></script>
   <script src="assets/js/php.js"></script>
 </body>
 
